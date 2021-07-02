@@ -1,0 +1,30 @@
+@import '../../css/vars.css';
+
+a {
+    color: var(--secondary-color);
+}
+.navContainer li{
+    list-style: none;
+}
+
+.navContainer   {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--secondary-color);
+    align-items: center;
+
+    
+}
+.navContainer ul{
+    display: flex;
+    flex-direction: row;
+}
+
+.loginContainer{
+    display: flex;
+    flex-direction: row;    
+}
+
+.navContainer img {
+    width: 100px;
+}
