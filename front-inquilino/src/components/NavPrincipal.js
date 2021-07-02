@@ -2,7 +2,6 @@
 import logo from './logo.jpg'
 import './componentsCSS/NavPrincipal.css'
 import { NavLink,Link } from "react-router-dom"
-import { logDOM } from '@testing-library/dom'
 const NavPrincipal = () => {
     return(
         <div className="navContainer">
