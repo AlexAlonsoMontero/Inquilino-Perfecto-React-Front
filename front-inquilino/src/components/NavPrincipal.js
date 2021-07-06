@@ -1,8 +1,12 @@
 
-import logo from './logo.jpg'
+import logo from './img/logo/logo.jpg'
 import './componentsCSS/NavPrincipal.css'
 import { NavLink,Link } from "react-router-dom"
-const NavPrincipal = () => {
+import Modal from './Modal'
+import Login from './Login'
+import { useState } from 'react'
+const NavPrincipal = ({setShowModal}) => {
+    
     return(
         <div className="navContainer">
             <img src={logo} alt="logo"/>
@@ -11,11 +15,13 @@ const NavPrincipal = () => {
                 <li><NavLink to="/">Viviendas</NavLink></li>
                 <li><NavLink to="/">Quienes Somos</NavLink></li>
             </ul>
-            <div className="loginContainer">
+            <div className="navLoginContainer">
                 <p><Link to="/">Registrate</Link></p>
-                <p><Link to="/">Inicia sesión</Link></p>
+                <p onClick={()=>setShowModal(true)}>Inicia sesión</p>
             </div>
+            
         </div>
+
     )
 }
 export default NavPrincipal

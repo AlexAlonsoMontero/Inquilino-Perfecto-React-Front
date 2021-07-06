@@ -1,0 +1,34 @@
+.loginFormButton {
+
+}
+
+.loginForm{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    height: 250px;
+    width: 300px;
+    
+}
+.loginForm label input{
+    box-sizing: content-box;
+    margin: 10px;
+    
+}
+
+.loginForm label{
+    text-align: center;
+    padding: 5px;
+}
+
+.loginFormButton{
+    padding: 10px;
+}
+
+@media (max-width:600px){
+    .loginForm{
+        width: 90vw;
+        height: 35vh;
+    }
+}
