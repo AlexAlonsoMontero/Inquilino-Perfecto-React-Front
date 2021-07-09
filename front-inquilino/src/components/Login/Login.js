@@ -1,8 +1,9 @@
 import { useState } from 'react'
 import { Redirect } from 'react-router-dom'
-import  {useUser}  from '../context/UserContext'
-import './componentsCSS/Login.css'
-import '../App.css';
+import  {useUser}  from '../../context/UserContext'
+import './Login.css'
+import '../../App.css';
+import { renderIntoDocument } from 'react-dom/cjs/react-dom-test-utils.production.min';
 
 
 
@@ -16,19 +17,18 @@ function Login() {
     const handleSubmit = async e => {
         e.preventDefault()
         setLoading(true)
-        const res = await fetch('http://chat-api.trek-quest.com/login', {
+        const res = await fetch('http://127.0.0.1:3001/login', {
             method: 'POST',
             body: JSON.stringify({ username, password }),
             headers: { 'Content-Type': 'application/json' }
         })
-        console.log(res)
         const data = await res.json()
         setLoading(false)
         if (res.ok) {
-            console.log(data)
             setUser(data)
+            return <Redirect to="/" />
         } else {
-            console.log(data)
+            
             setError(data.error)
         }
     }
@@ -42,7 +42,8 @@ function Login() {
     }
 
     return (
-        <div className="loginContainer">
+        <div className="login-Container">
+            <h1>Iniciar sesión</h1>
             <form onSubmit={handleSubmit} className="loginForm">
                 
                 <label>

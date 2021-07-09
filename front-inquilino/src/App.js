@@ -1,22 +1,47 @@
 import { useState } from 'react';
 import './App.css';
-import NavPrincipal from './components/NavPrincipal';
-import Login from './components/Login';
-import Modal from './components/Modal';
-
+import Aside from './components/Aside/Aside';
+import Footer from './components/Footer/Footer';
+import NavPrincipal from './components/NavPrincipal/NavPrincipal';
+import Modal from './components/Modal/Modal';
+import Login from './components/Login/Login';
+import { Route, Switch } from 'react-router-dom';
+import Register from './components/Register/Register'
+import { routes } from './routes';
+import { useUser } from './context/UserContext';
 
 function App() {
-  const [user, setUser] = useState()
+  const [user] = useUser()
   const [showModal, setShowModal] = useState(false)
-
+  console.log(user)
+ 
   return (
     <div className="App">
-      <NavPrincipal setShowModal={setShowModal}/>
-      {showModal &&
-                <Modal setShowModal={setShowModal}>
-                    <Login />
-                </Modal>
-      }
+      <header>
+        <NavPrincipal setShowModal={setShowModal}/>
+      </header>
+      <aside>
+
+      </aside>
+      
+      <main>
+          
+          {!user && showModal &&
+              <Modal setShowModal={setShowModal}>
+                  <Login />
+              </Modal>
+          }
+          <Switch>
+                <Route path={routes.r_register} exact>
+                <Register/>
+                </Route>
+                
+          </Switch>
+        
+      </main>
+      <footer>
+        
+      </footer>
     </div>
   );
 }

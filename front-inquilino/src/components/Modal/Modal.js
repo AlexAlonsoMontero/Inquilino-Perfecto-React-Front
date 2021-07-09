@@ -1,4 +1,4 @@
-import './componentsCSS/Modal.css'
+import './Modal.css'
 const Modal = ({children, setShowModal}) => {
     return(
         <div className="modal-background" onClick={() => setShowModal(false)}>

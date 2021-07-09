@@ -1,0 +1,33 @@
+.registerLogin-Container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.register-Container{
+    border: 1px solid var(--secondary-color);
+    width: 25vw;
+    border-radius: 15%;
+    padding: 5px;
+    margin: 10px auto;
+    box-shadow: var(--primary-shadow);
+    
+    
+}
+
+.register-Container form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+.register-Container h1{
+    text-align: center;
+}
+
+.register-Container form * {
+    margin: 5px;
+}
+
+.register-Container button {
+    width: 100px;
+}
