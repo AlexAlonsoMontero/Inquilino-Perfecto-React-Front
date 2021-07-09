@@ -31,3 +31,12 @@
 .register-Container button {
     width: 100px;
 }
+
+.loadimage-container{
+    width: 150px;
+    height: 150px;
+    background-color: lightgray;
+    border-radius: 50%;
+    background-position: center center;
+    background-size: cover;
+}

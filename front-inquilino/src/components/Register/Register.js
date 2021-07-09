@@ -1,18 +1,43 @@
-import { useState } from "react"
+import { Profiler, useState } from "react"
 import './Register.css'
+import { useUser } from "../../context/UserContext";
+import { Redirect } from "react-router";
+import avatar from './avatar.png'
+import { file } from "@babel/types";
+
+
+
 const Register = () => {
     //username:"",password:"",email:"", tipo:""
-    const [newUser,setNewUser] = useState({});
-
+    const [avatarStyle,setAvatarStyle] = useState ({ backgroundImage: 'url(' + avatar + ')' })
+    const [user] = useUser()
+    const [newUser,setNewUser] = useState({tipo:"INQUILINO"});
+    console.log(newUser)
+    if(user){
+        return <Redirect to="/"/>
+    }
+   
     const onHandleSubmit = async (e) =>{
         e.preventDefault()
-        console.log({newUser})
+        const avatar = e.target.avatar.files[0]
+        console.log("LOS DATOS DEL USUARIO" + newUser.tipo)
+        const fd = new FormData()
+        fd.append('avatar', avatar)
+        fd.append('username',newUser.username)
+        fd.append('password',newUser.password)
+        fd.append('tipo',newUser.tipo)
+        fd.append('email',newUser.email)
+        console.log("LOS DATOS DEL FORM " + JSON.stringify(fd))
         const addUser = await fetch('http://127.0.0.1:3001/api/users',{
-            method: 'POST',
-            body: JSON.stringify( newUser ),
-            headers: { 'Content-Type': 'application/json' }
+            body: fd,
+            method: 'POST'
+            
         })
-        console.log(addUser)
+        if(addUser)
+        {
+            <Redirect to="/"/>
+        }
+        
         
     }
     return(
@@ -41,6 +66,13 @@ const Register = () => {
                             <option value="CASERO" >CASERO</option>
                             <option value="CASERO/INQUILINO">CASERO E INQUILINO</option>
                         </select>
+                    </label>
+                    <label>
+                        Avatar: <br/>
+                        <div className="loadimage-container" style={avatarStyle} />
+                        <p>Pulsa la imagen para seleccionar un avatar</p>
+                        <input className="primary-file-select" name="avatar" type="file" accept="image/*" />
+                        
                     </label>
                     <button className="primary-button">Enviar</button>
                 </form>
