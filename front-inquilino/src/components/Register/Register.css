@@ -43,7 +43,7 @@
     background-size: cover;
 }
 
-input, select {
+.register-Container input, select {
     width: 250px;
     height: 20px;
 }
