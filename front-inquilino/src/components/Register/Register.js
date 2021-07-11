@@ -1,46 +1,44 @@
-import { Profiler, useState } from "react"
+import { useState } from "react"
 import './Register.css'
 import { useUser } from "../../context/UserContext";
 import { Redirect } from "react-router";
 import avatar from './avatar.png'
-import { file } from "@babel/types";
-
-
 
 const Register = () => {
     //username:"",password:"",email:"", tipo:""
-    const [avatarStyle,setAvatarStyle] = useState ({ backgroundImage: 'url(' + avatar + ')' })
+    const  [avatarStyle,setAvatarStyle] = useState({ backgroundImage: 'url(' + avatar + ')' })
+    console.log(avatarStyle)
     const [user] = useUser()
     const [newUser,setNewUser] = useState({tipo:"INQUILINO"});
-    console.log(newUser)
-    if(user){
-        return <Redirect to="/"/>
+        
+    const handleImageAvatar = (e)=>{
+        e.preventDefault()
+        if( e.target.files[0] ){
+            setAvatarStyle ({backgroundImage: 'url(' + URL.createObjectURL(e.target.files[0]) + ')'})
+        }
+        
     }
-   
+    
     const onHandleSubmit = async (e) =>{
         e.preventDefault()
         const avatar = e.target.avatar.files[0]
-        console.log("LOS DATOS DEL USUARIO" + newUser.tipo)
         const fd = new FormData()
         fd.append('avatar', avatar)
         fd.append('username',newUser.username)
         fd.append('password',newUser.password)
         fd.append('tipo',newUser.tipo)
         fd.append('email',newUser.email)
-        console.log("LOS DATOS DEL FORM " + JSON.stringify(fd))
+        
         const addUser = await fetch('http://127.0.0.1:3001/api/users',{
             body: fd,
             method: 'POST'
             
         })
-        if(addUser)
-        {
-            <Redirect to="/"/>
-        }
-        
+        console.log(addUser)
         
     }
     return(
+        
         <div className="registerLogin-Container">
             <div className="register-Container">
             <header><h1>Registro de nuevo usuario</h1></header>
@@ -67,11 +65,12 @@ const Register = () => {
                             <option value="CASERO/INQUILINO">CASERO E INQUILINO</option>
                         </select>
                     </label>
-                    <label>
+                    <label name="avatarImage" class="avatarImage" onChange={e=>handleImageAvatar(e)}>
                         Avatar: <br/>
                         <div className="loadimage-container" style={avatarStyle} />
                         <p>Pulsa la imagen para seleccionar un avatar</p>
                         <input className="primary-file-select" name="avatar" type="file" accept="image/*" />
+                        
                         
                     </label>
                     <button className="primary-button">Enviar</button>
@@ -79,6 +78,7 @@ const Register = () => {
             </div>
             
         </div>
+        
     )
 }
 

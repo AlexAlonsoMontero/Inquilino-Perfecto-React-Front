@@ -6,10 +6,11 @@
 .register-Container{
     border: 1px solid var(--secondary-color);
     width: 25vw;
-    border-radius: 15%;
+    border-radius: 25px;
     padding: 5px;
     margin: 10px auto;
     box-shadow: var(--primary-shadow);
+    min-width: fit-content;
     
     
 }
@@ -26,6 +27,7 @@
 
 .register-Container form * {
     margin: 5px;
+    text-algn: center;
 }
 
 .register-Container button {
@@ -39,4 +41,15 @@
     border-radius: 50%;
     background-position: center center;
     background-size: cover;
+}
+
+input, select {
+    width: 250px;
+    height: 20px;
+}
+.avatarImage{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }

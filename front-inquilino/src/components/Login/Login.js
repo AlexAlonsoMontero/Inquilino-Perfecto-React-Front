@@ -3,9 +3,6 @@ import { Redirect } from 'react-router-dom'
 import  {useUser}  from '../../context/UserContext'
 import './Login.css'
 import '../../App.css';
-import { renderIntoDocument } from 'react-dom/cjs/react-dom-test-utils.production.min';
-
-
 
 function Login() {
     const [username, setUsername] = useState('')

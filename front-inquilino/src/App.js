@@ -13,7 +13,7 @@ import { useUser } from './context/UserContext';
 function App() {
   const [user] = useUser()
   const [showModal, setShowModal] = useState(false)
-  console.log(user)
+  
  
   return (
     <div className="App">
@@ -35,6 +35,7 @@ function App() {
                 <Route path={routes.r_register} exact>
                 <Register/>
                 </Route>
+                
                 
           </Switch>
         

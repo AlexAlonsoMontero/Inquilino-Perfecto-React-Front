@@ -12,7 +12,7 @@ const NavPrincipal = ({setShowModal}) => {
             </div>
             <nav>
                 <ul>
-                    <li><NavLink to="/">Inicio</NavLink></li>
+                    <li><NavLink to={routes.home}>Inicio</NavLink></li>
                     <li><NavLink to="/">Viviendas</NavLink></li>
                     <li><NavLink to="/">Quienes Somos</NavLink></li>        
                     <li onClick={()=>setShowModal(true)}><span>Inicia sesión</span></li>
