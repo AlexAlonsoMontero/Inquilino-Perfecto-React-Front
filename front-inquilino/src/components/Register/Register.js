@@ -7,7 +7,6 @@ import avatar from './avatar.png'
 const Register = () => {
     //username:"",password:"",email:"", tipo:""
     const  [avatarStyle,setAvatarStyle] = useState({ backgroundImage: 'url(' + avatar + ')' })
-    console.log(avatarStyle)
     const [user] = useUser()
     const [newUser,setNewUser] = useState({tipo:"INQUILINO"});
         
@@ -35,7 +34,7 @@ const Register = () => {
             
         })
         console.log(addUser)
-        
+        //TODO VERIFICAR QUE SE USA ROUTES EN VEZ DE LAS RUTAS A MANO
     }
     return(
         

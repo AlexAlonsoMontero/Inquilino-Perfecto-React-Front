@@ -1,6 +1,6 @@
 @import '../../css/vars.css';
 
-a{
+.navContainer a{
     color: var(--secondary-color);
     text-decoration: none;
 }
@@ -10,14 +10,17 @@ a{
     justify-content: space-around;
     border-bottom: 1px solid var(--secondary-color);
     align-items: center;
+    height: 100px;
+    overflow: hidden;
     
     
 }
 .navContainer ul{
     display: flex;
     flex-direction: row;
-    margin: 0px;
-    padding: 0px;
+    justify-content: space-between;
+    align-items: center;
+    
     list-style: none;
 }
 
@@ -38,7 +41,7 @@ a{
 }
 
 .navContainer img {
-    width: 100px;
+    width: 75px;
 }
 
 
@@ -46,3 +49,4 @@ a{
     margin: 0px;
     padding: 0px;
 }
+

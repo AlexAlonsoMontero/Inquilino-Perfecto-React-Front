@@ -9,11 +9,13 @@ import { Route, Switch } from 'react-router-dom';
 import Register from './components/Register/Register'
 import { routes } from './routes';
 import { useUser } from './context/UserContext';
+import MiniUserMenu from './components/MiniUserMenu/MiniUserMenu';
 
-function App() {
-  const [user] = useUser()
+function App() { 
+  const [user, setUser] = useUser()
   const [showModal, setShowModal] = useState(false)
-  
+  console.log("el modal")
+  console.log(showModal)
  
   return (
     <div className="App">
@@ -28,7 +30,7 @@ function App() {
           
           {!user && showModal &&
               <Modal setShowModal={setShowModal}>
-                  <Login />
+                  <Login setShowModal={setShowModal}/>
               </Modal>
           }
           <Switch>
@@ -38,7 +40,7 @@ function App() {
                 
                 
           </Switch>
-        
+          
       </main>
       <footer>
         

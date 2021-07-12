@@ -4,25 +4,28 @@ import  {useUser}  from '../../context/UserContext'
 import './Login.css'
 import '../../App.css';
 
-function Login() {
+function Login({setShowModal}) {
+    
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [error, setError] = useState(false)
     const [loading, setLoading] = useState(false)
     const [user, setUser] = useUser()
-
+    
     const handleSubmit = async e => {
         e.preventDefault()
         setLoading(true)
         const res = await fetch('http://127.0.0.1:3001/login', {
             method: 'POST',
             body: JSON.stringify({ username, password }),
-            headers: { 'Content-Type': 'application/json' }
+            headers: { 'Content-Type': 'application/json' 
+            }        
         })
         const data = await res.json()
         setLoading(false)
         if (res.ok) {
             setUser(data)
+            setShowModal(false)
             return <Redirect to="/" />
         } else {
             
@@ -35,6 +38,7 @@ function Login() {
     }
 
     if (user) {
+        setShowModal(false)
         return <Redirect to="/profile" />
     }
 
