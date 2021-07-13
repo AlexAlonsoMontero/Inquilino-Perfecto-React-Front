@@ -7,12 +7,9 @@ const MiniUserMenu = () =>{
     const [user, setUser] = useUser()
     const [miniMenu, setMinimenu] = useState(false)
     const avatarUrl = ( user && user.user.avatar ? routes.r_host_port + user.user.avatar: routes.r_host_port + "/uploadAvatars/default-avatar.png")
-    console.log(avatarUrl)
     const avatarSytle = {backgroundImage: 'url(' + avatarUrl +')'}
     const handleMiniMenu = (e) =>{
-        console.log("entra")
-        setMinimenu(!miniMenu)
-            
+        setMinimenu(!miniMenu)            
         }
     const handleLogout = () => {
         setUser(user.token="")

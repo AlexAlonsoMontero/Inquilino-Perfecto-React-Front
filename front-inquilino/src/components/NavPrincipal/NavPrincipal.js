@@ -8,7 +8,6 @@ import MiniUserMenu from '../MiniUserMenu/MiniUserMenu'
 
 const NavPrincipal = ({setShowModal}) => {
     const [user, setUser] = useUser()
-    console.log(user)
     return(
         <nav className="navContainer">
             <div>

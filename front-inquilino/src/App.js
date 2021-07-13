@@ -13,9 +13,7 @@ import { useUser } from './context/UserContext';
 function App() { 
   const [user, setUser] = useUser()
   const [showModal, setShowModal] = useState(false)
-  console.log("el modal")
-  console.log(showModal)
- 
+   
   return (
     <div className="App">
       <header>
