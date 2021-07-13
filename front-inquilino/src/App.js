@@ -9,7 +9,6 @@ import { Route, Switch } from 'react-router-dom';
 import Register from './components/Register/Register'
 import { routes } from './routes';
 import { useUser } from './context/UserContext';
-import MiniUserMenu from './components/MiniUserMenu/MiniUserMenu';
 
 function App() { 
   const [user, setUser] = useUser()
@@ -23,7 +22,7 @@ function App() {
         <NavPrincipal setShowModal={setShowModal}/>
       </header>
       <aside>
-
+        <Aside />
       </aside>
       
       <main>

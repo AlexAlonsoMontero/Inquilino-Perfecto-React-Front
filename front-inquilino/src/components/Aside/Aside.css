@@ -1,0 +1,12 @@
+.asideNav{
+    max-width: 10vw;
+    border: 1px solid black;
+    
+}
+
+.asideNav * {
+    list-style: none;
+}
+.asideNav ul {
+    padding-left: 10px;
+}

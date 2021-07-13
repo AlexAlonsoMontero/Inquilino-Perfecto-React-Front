@@ -1,6 +1,8 @@
-
+import './Aside.css'
+import { useUser } from '../../context/UserContext'
 const Aside = () => {
-    return (
+    const [user, setUser] = useUser()
+    return user && (
         <nav className="asideNav">
             <ul>
                 <li>Pérfil</li>
