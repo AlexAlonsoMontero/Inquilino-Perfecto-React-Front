@@ -40,7 +40,7 @@ function App() {
                 
                 
           </Switch>
-          
+          <MiniUserMenu />
       </main>
       <footer>
         

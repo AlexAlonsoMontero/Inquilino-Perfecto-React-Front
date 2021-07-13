@@ -10,11 +10,11 @@ const NavPrincipal = ({setShowModal}) => {
     const [user, setUser] = useUser()
     console.log(user)
     return(
-        <div className="navContainer">
+        <nav className="navContainer">
             <div>
                 <img src={logo} alt="logo"/>
             </div>
-            <nav>
+            
                 <ul>
                     <li><NavLink to={routes.home}>Inicio</NavLink></li>
                     <li><NavLink to="/">Viviendas</NavLink></li>
@@ -30,9 +30,9 @@ const NavPrincipal = ({setShowModal}) => {
                     }
                 </ul>
                
-            </nav>
+            
                 
-        </div>
+        </nav>
 
     )
 }
