@@ -1,0 +1,41 @@
+.miniMenu-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 25px;
+    box-shadow: 1px 1px 5px #666;
+    max-width: 250px;
+    
+    
+        
+}
+
+.miniMenu-container span{
+    font-weight: bold;
+    padding-left: 5px;
+    padding-right: 10px;
+    
+    
+    
+}
+
+.miniAvatar-container{
+    height: 35px;
+    width: 35px;
+    border:1px solid black;
+    border-radius: 50%;
+    background-position: center center;
+    background-size: cover;
+    
+    
+}
+
+
+.miniMenu {
+    display: flex;
+    flex-direction: column;
+    margin: 0px;
+    
+    
+
+}
