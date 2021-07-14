@@ -16,7 +16,7 @@ const Aside = () => {
     const  pruebas =() =>{
         
     }
-    console.log(user.user.tipo)
+    
     return user && (
         <nav className="asideNav">
             <ul>
