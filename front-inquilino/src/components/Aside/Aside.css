@@ -1,0 +1,7 @@
+.asideMenu{
+    color: var(--secondary-color);
+    width: 256px;
+}
+.asideMenu * {
+    color: var(--secondary-color);
+}

@@ -1,6 +1,6 @@
 @import './css/normalize.css';
 @import './css/vars.css';
-
+@import 'antd/dist/antd.css';
 
 body {
   background-color: var(--main-color);

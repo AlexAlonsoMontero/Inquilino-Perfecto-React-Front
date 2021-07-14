@@ -33,7 +33,6 @@ const Register = () => {
             method: 'POST'
             
         })
-        console.log(addUser)
         //TODO VERIFICAR QUE SE USA ROUTES EN VEZ DE LAS RUTAS A MANO
     }
     return(

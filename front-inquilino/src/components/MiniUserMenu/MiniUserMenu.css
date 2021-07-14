@@ -1,22 +1,16 @@
-.miniMenu-container{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 25px;
-    box-shadow: 1px 1px 5px #666;
-    max-width: 250px;
-    
-    
-        
-}
 
-.miniMenu-container span{
+.avatarUser-cotainer{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border: 1px solid var(--secondary-color);
+    border-radius: 25px;
+    box-shadow: var(--secondary-shadow);
+}
+.avatarUser-cotainer span{
+    padding-left: 5px;  
     font-weight: bold;
-    padding-left: 5px;
-    padding-right: 10px;
-    
-    
-    
+    padding-right: 5px;
 }
 
 .miniAvatar-container{
@@ -29,13 +23,13 @@
     
     
 }
-
-
-.miniMenu {
-    display: flex;
-    flex-direction: column;
-    margin: 0px;
-    
-    
-
+.avatarMenu{
+    border-radius: 15px;
 }
+
+.avatarMenu *{
+    color: var(--secondary-color);
+    font-weight: bold;
+    
+}
+
