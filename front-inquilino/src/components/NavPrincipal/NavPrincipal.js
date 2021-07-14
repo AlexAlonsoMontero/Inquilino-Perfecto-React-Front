@@ -6,6 +6,8 @@ import { routes } from '../../routes'
 import { useUser } from '../../context/UserContext'
 import MiniUserMenu from '../MiniUserMenu/MiniUserMenu'
 
+
+
 const NavPrincipal = ({setShowModal}) => {
     const [user, setUser] = useUser()
     return(
@@ -26,6 +28,7 @@ const NavPrincipal = ({setShowModal}) => {
                     }
                     {user &&
                         <li><MiniUserMenu /> </li>
+
                     }
                 </ul>
                

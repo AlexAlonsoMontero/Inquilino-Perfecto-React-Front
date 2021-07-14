@@ -3,6 +3,10 @@ import { useUser } from '../../context/UserContext'
 import { routes } from '../../routes'
 import { Link, Redirect } from 'react-router-dom'
 import { useState } from 'react'
+import { Menu, Dropdown,Button } from 'antd';
+import { DownOutlined, UserOutlined } from '@ant-design/icons';
+
+
 const MiniUserMenu = () =>{
     const [user, setUser] = useUser()
     const [miniMenu, setMinimenu] = useState(false)
@@ -15,28 +19,32 @@ const MiniUserMenu = () =>{
         setUser(user.token="")
         return <Redirect to="/"/>
     }
-    
+    const avatarMenu = (
+        <Menu className="avatarMenu" >
+            <Menu.Item>
+                Perfil
+            </Menu.Item>
+            <Menu.Item onClick={handleLogout}>
+                Logout
+            </Menu.Item>
+        </Menu>
+                
+                
+                
+        
+    )
     return user && (
-        <>
-             
-            <div className="miniMenu-container">
+        // <Dropdown overlay={avatarMenu} placement="bottomCenter">
+        //     
+        //     
+        // </Dropdown>
+        <Dropdown overlay={avatarMenu} placement="bottomLeft" arrow>
+            <div className="avatarUser-cotainer">
                 <div className="miniAvatar-container" style={avatarSytle}></div>
-                <span onClick={handleMiniMenu}>{user.user.username}</span>
-                
-                
+                <span>{user.user.username}</span>
             </div>
-            {miniMenu &&
-                <ul className="miniMenu">
-                    <li>Perfil</li>
-                    <hr></hr>
-                    <li onClick={handleLogout}>Logout</li>
-                    <li>Pruebas</li>
-                    <li>Pruebas</li>
-                    <li>Pruebas</li>
-                    <li>Pruebas</li>
-                </ul>
-            }
-        </>
+            
+        </Dropdown>
     )
 }
 
