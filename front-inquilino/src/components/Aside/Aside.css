@@ -1,12 +1,7 @@
-.asideNav{
-    max-width: 10vw;
-    border: 1px solid black;
-    
+.asideMenu{
+    color: var(--secondary-color);
+    width: 256px;
 }
-
-.asideNav * {
-    list-style: none;
-}
-.asideNav ul {
-    padding-left: 10px;
+.asideMenu * {
+    color: var(--secondary-color);
 }

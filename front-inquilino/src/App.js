@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import './App.css';
 import Aside from './components/Aside/Aside';
-import Footer from './components/Footer/Footer';
 import NavPrincipal from './components/NavPrincipal/NavPrincipal';
 import Modal from './components/Modal/Modal';
 import Login from './components/Login/Login';
@@ -11,7 +10,7 @@ import { routes } from './routes';
 import { useUser } from './context/UserContext';
 
 function App() { 
-  const [user, setUser] = useUser()
+  const [user] = useUser()
   const [showModal, setShowModal] = useState(false)
    
   return (
