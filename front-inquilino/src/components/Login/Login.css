@@ -7,15 +7,15 @@
     width: 300px;
     
 }
-.loginForm label input{
-    box-sizing: content-box;
-    margin: 10px;
-    
+
+.login-input{
+    margin: 7px;
 }
 
 .loginForm label{
     text-align: center;
-    padding: 5px;
+    
+    
 }
 
 div > h1{
