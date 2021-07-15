@@ -1,12 +1,11 @@
 import './Aside.css'
-import { UserProvider, useUser } from '../../context/UserContext'
-import { useState } from 'react'
+import { useUser } from '../../context/UserContext'
 import { Menu } from 'antd';
 import { HomeOutlined, UserOutlined, TeamOutlined,LaptopOutlined } from '@ant-design/icons';
 
 
 const Aside = () => {
-    const [user, setUser] = useUser()
+    const [user] = useUser()
     
     //ANTD
     const handleClick = e => {

@@ -1,20 +1,15 @@
 import './MiniUserMenu.css'
 import { useUser } from '../../context/UserContext'
 import { routes } from '../../routes'
-import { Link, Redirect } from 'react-router-dom'
-import { useState } from 'react'
-import { Menu, Dropdown,Button } from 'antd';
-import { DownOutlined, UserOutlined } from '@ant-design/icons';
+import { Redirect } from 'react-router-dom'
+import { Menu, Dropdown } from 'antd';
 
 
 const MiniUserMenu = () =>{
     const [user, setUser] = useUser()
-    const [miniMenu, setMinimenu] = useState(false)
+    console.log(user.user.avatar)
     const avatarUrl = ( user && user.user.avatar ? routes.r_host_port + user.user.avatar: routes.r_host_port + "/uploadAvatars/default-avatar.png")
     const avatarSytle = {backgroundImage: 'url(' + avatarUrl +')'}
-    const handleMiniMenu = (e) =>{
-        setMinimenu(!miniMenu)            
-        }
     const handleLogout = () => {
         setUser(user.token="")
         return <Redirect to="/"/>
@@ -33,6 +28,7 @@ const MiniUserMenu = () =>{
                 
         
     )
+    console.log(avatarSytle)
     return user && (
         // <Dropdown overlay={avatarMenu} placement="bottomCenter">
         //     

@@ -1,0 +1,37 @@
+.Footer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex: 1 1 100%;
+    color: var(--secondary-color);
+    border-top: 2px solid var(--secondary-color);
+}
+
+#logo-footer{
+    width: 75px;
+    height: 75px;
+}
+
+.Footer div{
+    
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: var(--secondary-color);
+    padding: 15px;
+
+}
+Footer div a{
+    color: var(--secondary-color);
+}
+Footer div h4{
+    font-weight: bold;
+    color: var(--secondary-color);
+}
+
+Footer div svg{
+    font-size: 2.5em;
+    margin: 5px; 
+}

@@ -1,13 +1,10 @@
 import { useState } from "react"
 import './Register.css'
-import { useUser } from "../../context/UserContext";
-import { Redirect } from "react-router";
 import avatar from './avatar.png'
 
 const Register = () => {
-    //username:"",password:"",email:"", tipo:""
+    const [error, setError] = useState()
     const  [avatarStyle,setAvatarStyle] = useState({ backgroundImage: 'url(' + avatar + ')' })
-    const [user] = useUser()
     const [newUser,setNewUser] = useState({tipo:"INQUILINO"});
         
     const handleImageAvatar = (e)=>{
@@ -33,6 +30,12 @@ const Register = () => {
             method: 'POST'
             
         })
+        const res = await addUser.json()
+        if(res.error){
+            console.warn(res.error)
+            setError(res.error)
+
+        }
         //TODO VERIFICAR QUE SE USA ROUTES EN VEZ DE LAS RUTAS A MANO
     }
     return(
@@ -40,7 +43,6 @@ const Register = () => {
         <div className="registerLogin-Container">
             <div className="register-Container">
             <header><h1>Registro de nuevo usuario</h1></header>
-                
                 <form onSubmit={ onHandleSubmit }>
                     <label>
                         Nombre de usuario:<br/>
@@ -56,9 +58,8 @@ const Register = () => {
                     </label>
                     <label>
                         Tipo de usuario:<br/>
-                        <select className="primary-input"  onChange={ e => setNewUser({ ...newUser, tipo: e.target.value }) }>
-                            <option selected></option>
-                            <option value="INQUILINO" >INQUILINO</option>
+                        <select className="primary-input" name="userTipo"  onChange={ e => setNewUser({ ...newUser, tipo: e.target.value }) }>
+                            <option value="INQUILINO" selected>INQUILINO</option>
                             <option value="CASERO" >CASERO</option>
                             <option value="CASERO/INQUILINO">CASERO E INQUILINO</option>
                         </select>
@@ -72,6 +73,7 @@ const Register = () => {
                         
                     </label>
                     <button className="primary-button">Enviar</button>
+                    {error && <div className="error">{error}</div> }
                 </form>
             </div>
             

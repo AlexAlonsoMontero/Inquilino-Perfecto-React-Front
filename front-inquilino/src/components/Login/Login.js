@@ -28,7 +28,7 @@ function Login({setShowModal}) {
             setShowModal(false)
             return <Redirect to="/" />
         } else {
-            
+            console.log(data.error)
             setError(data.error)
         }
     }
@@ -49,11 +49,11 @@ function Login({setShowModal}) {
                 
                 <label>
                     Username:
-                    <input required value={username} onChange={e => setUsername(e.target.value)} className="primary-input" />
+                    <input required value={username} onChange={e => setUsername(e.target.value)} className="primary-input login-input" />
                 </label>
                 <label>
                     Password:
-                    <input required value={password} onChange={e => setPassword(e.target.value)} type="password" className="primary-input" />
+                    <input required value={password} onChange={e => setPassword(e.target.value)} type="password" className="primary-input  login-input" />
                 </label>
                 <label>
                     Recuérdame
@@ -61,7 +61,7 @@ function Login({setShowModal}) {
                 </label>
                 <button className="primary-button loginFormButton">Iniciar sesión</button>
                 {error &&
-                    <p className="error">{error}</p>
+                    <div className="error">{error}</div>
                 }
                 
             </form>

@@ -8,6 +8,7 @@ import { Route, Switch } from 'react-router-dom';
 import Register from './components/Register/Register'
 import { routes } from './routes';
 import { useUser } from './context/UserContext';
+import Footer  from './components/Footer/Footer';
 
 function App() { 
   const [user] = useUser()
@@ -15,6 +16,7 @@ function App() {
    
   return (
     <div className="App">
+      
       <header>
         <NavPrincipal setShowModal={setShowModal}/>
       </header>
@@ -39,7 +41,7 @@ function App() {
           
       </main>
       <footer>
-        
+          <Footer />
       </footer>
     </div>
   );
