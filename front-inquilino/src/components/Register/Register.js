@@ -46,7 +46,7 @@ const Register = () => {
                 <form onSubmit={ onHandleSubmit }>
                     <label>
                         Nombre de usuario:<br/>
-                        <input type="text" className="primary-input" value ={newUser.username} onChange={ e =>setNewUser({ username: e.target.value })}/>
+                        <input type="text" className="primary-input" value ={newUser.username} onChange={ e =>setNewUser({ ...newUser, username: e.target.value })}/>
                     </label>
                     <label>
                         Contraseña:<br/>
@@ -58,13 +58,13 @@ const Register = () => {
                     </label>
                     <label>
                         Tipo de usuario:<br/>
-                        <select className="primary-input" name="userTipo"  onChange={ e => setNewUser({ ...newUser, tipo: e.target.value }) }>
-                            <option value="INQUILINO" selected>INQUILINO</option>
+                        <select className="primary-input" name="userTipo"  defaultValue="INQUILINO" onChange={ e => setNewUser({ ...newUser, tipo: e.target.value }) }>
+                            <option value="INQUILINO">INQUILINO</option>
                             <option value="CASERO" >CASERO</option>
                             <option value="CASERO/INQUILINO">CASERO E INQUILINO</option>
                         </select>
                     </label>
-                    <label name="avatarImage" class="avatarImage" onChange={e=>handleImageAvatar(e)}>
+                    <label name="avatarImage" className="avatarImage" onChange={e=>handleImageAvatar(e)}>
                         Avatar: <br/>
                         <div className="loadimage-container" style={avatarStyle} />
                         <p>Pulsa la imagen para seleccionar un avatar</p>
