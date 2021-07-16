@@ -13,9 +13,11 @@
 }
 
 .loginForm label{
-    text-align: center;
-    
-    
+    text-align: center;   
+}
+
+.loginForm button{
+    margin: 5px;
 }
 
 div > h1{
@@ -23,12 +25,6 @@ div > h1{
     margin:0px;
 }
 
-@media (max-width:600px){
-    .loginForm{
-        width: 90vw;
-        height: 35vh;
-    }
-}
 
 .login-Container h1{
     text-align: center;

@@ -48,11 +48,11 @@ function Login({setShowModal}) {
             <form onSubmit={handleSubmit} className="loginForm">
                 
                 <label>
-                    Username:
+                    <p>Username/Email:</p>
                     <input required value={username} onChange={e => setUsername(e.target.value)} className="primary-input login-input" />
                 </label>
                 <label>
-                    Password:
+                    <p>Contraseña:</p>
                     <input required value={password} onChange={e => setPassword(e.target.value)} type="password" className="primary-input  login-input" />
                 </label>
                 <label>

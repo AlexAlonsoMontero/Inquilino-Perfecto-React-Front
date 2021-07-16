@@ -9,6 +9,7 @@ import Register from './components/Register/Register'
 import { routes } from './routes';
 import { useUser } from './context/UserContext';
 import Footer  from './components/Footer/Footer';
+import Autocomplete from './components/Autocomplete/Autocomplete';
 
 function App() { 
   const [user] = useUser()
@@ -25,7 +26,7 @@ function App() {
       </aside>
       
       <main>
-          
+          <Autocomplete />
           {!user && showModal &&
               <Modal setShowModal={setShowModal}>
                   <Login setShowModal={setShowModal}/>
