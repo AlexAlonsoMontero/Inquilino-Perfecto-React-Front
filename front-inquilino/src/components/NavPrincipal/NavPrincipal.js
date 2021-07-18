@@ -31,9 +31,6 @@ const NavPrincipal = ({setShowModal}) => {
 
                     }
                 </ul>
-               
-            
-                
         </nav>
 
     )

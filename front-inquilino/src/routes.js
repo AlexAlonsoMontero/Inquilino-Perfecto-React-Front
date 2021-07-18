@@ -3,10 +3,22 @@ const port ='3001'
 
 export const routes = {
     home: '/',
-    r_host_port:`${host}:${port}`,
-    r_register: '/api/users'
+    r_register: `/api/users`,
+    r_login:`/login`,
+    r_verificationUser:`/verification`
     
 }
+
+export const backRoutes ={
+    r_host_port:`${host}:${port}`,
+    r_register: `${host}:${port}/api/users`,
+    r_login:`${host}:${port}/login`,
+    r_activationUser: `${host}:${port}/activation`
+}
+
+
+
+
 //TODO hacer hooks, y revisar el lo hecho hasta ahor, loguin registro y búsqueda
 export const endpoints = {
 //ENDPOINTS ADMIN USER
