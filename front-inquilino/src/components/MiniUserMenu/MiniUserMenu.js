@@ -1,6 +1,6 @@
 import './MiniUserMenu.css'
 import { useUser } from '../../context/UserContext'
-import { routes } from '../../routes'
+import { routes, backRoutes } from '../../routes'
 import { Redirect } from 'react-router-dom'
 import { Menu, Dropdown } from 'antd';
 
@@ -8,7 +8,7 @@ import { Menu, Dropdown } from 'antd';
 const MiniUserMenu = () =>{
     const [user, setUser] = useUser()
     console.log(user.user.avatar)
-    const avatarUrl = ( user && user.user.avatar ? routes.r_host_port + user.user.avatar: routes.r_host_port + "/uploadAvatars/default-avatar.png")
+    const avatarUrl = ( user && user.user.avatar ? backRoutes.r_host_port + user.user.avatar: backRoutes.r_host_port + "/uploadAvatars/default-avatar.png")
     const avatarSytle = {backgroundImage: 'url(' + avatarUrl +')'}
     const handleLogout = () => {
         setUser(user.token="")

@@ -3,6 +3,7 @@ import { Redirect } from 'react-router-dom'
 import  {useUser}  from '../../context/UserContext'
 import './Login.css'
 import '../../App.css';
+import { backRoutes, routes } from '../../routes';
 
 function Login({setShowModal}) {
     
@@ -15,7 +16,8 @@ function Login({setShowModal}) {
     const handleSubmit = async e => {
         e.preventDefault()
         setLoading(true)
-        const res = await fetch('http://127.0.0.1:3001/login', {
+        
+        const res = await fetch(backRoutes.r_login, {
             method: 'POST',
             body: JSON.stringify({ username, password }),
             headers: { 'Content-Type': 'application/json' 
@@ -39,7 +41,8 @@ function Login({setShowModal}) {
 
     if (user) {
         setShowModal(false)
-        return <Redirect to="/profile" />
+        alert("Entra")
+        return <Redirect to="/" />
     }
 
     return (

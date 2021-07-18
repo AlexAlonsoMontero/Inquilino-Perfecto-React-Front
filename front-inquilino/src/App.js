@@ -10,11 +10,12 @@ import { routes } from './routes';
 import { useUser } from './context/UserContext';
 import Footer  from './components/Footer/Footer';
 import Autocomplete from './components/Autocomplete/Autocomplete';
+import ActivateUser from './components/ActivateUser/ActivateUser';
 
 function App() { 
   const [user] = useUser()
   const [showModal, setShowModal] = useState(false)
-   
+
   return (
     <div className="App">
       
@@ -26,7 +27,6 @@ function App() {
       </aside>
       
       <main>
-          <Autocomplete />
           {!user && showModal &&
               <Modal setShowModal={setShowModal}>
                   <Login setShowModal={setShowModal}/>
@@ -34,7 +34,13 @@ function App() {
           }
           <Switch>
                 <Route path={routes.r_register} exact>
-                <Register/>
+                  <Register/>
+                </Route>
+                <Route path={routes.home} >
+                  <p>Página de inicio</p>
+                </Route>
+                <Route path={routes.r_activationUser}>
+                  <ActivateUser />
                 </Route>
                 
                 
