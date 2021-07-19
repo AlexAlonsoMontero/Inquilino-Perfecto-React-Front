@@ -1,6 +1,6 @@
 import './MiniUserMenu.css'
 import { useUser } from '../../context/UserContext'
-import { routes, backRoutes } from '../../routes'
+import { backRoutes } from '../../routes'
 import { Redirect } from 'react-router-dom'
 import { Menu, Dropdown } from 'antd';
 

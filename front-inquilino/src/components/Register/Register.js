@@ -1,8 +1,7 @@
 import { useState } from "react"
 import './Register.css'
 import avatar from './avatar.png'
-import { backRoutes, routes } from "../../routes"
-import Login from "../Login/Login"
+import { backRoutes } from "../../routes"
 
 
 const Register = () => {

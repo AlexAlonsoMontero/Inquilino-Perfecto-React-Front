@@ -12,6 +12,7 @@ import Footer  from './components/Footer/Footer';
 import Autocomplete from './components/Autocomplete/Autocomplete';
 import ActivateUser from './components/ActivateUser/ActivateUser';
 
+
 function App() { 
   const [user] = useUser()
   const [showModal, setShowModal] = useState(false)
@@ -33,15 +34,17 @@ function App() {
               </Modal>
           }
           <Switch>
+                <Route path={routes.home} exact>
+                  <p>Página de inicio</p>
+                </Route>
+                
                 <Route path={routes.r_register} exact>
                   <Register/>
                 </Route>
-                <Route path={routes.home} >
-                  <p>Página de inicio</p>
-                </Route>
-                <Route path={routes.r_activationUser}>
+                <Route path={routes.r_activationUser} exact>
                   <ActivateUser />
                 </Route>
+                
                 
                 
           </Switch>

@@ -5,7 +5,7 @@ export const routes = {
     home: '/',
     r_register: `/api/users`,
     r_login:`/login`,
-    r_verificationUser:`/verification`
+    r_ativactionUser:`/activation`
     
 }
 
