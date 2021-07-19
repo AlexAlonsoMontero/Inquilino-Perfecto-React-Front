@@ -1,6 +1,5 @@
 import { useLocation } from 'react-router-dom'
 import { useGetItem } from '../../hooks/inmowebApi'
-import useFetch from '../../hooks/useFetch'
 const queryString = require('query-string')
 
 
@@ -9,12 +8,20 @@ const ActivateUser = () =>{
     const initialState = queryString.parse(search) || {}
     console.log(initialState)
     const param = initialState
-    console.log(param)
     const user = useGetItem(param)
-    console.log("el usuario")
-    console.log(user)
+    if (user.error){
+        return (
+            <>
+                <h1>Error en la activación, pongase en contancto con el administrador</h1>
+                <a href="mailto:soporte_inquilinoperfecto@outlook.com">soporte_inquilinoperfecto@outlook.com</a>
+            </>
+        )
+    }
     return (
-        <h2>Activación de usuario</h2>
+        <div>
+            <h1>Tu usuario ya ha sido activado, puedes iniciar sesión</h1>
+        </div>
+        
 
     )
 }

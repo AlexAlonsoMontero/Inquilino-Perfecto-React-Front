@@ -2,6 +2,9 @@
 @import './css/vars.css';
 @import 'antd/dist/antd.css';
 
+*{
+  box-sizing: border-box;
+}
 body {
   background-color: var(--main-color);
   color: var(--secondary-color);;

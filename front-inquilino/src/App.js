@@ -12,6 +12,7 @@ import Footer  from './components/Footer/Footer';
 import Autocomplete from './components/Autocomplete/Autocomplete';
 import ActivateUser from './components/ActivateUser/ActivateUser';
 
+
 function App() { 
   const [user] = useUser()
   const [showModal, setShowModal] = useState(false)
