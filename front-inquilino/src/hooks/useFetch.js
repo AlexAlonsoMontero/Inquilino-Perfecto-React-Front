@@ -8,7 +8,6 @@ function useFetch(url) {
           const res = await fetch(url)
           const data = await res.json()
           setResults(data)
-          // console.log(data)
       }
       f()
     }, [url])
