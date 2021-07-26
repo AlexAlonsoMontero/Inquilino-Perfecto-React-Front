@@ -4,24 +4,32 @@ import { backRoutes } from '../../routes'
 import useFetch from '../../hooks/useFetch'
 import queryString, { stringify } from 'query-string'
 import { useHistory, useLocation, useParams } from 'react-router-dom'
+import useQueryGenerate from '../../hooks/useQueryGenerate'
 
 const AdvSearcher =()=>{
         const [provincia, setProvincia] = useState("Almería")
         const [precioMin, setPrecioMin] = useState(0)
         const [precioMax, setPRecioMax] = useState(100)
         const history = useHistory()
-        const backUrl = backRoutes.r_searchMultiTableMultiParams + 'anuncios/inmuebles/inmueble_uuid/inmueble_uuid/?'
+                
+        const qpar = [
+                {from_anuncios:{precio:precioMin}},
+                {until_anuncios:{precio:precioMax}},
+                {inmuebles:{provincia:provincia}}
+            ]
+            
+        const query = useQueryGenerate(qpar)
+        
+        
         const handleFilter = async(e) =>{
             e.preventDefault()
-            const q = 'inmuebles.' + stringify({provincia})
-            const result = await fetch(backUrl + q)
+            const result = await fetch(backRoutes.r_advSearcher + query)
             const {data, info} = await (result.json())
             console.log(data)
-            history.push(`/search/adv/${q}`)
+            history.push(`/search/adv/${query}`)
             
             
         }
-
         
 
         return(
