@@ -6,7 +6,6 @@ const queryString = require('query-string')
 const ActivateUser = () =>{
     const { search } = useLocation()
     const initialState = queryString.parse(search) || {}
-    console.log(initialState)
     const param = initialState
     const user = useGetItem(param)
     if (user.error){

@@ -7,7 +7,7 @@ import { Menu, Dropdown } from 'antd';
 
 const MiniUserMenu = () =>{
     const [user, setUser] = useUser()
-    console.log(user.user.avatar)
+    
     const avatarUrl = ( user && user.user.avatar ? backRoutes.r_host_port + user.user.avatar: backRoutes.r_host_port + "/uploadAvatars/default-avatar.png")
     const avatarSytle = {backgroundImage: 'url(' + avatarUrl +')'}
     const handleLogout = () => {
@@ -28,7 +28,6 @@ const MiniUserMenu = () =>{
                 
         
     )
-    console.log(avatarSytle)
     return user && (
         // <Dropdown overlay={avatarMenu} placement="bottomCenter">
         //     

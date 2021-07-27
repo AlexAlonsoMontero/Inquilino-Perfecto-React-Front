@@ -5,7 +5,8 @@ export const routes = {
     home: '/',
     r_register: `/api/users`,
     r_login:`/login`,
-    r_ativactionUser:`/activation`
+    r_ativactionUser:`/activation`,
+    r_advSearcher: '/search/adv'
     
 }
 
@@ -13,7 +14,9 @@ export const backRoutes ={
     r_host_port:`${host}:${port}`,
     r_register: `${host}:${port}/api/users`,
     r_login:`${host}:${port}/login`,
-    r_activationUser: `${host}:${port}/activation`
+    r_activationUser: `${host}:${port}/activation`,
+    r_getAdvertisement: `${host}:${port}/api/adv/`,
+    r_advSearcher: `${host}:${port}/searches/anuncios/inmuebles/inmueble_uuid/inmueble_uuid` // se completa con :table1/:table2/ y queryparams
 }
 
 

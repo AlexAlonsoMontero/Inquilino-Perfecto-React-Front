@@ -11,7 +11,7 @@ import { useUser } from './context/UserContext';
 import Footer  from './components/Footer/Footer';
 import Autocomplete from './components/Autocomplete/Autocomplete';
 import ActivateUser from './components/ActivateUser/ActivateUser';
-
+import AdvSearcher from './components/AdvSearcher/AdvSearcher';
 
 function App() { 
   const [user] = useUser()
@@ -28,18 +28,22 @@ function App() {
       </aside>
       
       <main>
+        <Autocomplete />
           {!user && showModal &&
               <Modal setShowModal={setShowModal}>
                   <Login setShowModal={setShowModal}/>
               </Modal>
           }
           <Switch>
-                <Route path={routes.home} exact>
-                  <p>Página de inicio</p>
+                <Route path={routes.r_advSearcher}>
+                  <AdvSearcher />
                 </Route>
                 
                 <Route path={routes.r_register} exact>
                   <Register/>
+                </Route>
+                <Route path={routes.home} >
+                  <p>Página de inicio</p>
                 </Route>
                 <Route path={routes.r_activationUser} exact>
                   <ActivateUser />
