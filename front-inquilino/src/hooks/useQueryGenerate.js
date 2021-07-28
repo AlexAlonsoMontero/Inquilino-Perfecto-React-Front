@@ -9,8 +9,9 @@ import { stringify } from "query-string"
 const useQueryGenerate = (qparams) => {
         let query ='?'
         qparams.forEach(qpar => {
-        console.log(qpar)
-        query += stringify(qpar) + '&'
+                if(Object.values(qpar)[0]){
+                        query += stringify(qpar) + '&'
+                }
         });
         console.log(query)
         return (query)
