@@ -7,25 +7,24 @@ import { useHistory, useLocation, useParams } from 'react-router-dom'
 import useQueryGenerate from '../../hooks/useQueryGenerate'
 
 const AdvSearcher =()=>{
-        const [provincia, setProvincia] = useState("Almería")
+        const [provincia, setProvincia] = useState("Alemería")
         const [precioMin, setPrecioMin] = useState(0)
-        const [precioMax, setPRecioMax] = useState(100)
+        const [precioMax, setPRecioMax] = useState(100000000000)
         const history = useHistory()
-                
         const qpar = [
-                {from_anuncios:{precio:precioMin}},
-                {until_anuncios:{precio:precioMax}},
-                {inmuebles:{provincia:provincia}}
-            ]
-            
+            {from__precio:precioMin},
+            {until__precio:precioMax},
+            {provincia: provincia}
+        ]       
         const query = useQueryGenerate(qpar)
-        
         
         const handleFilter = async(e) =>{
             e.preventDefault()
+            
+            console.log(backRoutes.r_advSearcher + query)
             const result = await fetch(backRoutes.r_advSearcher + query)
-            const {data, info} = await (result.json())
-            console.log(data)
+            const {Data, info } = await (result.json())
+            console.log(Data)
             history.push(`/search/adv/${query}`)
             
             
