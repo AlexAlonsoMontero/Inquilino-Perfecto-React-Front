@@ -8,9 +8,15 @@ import { stringify } from "query-string"
  */
 const useQueryGenerate = (qparams) => {
         let query ='?'
+        console.log(qparams)
         qparams.forEach(qpar => {
-                if(Object.values(qpar)[0]){
-                        query += stringify(qpar) + '&'
+                if(Object.values(qpar)[0]!==undefined){
+                        if(qpar==='true' || qpar===false){
+                                query += `${Object.keys(qpar)[0]}=${Object.values(qpar)[0]}&` 
+                        }else{
+                                query += stringify(qpar) + '&'        
+                        }
+                        
                 }
         });
         console.log(query)

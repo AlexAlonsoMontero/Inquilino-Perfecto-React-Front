@@ -56,15 +56,13 @@ const AdvSearcher =()=>{
         const query = useQueryGenerate(qpar)
         const sorted_prov = prov.sort((a, b)=>a.nm.localeCompare(b.nm))
         
-        console.log(sorted_prov)
         const handleFilter = async(e) =>{
             e.preventDefault()
             const result = await fetch(backRoutes.r_advSearcher + query)
+            console.log(backRoutes.r_advSearcher + query)
             const {data } = await (result.json())
-            console.log(data)
             history.push(`/search/adv/${query}`)
-            
-            
+            console.log(data)
         }
         
 
@@ -93,37 +91,38 @@ const AdvSearcher =()=>{
                         <input type="number" className="primary-input"  min="0"  placeholder="Numero Habitaciones" onChange={ e => setHabitaciones(e.target.value) } />
                         <label>
                             Amueblado: 
-                            <input type="checkbox" className="primary-input" min="0" onChange={e=>setAmueblado(e.target.value)} />
+                            <input type="checkbox" className="primary-input" min="0" onChange={e=>setAmueblado(!amueblado)} />
                         </label>
                         <label>
                             Calefacción: 
-                            <input type="checkbox" className="primary-input" min="0" onChange={e=>setCalefaccion(e.target.value)} />
+                            <input type="checkbox" className="primary-input" min="0" onChange={e=>setCalefaccion(!calefaccion)} />
                         </label>
                         <label>
                             Aire Acondicionado: 
-                            <input type="checkbox" className="primary-input" min="0" onChange={e=>setAire_acondicionado(e.target.value)} />
+                            <input type="checkbox" className="primary-input" min="0" onChange={e=>setAire_acondicionado(!aire_acondicionado)} />
                         </label>
                         <label>
                             Jardin: 
-                            <input type="checkbox" className="primary-input" min="0" onChange={e=>setJardin(e.target.value)} />
+                            <input type="checkbox" className="primary-input" min="0" onChange={e=>setJardin(!jardin)} />
                         </label>
                         <label>
                             Terraza: 
-                            <input type="checkbox" className="primary-input" min="0" onChange={e=>setTerraza(e.target.value)} />
+                            <input type="checkbox" className="primary-input" min="0" onChange={e=>setTerraza(!terraza)} />
                         </label>
                         <label>
                             Ascensor: 
-                            <input type="checkbox" className="primary-input" min="0" onChange={e=>setAscensor(e.target.value)} />
+                            <input type="checkbox" className="primary-input" min="0" onChange={e=>setAscensor(!ascensor)} />
                         </label>
                         <label>
                             Piscina: 
-                            <input type="checkbox" className="primary-input" min="0" onChange={e=>setPiscina(e.target.value)} />
+                            <input type="checkbox" className="primary-input" min="0" onChange={e=>setPiscina(!piscina)} />
                         </label>
                     </div>
                     <input type="number" className="primary-input"  min="0" step="100" placeholder="Precio Mínimo" onChange={ e => setPrecioMin(e.target.value) } />
                     <input type="number" className="primary-input"  min="0" step="100" placeholder="Precio máximo" onChange={ e => setPrecioMax(e.target.value)} />
                     <button className="primary-button">Buscar</button>
-                </form>    
+                </form>   
+                
             </div>
         )
 }
