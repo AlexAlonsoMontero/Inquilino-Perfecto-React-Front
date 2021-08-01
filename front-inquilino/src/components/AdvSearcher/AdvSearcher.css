@@ -1,0 +1,29 @@
+.advertisement-search-container{
+    background-image: url('./form-back.jpg');
+    background-size: cover;
+    background-position: bottom;
+    height: 40vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: content-box;
+    overflow: scroll;
+    
+}
+
+.advertisement-search-container form {
+    background-color:rgba(255, 255, 255, 0.7);
+    padding: 10px;
+    border-radius: 15px;
+    box-sizing: content-box;
+    
+}
+
+.advertisement-search-container * {
+    font-weight: bold;
+}
+
+.advertisement-search-container form div{
+    padding: 5px;
+}
+

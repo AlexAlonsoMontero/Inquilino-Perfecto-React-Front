@@ -8,7 +8,6 @@ import { stringify } from "query-string"
  */
 const useQueryGenerate = (qparams) => {
         let query ='?'
-        console.log(qparams)
         qparams.forEach(qpar => {
                 if(Object.values(qpar)[0]!==undefined){
                         if(qpar==='true' || qpar===false){
@@ -19,7 +18,7 @@ const useQueryGenerate = (qparams) => {
                         
                 }
         });
-        console.log(query)
+        
         return (query)
 }
 

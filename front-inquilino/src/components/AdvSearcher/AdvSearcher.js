@@ -3,6 +3,8 @@ import { useState } from 'react'
 import { backRoutes } from '../../routes'
 import { useHistory } from 'react-router-dom'
 import useQueryGenerate from '../../hooks/useQueryGenerate'
+import { DatePicker, Space } from 'antd';
+import './AdvSearcher.css'
 
 const AdvSearcher =()=>{
         const [provincia, setProvincia] = useState("Alemería")
@@ -49,80 +51,102 @@ const AdvSearcher =()=>{
             {from__fecha_inicio: from__fecha_inicio},
             {from__fecha_disponibilidad:from__fecha_disponibilidad},
             {until__fecha_fin:until__fecha_fin}
-
-            
-
         ]       
         const query = useQueryGenerate(qpar)
-        const sorted_prov = prov.sort((a, b)=>a.nm.localeCompare(b.nm))
+        prov.sort((a, b)=>a.nm.localeCompare(b.nm))
+        
+        const [advertisements, setAdvertisements] = useState()
         
         const handleFilter = async(e) =>{
             e.preventDefault()
             const result = await fetch(backRoutes.r_advSearcher + query)
-            console.log(backRoutes.r_advSearcher + query)
             const {data } = await (result.json())
             history.push(`/search/adv/${query}`)
             console.log(data)
+            setAdvertisements(data)
         }
         
-
+        function onChange(date, dateString) {
+            setFrom__fecha_dispinibilidad(dateString);
+          }
         return(
             <div>
-                <form onSubmit={handleFilter}>
+                <div className="advertisement-search-container">
+                    <form onSubmit={handleFilter}>
+                        <div>
+                            <label>
+                                Provincias:
+                                <select className="primary-input" name="provincias" defaultValue="Almería" onChange={e =>setProvincia(e.target.value)}>
+                                    {prov.map((p)=>{return(
+                                        <option key={p.id} > {p.nm} </option>
+                                    
+                                    )})}
+                                </select>
+                            </label>
+                            <input type="text" className="primary-input" placeholder="Municipio" onChange={e=>setCiudad(e.target.value)}/>
+                            <input type="text" className="primary-input" placeholder="Calle" onChange={e=>setCalle(e.target.value)}/>
+                            <input type="text" className="primary-input" placeholder="Número" onChange={e=>setNumero(e.target.value)}/>
+                            <input type="text" className="primary-input" placeholder="Piso" onChange={e=>setPiso(e.target.value)}/>
+                            <input type="number" className="primary-input"  min="10000"  placeholder="C.P." onChange={ e => setCp(e.target.value) } />
+                        </div>
+                        <div>
+                            <input type="number" className="primary-input"  min="0"  placeholder="Metros" onChange={ e => setMetros_2(e.target.value) } />
+                            <input type="number" className="primary-input"  min="0"  placeholder="Numero baños" onChange={ e => setBanos(e.target.value) } />
+                            <input type="number" className="primary-input"  min="0"  placeholder="Numero Habitaciones" onChange={ e => setHabitaciones(e.target.value) } />
+                            <label>
+                                Amueblado: 
+                                <input type="checkbox" className="primary-input" min="0" onChange={e=>setAmueblado(!amueblado)} />
+                            </label>
+                            <label>
+                                Calefacción: 
+                                <input type="checkbox" className="primary-input" min="0" onChange={e=>setCalefaccion(!calefaccion)} />
+                            </label>
+                            <label>
+                                Aire Acondicionado: 
+                                <input type="checkbox" className="primary-input" min="0" onChange={e=>setAire_acondicionado(!aire_acondicionado)} />
+                            </label>
+                            <label>
+                                Jardin: 
+                                <input type="checkbox" className="primary-input" min="0" onChange={e=>setJardin(!jardin)} />
+                            </label>
+                            <label>
+                                Terraza: 
+                                <input type="checkbox" className="primary-input" min="0" onChange={e=>setTerraza(!terraza)} />
+                            </label>
+                            <label>
+                                Ascensor: 
+                                <input type="checkbox" className="primary-input" min="0" onChange={e=>setAscensor(!ascensor)} />
+                            </label>
+                            <label>
+                                Piscina: 
+                                <input type="checkbox" className="primary-input" min="0" onChange={e=>setPiscina(!piscina)} />
+                            </label>
+                        </div>
+                        <input type="number" className="primary-input"  min="0" step="100" placeholder="Precio Mínimo" onChange={ e => setPrecioMin(e.target.value) } />
+                        <input type="number" className="primary-input"  min="0" step="100" placeholder="Precio máximo" onChange={ e => setPrecioMax(e.target.value)} />
+                        <Space direction="vertical">
+                            <DatePicker onChange={onChange} format='DD-MM-yyy' placeholder="Fecha disponibilidad." showToday='true' className="primary-input date-picker" />
+                        </Space>
+                        <button className="primary-button">Buscar</button>
+                    </form>
+                </div>   
+                {advertisements &&
                     <div>
-                        <label>
-                            Provincias:
-                            <select className="primary-input" name="provincias" defaultValue="Almería" onChange={e =>setProvincia(e.target.value)}>
-                                {prov.map((p)=>{return(
-                                    <option key={p.id} > {p.nm} </option>
-                                
-                                )})}
-                            </select>
-                        </label>
-                        <input type="text" className="primary-input" placeholder="Municipio" onChange={e=>setCiudad(e.target.value)}/>
-                        <input type="text" className="primary-input" placeholder="Calle" onChange={e=>setCalle(e.target.value)}/>
-                        <input type="text" className="primary-input" placeholder="Número" onChange={e=>setNumero(e.target.value)}/>
-                        <input type="text" className="primary-input" placeholder="Piso" onChange={e=>setPiso(e.target.value)}/>
-                        <input type="number" className="primary-input"  min="10000"  placeholder="C.P." onChange={ e => setCp(e.target.value) } />
+                        <ul>
+                            {advertisements.map(adver=>
+                                <li key={adver.id_anuncio}>
+                                    <div>
+                                        <h2>Anuncio {adver.id_anuncio} </h2>
+                                        <p>{adver.calle}</p>
+                                        <p>{adver.numero}</p>
+                                        <p>{adver.ciudad} </p>
+                                        <p>{adver.provincia} </p>
+                                    </div>
+                                </li>
+                            )}
+                        </ul>
                     </div>
-                    <div>
-                        <input type="number" className="primary-input"  min="0"  placeholder="Metros" onChange={ e => setMetros_2(e.target.value) } />
-                        <input type="number" className="primary-input"  min="0"  placeholder="Numero baños" onChange={ e => setBanos(e.target.value) } />
-                        <input type="number" className="primary-input"  min="0"  placeholder="Numero Habitaciones" onChange={ e => setHabitaciones(e.target.value) } />
-                        <label>
-                            Amueblado: 
-                            <input type="checkbox" className="primary-input" min="0" onChange={e=>setAmueblado(!amueblado)} />
-                        </label>
-                        <label>
-                            Calefacción: 
-                            <input type="checkbox" className="primary-input" min="0" onChange={e=>setCalefaccion(!calefaccion)} />
-                        </label>
-                        <label>
-                            Aire Acondicionado: 
-                            <input type="checkbox" className="primary-input" min="0" onChange={e=>setAire_acondicionado(!aire_acondicionado)} />
-                        </label>
-                        <label>
-                            Jardin: 
-                            <input type="checkbox" className="primary-input" min="0" onChange={e=>setJardin(!jardin)} />
-                        </label>
-                        <label>
-                            Terraza: 
-                            <input type="checkbox" className="primary-input" min="0" onChange={e=>setTerraza(!terraza)} />
-                        </label>
-                        <label>
-                            Ascensor: 
-                            <input type="checkbox" className="primary-input" min="0" onChange={e=>setAscensor(!ascensor)} />
-                        </label>
-                        <label>
-                            Piscina: 
-                            <input type="checkbox" className="primary-input" min="0" onChange={e=>setPiscina(!piscina)} />
-                        </label>
-                    </div>
-                    <input type="number" className="primary-input"  min="0" step="100" placeholder="Precio Mínimo" onChange={ e => setPrecioMin(e.target.value) } />
-                    <input type="number" className="primary-input"  min="0" step="100" placeholder="Precio máximo" onChange={ e => setPrecioMax(e.target.value)} />
-                    <button className="primary-button">Buscar</button>
-                </form>   
-                
+                }
             </div>
         )
 }
