@@ -125,7 +125,7 @@ const AdvSearcher =()=>{
                         <input type="number" className="primary-input"  min="0" step="100" placeholder="Precio Mínimo" onChange={ e => setPrecioMin(e.target.value) } />
                         <input type="number" className="primary-input"  min="0" step="100" placeholder="Precio máximo" onChange={ e => setPrecioMax(e.target.value)} />
                         <Space direction="vertical">
-                            <DatePicker onChange={onChange} format='DD-MM-yyy' placeholder="Fecha disponibilidad." showToday='true' className="primary-input date-picker" />
+                            <DatePicker onChange={onChange}  placeholder="Fecha disponibilidad." showToday='true' className="primary-input date-picker" />
                         </Space>
                         <button className="primary-button">Buscar</button>
                     </form>
