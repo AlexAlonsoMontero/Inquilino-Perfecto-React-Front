@@ -9,7 +9,6 @@ import Register from './components/Register/Register'
 import { routes } from './routes';
 import { useUser } from './context/UserContext';
 import Footer  from './components/Footer/Footer';
-import Autocomplete from './components/Autocomplete/Autocomplete';
 import ActivateUser from './components/ActivateUser/ActivateUser';
 import AdvSearcher from './components/AdvSearcher/AdvSearcher';
 
@@ -28,7 +27,6 @@ function App() {
       </aside>
       
       <main>
-        <Autocomplete />
           {!user && showModal &&
               <Modal setShowModal={setShowModal}>
                   <Login setShowModal={setShowModal}/>
