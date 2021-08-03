@@ -66,9 +66,15 @@ const AdvSearcher =()=>{
             setAdvertisements(data)
         }
         
-        function onChange(date, dateString) {
-            setFrom__fecha_dispinibilidad(dateString);
-          }
+        function onChangeDate(date, dateString) {
+            
+            if(date){
+                console.log(dateString)
+                console.log(`${date._d.getFullYear()}-${date._d.getMonth()+1}-${date._d.getDate()}`)
+                setFrom__fecha_dispinibilidad(`${date._d.getFullYear()}-${date._d.getMonth()+1}-${date._d.getDate()}`)
+            }
+            
+        }
         return(
             <div>
                 <div className="advertisement-search-container">
@@ -125,7 +131,7 @@ const AdvSearcher =()=>{
                         <input type="number" className="primary-input"  min="0" step="100" placeholder="Precio Mínimo" onChange={ e => setPrecioMin(e.target.value) } />
                         <input type="number" className="primary-input"  min="0" step="100" placeholder="Precio máximo" onChange={ e => setPrecioMax(e.target.value)} />
                         <Space direction="vertical">
-                            <DatePicker onChange={onChange}  placeholder="Fecha disponibilidad." showToday='true' className="primary-input date-picker" />
+                            <DatePicker onChange={onChangeDate} format='DD-MM-YYYY' placeholder="Fecha disponibilidad." showToday='true' className="primary-input date-picker" />
                         </Space>
                         <button className="primary-button">Buscar</button>
                     </form>
