@@ -75,7 +75,7 @@ const Register = () => {
                             <select className="primary-input" name="userTipo"  defaultValue="INQUILINO" onChange={ e => setNewUser({ ...newUser, tipo: e.target.value }) }>
                                 <option value="INQUILINO">INQUILINO</option>
                                 <option value="CASERO" >CASERO</option>
-                                <option value="CASERO/INQUILINO">INQUILINO/CASERO</option>
+                                <option value="INQUILINO/CASERO">INQUILINO/CASERO</option>
                             </select>
                         </label>
                         <label name="avatarImage" className="avatarImage" onChange={e=>handleImageAvatar(e)}>
