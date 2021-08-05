@@ -147,6 +147,8 @@ const AdvSearcher =()=>{
                                         <p>{adver.numero}</p>
                                         <p>{adver.ciudad} </p>
                                         <p>{adver.provincia} </p>
+                                        <p>Nombre usuario:{adver.username}</p>
+                                        <p>Puntuación: {adver.puntuacion} </p>
                                     </div>
                                 </li>
                             )}
