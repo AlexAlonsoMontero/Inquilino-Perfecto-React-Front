@@ -4,6 +4,7 @@ import { backRoutes } from '../../routes'
 import { useHistory } from 'react-router-dom'
 import useQueryGenerate from '../../hooks/useQueryGenerate'
 import { DatePicker, Space } from 'antd';
+import MiniAdvertisement from '../MiniAdvertisement/MiniAdvertisement'
 import './AdvSearcher.css'
 
 const AdvSearcher =()=>{
@@ -137,23 +138,15 @@ const AdvSearcher =()=>{
                     </form>
                 </div>   
                 {advertisements &&
-                    <div>
-                        <ul>
+                <>
+                    <h1 id="bodyHeader">Anuncios encontrados según su criterio de búsqueda</h1>
+                    <div className="resultSearchCotainer">
                             {advertisements.map(adver=>
-                                <li key={adver.id_anuncio}>
-                                    <div>
-                                        <h2>Anuncio {adver.id_anuncio} </h2>
-                                        <p>{adver.calle}</p>
-                                        <p>{adver.numero}</p>
-                                        <p>{adver.ciudad} </p>
-                                        <p>{adver.provincia} </p>
-                                        <p>Nombre usuario:{adver.username}</p>
-                                        <p>Puntuación: {adver.puntuacion} </p>
-                                    </div>
-                                </li>
+                                <MiniAdvertisement advertisements={adver}/>
+                               
                             )}
-                        </ul>
                     </div>
+                </>
                 }
             </div>
         )

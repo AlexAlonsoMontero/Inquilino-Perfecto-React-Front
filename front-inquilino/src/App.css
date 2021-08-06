@@ -21,6 +21,13 @@ body main{
   min-height: 90vh;
 }
 
+#bodyHeader{
+  text-align: center;
+  font-weight: bold;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
 .primary-button{
   background-color: var(--secondary-color);
   color: var(--primary-color);

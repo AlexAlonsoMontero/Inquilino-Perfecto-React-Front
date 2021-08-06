@@ -27,3 +27,11 @@
     padding: 5px;
 }
 
+.resultSearchCotainer{
+    width:fit-content;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    flex-wrap:wrap;
+}

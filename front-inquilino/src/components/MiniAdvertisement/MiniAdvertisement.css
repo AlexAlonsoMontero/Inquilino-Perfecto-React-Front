@@ -1,0 +1,47 @@
+.miniAdvertisementCotainer{
+    border: 2px solid var(--secondary-color);
+    border-radius: 15px;
+    overflow: hidden;
+    width:540px;
+    min-width: 540px;
+    margin: 10px;
+    box-shadow: var(--primary-shadow);
+}
+.imageContainer{
+    height: 175px;
+    width: 175px;
+    background-color: aqua;
+    border-radius: 15px;
+    float: left;
+    
+}
+
+.miniAdvData{
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+}
+.miniAdvData p{
+    margin-left: 25px;
+    margin-right: 25px;
+    padding: 2px;
+    margin:1px;
+
+}
+.miniAdvData span{
+    font-weight: bold;
+    margin-left: 5px;
+    padding-left: 5px;
+}
+
+.miniAdvButtonContainer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.miniAdvButtonContainer * {
+    margin: 5px;
+}
