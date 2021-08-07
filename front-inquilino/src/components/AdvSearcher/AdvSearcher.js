@@ -7,6 +7,7 @@ import { DatePicker, Space } from 'antd';
 import MiniAdvertisement from '../MiniAdvertisement/MiniAdvertisement'
 import './AdvSearcher.css'
 
+
 const AdvSearcher =()=>{
         const [provincia, setProvincia] = useState("Alemería")
         const [precioMin, setPrecioMin] = useState(0)
@@ -58,12 +59,17 @@ const AdvSearcher =()=>{
         
         const [advertisements, setAdvertisements] = useState()
         
+        
+
+
         const handleFilter = async(e) =>{
             e.preventDefault()
+            console.log(backRoutes.r_advSearcher + query)
             const result = await fetch(backRoutes.r_advSearcher + query)
+            
             const {data } = await (result.json())
             history.push(`/search/adv/${query}`)
-            console.log(data)
+            console.log(query)
             setAdvertisements(data)
         }
         

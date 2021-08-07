@@ -11,6 +11,7 @@ import { useUser } from './context/UserContext';
 import Footer  from './components/Footer/Footer';
 import ActivateUser from './components/ActivateUser/ActivateUser';
 import AdvSearcher from './components/AdvSearcher/AdvSearcher';
+import Advertisement from './components/Advertisement/Advertisement';
 
 function App() { 
   const [user] = useUser()
@@ -33,6 +34,9 @@ function App() {
               </Modal>
           }
           <Switch>
+                <Route path= {`${routes.r_advertisement}/:anuncio_uuid`}>
+                  <Advertisement />
+                </Route>
                 <Route path={routes.r_advSearcher}>
                   <AdvSearcher />
                 </Route>

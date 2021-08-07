@@ -1,8 +1,17 @@
 import './MiniAdvertisement.css'
 import { Rate } from 'antd';
+import { useHistory } from 'react-router-dom'
+import { routes } from '../../routes';
+
+
 const MiniAdvertisement = ({advertisements}) =>{
+    const history = useHistory()
     console.log("adv")
     console.log(advertisements)
+    const handleAdvertisement = () =>{
+        const uuid= advertisements.anuncio_uuid
+        history.push(`${routes.r_advertisement}/${uuid}`)
+    }
     return(
         <div className="miniAdvertisementCotainer">
             <div className="imageContainer">
@@ -13,7 +22,7 @@ const MiniAdvertisement = ({advertisements}) =>{
                 <p><span>Metros cuadrados: </span> {advertisements.metros_2} <span>Habitaciones:</span> {advertisements.habitaciones} </p>
                 <p><span>Puntuación reseñas:</span> <Rate disabled defaultValue={advertisements.puntuacion} /> </p>
                 <div className="miniAdvButtonContainer">
-                    <button className="primary-button">Reservas</button> <button className="primary-button">Ver detalles</button>
+                    <button className="primary-button" onClick={handleAdvertisement} >Reservas</button> <button className="primary-button">Ver detalles</button>
                 </div>
                 
             </div>

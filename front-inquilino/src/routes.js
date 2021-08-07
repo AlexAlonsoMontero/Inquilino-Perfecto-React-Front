@@ -6,7 +6,8 @@ export const routes = {
     r_register: `/api/users`,
     r_login:`/login`,
     r_ativactionUser:`/activation`,
-    r_advSearcher: '/'
+    r_advSearcher: '/',
+    r_advertisement: '/advertisement'
     
 }
 
