@@ -4,7 +4,7 @@ import { geocodeByAddress } from 'react-google-places-autocomplete';
 
 
 
-const Autocomplete = () => {
+const AutocompleteG = () => {
     const [direccion, setDireccion] = useState()
     const [datos, setDatos] = useState()
     let direccionCompleta= {}
@@ -47,4 +47,4 @@ const Autocomplete = () => {
     )
 }
 
-export default Autocomplete
+export default AutocompleteG

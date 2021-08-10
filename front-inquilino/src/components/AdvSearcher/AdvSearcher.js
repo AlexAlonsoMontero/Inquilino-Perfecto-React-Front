@@ -58,26 +58,19 @@ const AdvSearcher =()=>{
         prov.sort((a, b)=>a.nm.localeCompare(b.nm))
         
         const [advertisements, setAdvertisements] = useState()
-        
-        
-
 
         const handleFilter = async(e) =>{
             e.preventDefault()
             console.log(backRoutes.r_advSearcher + query)
             const result = await fetch(backRoutes.r_advSearcher + query)
-            
             const {data } = await (result.json())
             history.push(`/search/adv/${query}`)
-            console.log(query)
             setAdvertisements(data)
         }
         
         function onChangeDate(date, dateString) {
             
             if(date){
-                console.log(dateString)
-                console.log(`${date._d.getFullYear()}-${date._d.getMonth()+1}-${date._d.getDate()}`)
                 setFrom__fecha_dispinibilidad(`${date._d.getFullYear()}-${date._d.getMonth()+1}-${date._d.getDate()}`)
             }
             

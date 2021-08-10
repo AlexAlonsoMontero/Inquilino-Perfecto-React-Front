@@ -17,7 +17,8 @@ export const backRoutes ={
     r_login:`${host}:${port}/login`,
     r_activationUser: `${host}:${port}/activation`,
     r_getAdvertisement: `${host}:${port}/api/adv/`,
-    r_advSearcher: `${host}:${port}/api/adv/` // se completa con :table1/:table2/ y queryparams
+    r_advSearcher: `${host}:${port}/api/adv/`, // se completa con :table1/:table2/ y queryparams
+    r_AvgPropertyCalification: `${host}:${port}/api/avg-reviews/resenas/puntuacion/`
 }
 
 
