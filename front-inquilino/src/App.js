@@ -12,7 +12,6 @@ import Footer  from './components/Footer/Footer';
 import ActivateUser from './components/ActivateUser/ActivateUser';
 import AdvSearcher from './components/AdvSearcher/AdvSearcher';
 import Advertisement from './components/Advertisement/Advertisement';
-
 function App() { 
   const [user] = useUser()
   const [showModal, setShowModal] = useState(false)
@@ -32,6 +31,7 @@ function App() {
                   <Login setShowModal={setShowModal}/>
               </Modal>
           }
+          
           <Switch>
                 <Route path= {`${routes.r_advertisement}/:anuncio_uuid`}>
                   <Advertisement />
@@ -53,7 +53,7 @@ function App() {
                 
                 
           </Switch>
-          
+         
       </main>
       <footer>
           <Footer />

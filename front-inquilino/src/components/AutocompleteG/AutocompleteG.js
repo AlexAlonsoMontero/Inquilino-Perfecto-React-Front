@@ -16,7 +16,7 @@ const AutocompleteG = () => {
     }
     
     if (datos != null){
-        console.log("el array")
+        
         console.log(datos[0].address_components)
         direccionCompleta={
             calle:datos[0].address_components[0].long_name,

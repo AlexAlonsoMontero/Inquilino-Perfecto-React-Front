@@ -1,9 +1,7 @@
 import './MiniAdvertisement.css'
 import { Rate } from 'antd';
 import { useHistory } from 'react-router-dom'
-import { routes } from '../../routes';
-import { useGetAvgPropertyCalification } from '../../hooks/inmowebApi'
-
+import { routes } from '../../routes'
 const MiniAdvertisement = ({advertisements}) =>{
     console.log(advertisements)
     const history = useHistory()
@@ -25,7 +23,6 @@ const MiniAdvertisement = ({advertisements}) =>{
                 <div className="miniAdvButtonContainer">
                     <button className="primary-button" onClick={handleAdvertisement} >Reservas</button> <button className="primary-button">Ver detalles</button>
                 </div>
-                
             </div>
         </div>
         

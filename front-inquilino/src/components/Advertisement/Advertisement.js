@@ -1,6 +1,8 @@
 import { useParams } from 'react-router'
 import { useAdvSearcher } from '../../hooks/inmowebApi'
 import { AutoComplete, DatePicker, Space } from 'antd';
+import Map from '../Map/Map'
+
 import './Advertisement.css'
 
 
@@ -49,6 +51,8 @@ const Advertisement = () => {
                     <p><span>Terraza</span> {handleBooleanString(adv.terraza)} <span>Jardin</span> {handleBooleanString(adv.jardin)} </p>
                     <p><span>Piscina</span> {handleBooleanString(adv.piscina)} </p>
                 </div>
+                <Map adress={{cp:adv.cp, calle:adv.calle, numero:adv.numero, fecha_disponibilidad:adv.fecha_disponibilidad,
+                ciudad:adv.ciudad, comunidad:adv.comunidad, provincia:adv.provincia, precio:adv.precio }}/>
 
 
             </div>
