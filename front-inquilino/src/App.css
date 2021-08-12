@@ -13,14 +13,22 @@ body {
 }
 aside{
   float: left;
+  height: 100px;
+  margin-right: 1px;
+  min-height: 90vh;
 }
 
 
 
 body main{
   min-height: 90vh;
+  width: 100%;
+  
 }
-
+.main div:first-child{
+  height: 100%;
+  border: 10px solid blue;
+}
 #bodyHeader{
   text-align: center;
   font-weight: bold;

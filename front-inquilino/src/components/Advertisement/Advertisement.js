@@ -4,26 +4,25 @@ import { AutoComplete, DatePicker, Space } from 'antd';
 import Map from '../Map/Map'
 
 import './Advertisement.css'
+import { useState } from 'react';
 
 
 const Advertisement = () => {
     const queryString = require('query-string');
     const  anuncio_uuid   = `?${queryString.stringify(useParams())}`
-    console.log(queryString.stringify(useParams()))
+    let mapAdress
     let adv;
     const advData = useAdvSearcher(anuncio_uuid)
-    const handleBooleanString = bool=> (adv.amueblado ? "Si": "No")
+    const handleBooleanString = bool=> (bool ? "Si": "No")
     
     if(advData){
         console.log(advData)
         adv = advData.data[0]
-        console.log("imprimo adv")
-        console.log(adv)
-    
+        mapAdress=[{calle:adv.calle, numero:adv.numero, cp:adv.cp,fecha_disponibilidad:adv.fecha_disponibilidad , anuncio_uuid:adv.anuncio_uuid}]
     }else{
         return <h2>Cargando datos solicitados ...</h2>
     }
-    return  adv && (
+    return  adv &&(
         <div>
             <div>
                 <div className="AdvImageContainer"> </div>
@@ -51,8 +50,7 @@ const Advertisement = () => {
                     <p><span>Terraza</span> {handleBooleanString(adv.terraza)} <span>Jardin</span> {handleBooleanString(adv.jardin)} </p>
                     <p><span>Piscina</span> {handleBooleanString(adv.piscina)} </p>
                 </div>
-                <Map adress={{cp:adv.cp, calle:adv.calle, numero:adv.numero, fecha_disponibilidad:adv.fecha_disponibilidad,
-                ciudad:adv.ciudad, comunidad:adv.comunidad, provincia:adv.provincia, precio:adv.precio }}/>
+                <Map mapAdress={[mapAdress]}/>
 
 
             </div>

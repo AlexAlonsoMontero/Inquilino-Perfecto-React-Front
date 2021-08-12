@@ -7,8 +7,8 @@ export const routes = {
     r_login:`/login`,
     r_ativactionUser:`/activation`,
     r_advSearcher: '/',
-    r_advertisement: '/advertisement'
-    
+    r_advertisement: '/advertisement',
+    r_PropertyNewProp:'/api/property/add'
 }
 
 export const backRoutes ={

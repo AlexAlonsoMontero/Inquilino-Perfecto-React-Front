@@ -1,7 +1,38 @@
 .asideMenu{
     color: var(--secondary-color);
-    width: 256px;
 }
 .asideMenu * {
     color: var(--secondary-color);
+}
+
+
+
+.mostrarAside{
+    width: 20vw;
+    transition: 0.3s;
+}
+
+
+.ocultarAside{
+    width: 50px;
+    transition: 0.3s;
+    translate: -100px;
+}
+
+.asideShowButton{
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    width: 100%;
+    
+}
+.buttonAside{
+    border: 1px solid var(--secondary-color);
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    font-size: 1.5em;
+    font-weight: bold;
+    margin: 5px;
+    
 }
