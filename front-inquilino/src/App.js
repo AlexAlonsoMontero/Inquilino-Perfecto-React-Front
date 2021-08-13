@@ -32,8 +32,7 @@ function App() {
                   <Login setShowModal={setShowModal}/>
               </Modal>
           }
-          
-          <Switch>
+            <Switch>
                 <Route path={`${routes.r_PropertyNewProp}`} >
                   <AddProperty />
                 </Route>
