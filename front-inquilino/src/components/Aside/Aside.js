@@ -39,7 +39,7 @@ const Aside = () => {
 
         <div className={asideContainerClass} >
             <Menu
-                className="asideMenu"
+                className="asideMenuShow"
                 onClick={handleClick}
                 defaultSelectedKeys={['1']}
                 defaultOpenKeys={['sub1']}

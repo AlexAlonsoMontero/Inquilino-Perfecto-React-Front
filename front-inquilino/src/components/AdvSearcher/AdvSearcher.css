@@ -7,27 +7,64 @@
     align-items: center;
     justify-content: center;
     box-sizing: content-box;
-    overflow: scroll;
+    
     
 }
 
-.advertisement-search-container form {
-    background-color:rgba(255, 255, 255, 0.7);
-    padding: 10px;
+.searchPropertyData-container {
+    box-sizing: content-box;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: left;
+    }
+
+.searchPropertyData-container *{
+    margin: 2px 5px;
+}
+.resservSearch-container *{
+    margin: 2px 5px
+}
+
+.advertisement-search-container form{
+    background-color:rgba(255, 255, 255, 0.8);
+    padding: 20px;
     border-radius: 15px;
     box-sizing: content-box;
+    max-width: 80vw;
+    overflow-wrap: normal;
     
 }
-
+.advertisement-search-container form>h1{
+    text-align: center;
+    
+}
+.advertisement-search-container select {
+    background-color: white;
+    
+}
 .advertisement-search-container * {
     font-weight: bold;
 }
 
-.advertisement-search-container form div{
-    padding: 5px;
+
+
+.advertisement-search-container input::placeholder{
+    color: var(--secondary-color);
+    opacity: 0.50;
+  
 }
 
-.resultSearchCotainer{
+.ant-picker-input input::placeholder {
+    color: var(--secondary-color);
+    opacity: 0.50;
+  }
+
+
+
+
+
+
+  .resultSearchCotainer{
     width:fit-content;
     margin: auto;
     display: flex;

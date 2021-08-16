@@ -7,7 +7,7 @@
 
 .navContainer   {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     border-bottom: 1px solid var(--secondary-color);
     align-items: center;
     top: 0;
@@ -22,6 +22,11 @@
     align-items: center;
     
     list-style: none;
+}
+
+.navContainer ul{
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 .navContainer ul li{
@@ -45,8 +50,10 @@
 }
 
 
-.navContainer div{
-    margin: 0px;
-    padding: 0px;
+#navLogo{
+    margin-left: 10px;
 }
 
+#minUserMenu{
+    margin-right: 10px;
+}

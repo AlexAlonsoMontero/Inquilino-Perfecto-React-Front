@@ -11,7 +11,7 @@ const AutocompleteG = ({setAdress}) => {
     useEffect(() => {
        if(direccion){
             geocodeByAddress(direccion.label)
-            // .then(results =>console.log(results)[0].geometry)
+            .then(results=>console.log(results.geometry.location))
             .then(results => setAdress(results[0].address_components))
             .catch(error => console.error(error));
          }
@@ -21,38 +21,44 @@ const AutocompleteG = ({setAdress}) => {
     
     return (
         <div id="googleAutocmplete-container">
-            <GooglePlacesAutocomplete apiKey="AIzaSyDBbYSjPW4Bc_0AIL65pvPeytfw5f-dzps" 
-                apiOptions={{ language: 'es', region: 'es' }}
-                selectProps={{
-                    direccion,
-                    onChange: setDireccion,
-                    placeholder:"Introduce una dirección",
-                    styles:{
-                        input: (provided) => ({
-                        ...provided,
-                        color: "#1455F5",
-                        }),
-                        placeholder: (provided) => ({
-                        ...provided,
-                        color: "#1455F5",
-                        opacity:"0.5"
-                        }),
-                        control: (provided) => ({
-                        ...provided,
-                        border: '1px solid #1455F5'
-                        }),
-                        
+            <div>
+                <GooglePlacesAutocomplete apiKey="AIzaSyDBbYSjPW4Bc_0AIL65pvPeytfw5f-dzps" 
+                    apiOptions={{ language: 'es', region: 'es' }}
+                    selectProps={{
+                        direccion,
+                        onChange: setDireccion,
+                        placeholder:"Introduce una dirección",
+                        styles:{
+                            input: (provided) => ({
+                            ...provided,
+                            color: "#1455F5",
+                            }),
+                            placeholder: (provided) => ({
+                            ...provided,
+                            color: "#1455F5",
+                            opacity:"0.5"
+                            }),
+                            control: (provided) => ({
+                            ...provided,
+                            border: '1px solid #1455F5',
+                            margin:'auto'
+                            }),
+                            dropdownIndicator:(provided) => ({
+                            ...provided,
+                            color:'1px solid #1455F5'
+                            })
+                            
+                        }
+                    }}
                     
+                    autocompletionRequest={{
+                            componentRestrictions: {
+                            country: ['es'],
                     }
-                }}
-                
-                autocompletionRequest={{
-                        componentRestrictions: {
-                        country: ['es'],
-                }
-                }}
-                
-            />
+                    }}
+                    
+                />
+            </div>
         </div>
     )
 }

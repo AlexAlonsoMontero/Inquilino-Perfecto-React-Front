@@ -1,26 +1,41 @@
-.addPropertyContainer {
+.addPropertyData-container{
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
-    max-width: 90vw;
+    
+}
+.addPropertyContainer h1{
+    text-align: center;
 }
 
+.addPropertyData-container *{
+    margin: 10px;
+}
+.addpropOptions-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+#addPropertyAutocomplete{
+    max-width: 760px;
+    min-width: 460px;
+}
 .addProperty-form{
     display: flex;
-    max-width: 90vw;
-    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
 }
-
-.addProperty-form input{
-    margin: 15px;
+.addPropertyData-container *::placeholder{
+    color: var(--secondary-color);
+    opacity: 0.5;
 }
-
+.addpropOptions-container span {
+    color: var(--secondary-color)
+}
 
 .addProperty-button{
-    padding: 0px;
-    
-    margin: 25px;
-    font-size: 2em;
-    padding: 5px;
+    margin: 15px;
 }

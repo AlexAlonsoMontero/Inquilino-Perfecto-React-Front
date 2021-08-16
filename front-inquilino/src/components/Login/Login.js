@@ -3,7 +3,8 @@ import { Redirect } from 'react-router-dom'
 import  {useUser}  from '../../context/UserContext'
 import './Login.css'
 import '../../App.css';
-import { backRoutes } from '../../routes';
+import { backRoutes, routes } from '../../routes';
+import { useEffect } from 'react';
 
 function Login({setShowModal}) {
     
@@ -12,7 +13,13 @@ function Login({setShowModal}) {
     const [error, setError] = useState(false)
     const [loading, setLoading] = useState(false)
     const [user, setUser] = useUser()
-    
+    useEffect (()=>{
+        console.log("el usuario")
+        console.log(user)
+        if(user){
+            alert("entra")
+        }
+    },[user])
     const handleSubmit = async e => {
         e.preventDefault()
         setLoading(true)
@@ -25,12 +32,12 @@ function Login({setShowModal}) {
         })
         const data = await res.json()
         setLoading(false)
+        
         if (res.ok) {
+            alert("entra")
+            console.log(data)
             setUser(data)
-            setShowModal(false)
-            return <Redirect to="/" />
         } else {
-            console.log(data.error)
             setError(data.error)
         }
     }
@@ -38,11 +45,11 @@ function Login({setShowModal}) {
     if (loading) {
         return <h1>Cargando...</h1>
     }
-
-    if (user) {
-        setShowModal(false)
-        alert("Entra")
-        return <Redirect to="/" />
+    console.log("el usuario es ")
+    console.log(user)
+    if(user){
+        alert("entra")
+        return <Redirect to={routes.r_register} />
     }
 
     return (

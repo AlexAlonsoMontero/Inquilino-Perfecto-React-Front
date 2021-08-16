@@ -23,7 +23,7 @@ function App() {
         <NavPrincipal setShowModal={setShowModal}/>
       </header>
       <aside>
-        <Aside />
+      {user && <Aside /> }
       </aside>
       
       <main>
