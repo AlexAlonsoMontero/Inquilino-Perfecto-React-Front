@@ -61,7 +61,6 @@ const AdvSearcher =()=>{
 
         const handleFilter = async(e) =>{
             e.preventDefault()
-            console.log(backRoutes.r_advSearcher + query)
             const result = await fetch(backRoutes.r_advSearcher + query)
             const {data } = await (result.json())
             history.push(`/search/adv/${query}`)

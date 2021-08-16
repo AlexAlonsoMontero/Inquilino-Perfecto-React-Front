@@ -1,8 +1,6 @@
 export const parse_googleAdress = (autoAdress)=>{
     const adress ={}
-    console.log("entra")
     autoAdress.forEach(element => {    
-        console.log(element.types[0])
         if(element.types[0]==="street_number"){
             adress.numero=element.long_name
         }else if(element.types[0]==="route"){

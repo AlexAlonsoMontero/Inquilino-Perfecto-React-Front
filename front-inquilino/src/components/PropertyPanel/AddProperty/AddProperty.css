@@ -1,0 +1,26 @@
+.addPropertyContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    max-width: 90vw;
+}
+
+.addProperty-form{
+    display: flex;
+    max-width: 90vw;
+    flex-wrap: wrap;
+}
+
+.addProperty-form input{
+    margin: 15px;
+}
+
+
+.addProperty-button{
+    padding: 0px;
+    
+    margin: 25px;
+    font-size: 2em;
+    padding: 5px;
+}

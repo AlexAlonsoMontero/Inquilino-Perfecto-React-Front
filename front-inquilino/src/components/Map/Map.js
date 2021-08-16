@@ -1,12 +1,11 @@
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 import './Map.css'
 import { OpenStreetMapProvider, GoogleProvider } from 'leaflet-geosearch';
-import { useContext, useEffect, useState } from 'react';
+import {  useEffect, useState } from 'react';
 const Map = ({mapAdress}) =>{
     const [coordinates,setCoordinates] = useState({x:40.416, y :-3.703 });
-    const [googleApiResults,setGoogleApiResults] = useState([])
     const [showMarkMap,setShowMarkMap] = useState(false)
-    console.log(mapAdress)
+    const [markData,setMarkData] = useState()
     const provider = new GoogleProvider({
         params: {
           key: 'AIzaSyDBbYSjPW4Bc_0AIL65pvPeytfw5f-dzps',
@@ -22,49 +21,40 @@ const Map = ({mapAdress}) =>{
           addressdetails: 1, // include additional address detail parts
         },
       });
-    
-
+      
     useEffect(() => {
-      const locateProperty = async()=>{
-        console.log("prueba")
-        const results= await provider.search({ query:"rua venezuela 78" })
-        console.log(results )
-      //   setGoogleApiResults(results)
-      }    
-      locateProperty()
-      return () => {
-        setGoogleApiResults()
-      };
+        const LocateData = async()=>{
+        const results =[]
+        for (let cont=0; cont<mapAdress.length; cont++){
+          results[cont] = await provider.search({ query: `${mapAdress[cont].calle} ${mapAdress[cont].numero} ${mapAdress[cont].ciudad} ${mapAdress[cont].provincia} `  })
+            
+        }
+        const respuestas = await Promise.all(results)
+        if(respuestas.error_message){
+          alert("No se ha podido localizar de forma automatica las coordenadas, introduzcalas manualmente, si así lo desea")
+        }
+        if(respuestas.length>0){
+          setShowMarkMap(true)
+         
+        }
+        
+      }
+      LocateData()
+      
     }, []);
-
-
-    // useEffect(()=>{
-    //   const locateProperty = async()=>{
-    //     console.log("prueba")
-    //     const results= await provider.search({ query:"rua venezuela 78" })
-    //     console.log(results )
-    //   //   setGoogleApiResults(results)
-    //   }    
-    //   locateProperty()
-    // } ,[])
-    if(googleApiResults.length > 0){
-      console.log("hay resultados")
-      setShowMarkMap(true)
-    }
-    
-    
     return  coordinates && (
         <MapContainer center={[coordinates.x, coordinates.y]} zoom={13} scrollWheelZoom={false}>
         <TileLayer
             attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        <Marker position={[coordinates.x, coordinates.y]}>
+        {showMarkMap && <p>prueba</p>}
+        {/* <Marker position={[coordinates.x, coordinates.y]}>
               <Popup>
                   <p></p>
                   <button>Reserva</button>
               </Popup>
-          </Marker>
+          </Marker> */}
           
         </MapContainer>
         
