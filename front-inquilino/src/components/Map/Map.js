@@ -23,23 +23,23 @@ const Map = ({mapAdress}) =>{
       });
       
     useEffect(() => {
-        const LocateData = async()=>{
-        const results =[]
-        for (let cont=0; cont<mapAdress.length; cont++){
-          results[cont] = await provider.search({ query: `${mapAdress[cont].calle} ${mapAdress[cont].numero} ${mapAdress[cont].ciudad} ${mapAdress[cont].provincia} `  })
+      //   const LocateData = async()=>{
+      //   const results =[]
+      //   for (let cont=0; cont<mapAdress.length; cont++){
+      //     results[cont] = await provider.search({ query: `${mapAdress[cont].calle} ${mapAdress[cont].numero} ${mapAdress[cont].ciudad} ${mapAdress[cont].provincia} `  })
             
-        }
-        const respuestas = await Promise.all(results)
-        if(respuestas.error_message){
-          alert("No se ha podido localizar de forma automatica las coordenadas, introduzcalas manualmente, si así lo desea")
-        }
-        if(respuestas.length>0){
-          setShowMarkMap(true)
+      //   }
+      //   const respuestas = await Promise.all(results)
+      //   if(respuestas.error_message){
+      //     alert("No se ha podido localizar de forma automatica las coordenadas, introduzcalas manualmente, si así lo desea")
+      //   }
+      //   if(respuestas.length>0){
+      //     setShowMarkMap(true)
          
-        }
+      //   }
         
-      }
-      LocateData()
+      // }
+      // LocateData()
       
     }, []);
     return  coordinates && (

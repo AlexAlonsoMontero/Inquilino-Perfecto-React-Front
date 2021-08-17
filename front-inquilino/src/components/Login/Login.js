@@ -13,13 +13,13 @@ function Login({setShowModal}) {
     const [error, setError] = useState(false)
     const [loading, setLoading] = useState(false)
     const [user, setUser] = useUser()
-    useEffect (()=>{
-        console.log("el usuario")
-        console.log(user)
-        if(user){
-            alert("entra")
-        }
-    },[user])
+    // useEffect (()=>{
+    //     console.log("el usuario")
+    //     console.log(user)
+    //     if(user){
+    //         alert("entra")
+    //     }
+    // },[user])
     const handleSubmit = async e => {
         e.preventDefault()
         setLoading(true)

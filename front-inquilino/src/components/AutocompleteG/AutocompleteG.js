@@ -1,24 +1,43 @@
 import GooglePlacesAutocomplete from 'react-google-places-autocomplete'
 import { useState,useEffect } from 'react'
-import { geocodeByAddress } from 'react-google-places-autocomplete';
+import { geocodeByAddress, getLatLng } from 'react-google-places-autocomplete';
 import './AutocompleteG.css'
+
 
 const AutocompleteG = ({setAdress}) => {
     const [direccion, setDireccion] = useState()
-    const [datos, setDatos] = useState()
+    const [datos,setDatos] = useState()
+    const [coordinates, setCoordinates] = useState()
     let direccionCompleta= {}
     // console.log(direccion.value.terms)
     useEffect(() => {
-       if(direccion){
+        if(direccion){
             geocodeByAddress(direccion.label)
-            .then(results=>console.log(results.geometry.location))
-            .then(results => setAdress(results[0].address_components))
-            .catch(error => console.error(error));
-         }
-         
+                .then(results => {
+                    setDatos(results[0].address_components)
+                    getLatLng(results[0])
+                        .then((results)=>setCoordinates(results))
+                .catch(error => console.error(error));
+                })
+            if(datos && coordinates){
+                console.log(datos)
+                console.log(coordinates)
+                console.log([...datos,coordinates])
+                // setAdress([...datos,coordinates])
+                // console.log([...datos, {lat:coordinates.lat}, {lng:coordinates.lng}])
+            }       
+        }
     },[direccion]);
-    
-    
+        
+    if(datos && coordinates){
+        console.log(datos)
+        console.log(coordinates)
+        console.log([...datos,coordinates])
+        // setAdress([...datos,coordinates])
+        // console.log([...datos, {lat:coordinates.lat}, {lng:coordinates.lng}])
+    }  
+
+
     return (
         <div id="googleAutocmplete-container">
             <div>

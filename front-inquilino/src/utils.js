@@ -20,6 +20,6 @@ export const parse_googleAdress = (autoAdress)=>{
             adress.numero=element.long_name
         }
     })
-    console.log(adress)
+    // console.log(adress)
     return adress
 }

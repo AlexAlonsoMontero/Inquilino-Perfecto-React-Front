@@ -47,7 +47,12 @@
 }
 
 
-
+.ant-picker{
+    position: unset;
+}
+.ant-checkbox{
+    position: relative;
+}
 .advertisement-search-container input::placeholder{
     color: var(--secondary-color);
     opacity: 0.50;

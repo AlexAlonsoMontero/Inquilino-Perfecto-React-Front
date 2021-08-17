@@ -13,8 +13,10 @@ const AddProperty = () =>{
     const [adress, setAdress] = useState([])
     const userVerification =useVerifiateUser(user.user,["CASERO","INQUILINO/CASERO"])
     useEffect(()=>{
+        
         if(adress.length>0){
-            setProperty(parse_googleAdress(adress))
+            console.log("adresss", adress)
+            // setProperty(parse_googleAdress(adress))
         }
     },[adress])
     if(userVerification===false || !user){
