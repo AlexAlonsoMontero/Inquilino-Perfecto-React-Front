@@ -1,0 +1,41 @@
+.addPropertyData-container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    
+}
+.addPropertyContainer h1{
+    text-align: center;
+}
+
+.addPropertyData-container *{
+    margin: 10px;
+}
+.addpropOptions-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+#addPropertyAutocomplete{
+    max-width: 760px;
+    min-width: 460px;
+}
+.addProperty-form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+}
+.addPropertyData-container *::placeholder{
+    color: var(--secondary-color);
+    opacity: 0.5;
+}
+.addpropOptions-container span {
+    color: var(--secondary-color)
+}
+
+.addProperty-button{
+    margin: 15px;
+}

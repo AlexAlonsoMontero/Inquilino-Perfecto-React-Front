@@ -11,19 +11,19 @@ import { useUser } from './context/UserContext';
 import Footer  from './components/Footer/Footer';
 import ActivateUser from './components/ActivateUser/ActivateUser';
 import AdvSearcher from './components/AdvSearcher/AdvSearcher';
-
+import Advertisement from './components/Advertisement/Advertisement';
+import AddProperty from './components/PropertyPanel/AddProperty/AddProperty';
 function App() { 
   const [user] = useUser()
   const [showModal, setShowModal] = useState(false)
 
   return (
     <div className="App">
-      
       <header>
         <NavPrincipal setShowModal={setShowModal}/>
       </header>
       <aside>
-        <Aside />
+      {user && <Aside /> }
       </aside>
       
       <main>
@@ -32,25 +32,27 @@ function App() {
                   <Login setShowModal={setShowModal}/>
               </Modal>
           }
-          <Switch>
-                <Route path={routes.r_advSearcher}>
-                  <AdvSearcher />
+            <Switch>
+                <Route path={`${routes.r_PropertyNewProp}`} >
+                  <AddProperty />
                 </Route>
-                
+                <Route path= {`${routes.r_advertisement}/:anuncio_uuid`}>
+                  <Advertisement />
+                </Route>
                 <Route path={routes.r_register} exact>
                   <Register/>
                 </Route>
-                <Route path={routes.home} >
+                <Route path={routes.r_advSearcher} >
+                  <AdvSearcher />
+                </Route>
+                
+                <Route path={routes.home} exact >
                   <p>Página de inicio</p>
                 </Route>
                 <Route path={routes.r_activationUser} exact>
                   <ActivateUser />
                 </Route>
-                
-                
-                
           </Switch>
-          
       </main>
       <footer>
           <Footer />
