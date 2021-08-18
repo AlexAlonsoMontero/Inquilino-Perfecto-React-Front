@@ -66,6 +66,13 @@ const Register = () => {
             <div className="registerLogin-Container">
                 <div className="register-Container">
                 <header><h1>Registro de nuevo usuario</h1></header>
+                    {error &&
+                        <div className="alert-container">
+                            <p>username: Caracteres alfanumericos si "ñ" ni espacios en blanco</p>
+                            <p>contraseña: Caracteres alfanumericos si "ñ" ni espacios en blanco</p>
+                            <p>email: Debe de llevar @ y dominio</p>
+                        </div> 
+                    }
                     <form onSubmit={ onHandleSubmit }>
                         <label>
                             Nombre de usuario:<br/>
@@ -100,7 +107,14 @@ const Register = () => {
                             
                         </label>
                         <button className="primary-button">Enviar</button>
-                        {error && <div className="error">{error}</div> }
+                        {error && 
+                            <>
+                                <div className="error">
+                                    {error}
+                                </div>
+                                
+                            </>
+                        }
                     </form>
                 </div>
                 

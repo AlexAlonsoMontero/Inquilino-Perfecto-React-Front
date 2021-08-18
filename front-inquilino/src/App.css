@@ -67,6 +67,18 @@ body main{
   background-color: pink;
 }
 
+.alert-container{
+  font-size: 0.75em;
+  border: 1px solid rgb(91, 92, 50);
+  border-radius: 10px;
+  background-color: rgb(214, 214, 132);
+  color:rgb(91, 92, 50);
+  padding: 5px;
+  margin: 7px;
+}
+
+
+
 h1, h2, h3, h4, h5{
   color: var(--secondary-color);
   padding: 5px;
