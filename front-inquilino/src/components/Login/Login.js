@@ -65,10 +65,6 @@ function Login({setShowModal}) {
                     <p>Contraseña:</p>
                     <input required value={password} onChange={e => setPassword(e.target.value)} type="password" className="primary-input  login-input" />
                 </label>
-                <label>
-                    Recuérdame
-                    <input type="checkbox" onChange={e => console.log(e.target.checked)} />
-                </label>
                 <button className="primary-button loginFormButton">Iniciar sesión</button>
                 {error &&
                     <div className="error">{error}</div>
