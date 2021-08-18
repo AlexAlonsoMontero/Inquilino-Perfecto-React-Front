@@ -42,7 +42,7 @@ function App() {
                 <Route path={routes.r_register} exact>
                   <Register/>
                 </Route>
-                <Route path={routes.r_advSearcher} >
+                <Route path={routes.r_advSearcher} exact>
                   <AdvSearcher />
                 </Route>
                 <Route path={routes.r_activationUser} exact>

@@ -21,12 +21,24 @@ const Register = () => {
     const onHandleSubmit = async (e) =>{
         e.preventDefault()
         const avatar = e.target.avatar.files[0]
+        console.log("avatar")        
+        console.log(avatar)
         const fd = new FormData()
+        for (let cont =0; cont < Object.keys(newUser).length; cont ++){
+            console.log(Object.keys(newUser)[cont])
+            console.log(Object.values(newUser)[cont])
+            fd.append(Object.keys(newUser)[cont],Object.values(newUser)[cont])
+        }
         fd.append('avatar', avatar)
-        fd.append('username',newUser.username)
-        fd.append('password',newUser.password)
-        fd.append('tipo',newUser.tipo)
-        fd.append('email',newUser.email)
+        // if(Object.keys(newUser).length===5){
+        //     fd.append('avatar', avatar)
+        //     fd.append('username',newUser.username)
+        //     fd.append('password',newUser.password)
+        //     fd.append('confirmPassword', newUser.confirmPassword)
+        //     fd.append('tipo',newUser.tipo)
+        //     fd.append('email',newUser.email)
+        // }
+        
         
         const addUser = await fetch(backRoutes.r_register,{
             body: fd,
@@ -39,9 +51,6 @@ const Register = () => {
         }else{
             setRegistered(true)
         }
-
-
-
         //TODO VERIFICAR QUE SE USA ROUTES EN VEZ DE LAS RUTAS A MANO
     }
     if (registered) {
@@ -60,11 +69,15 @@ const Register = () => {
                     <form onSubmit={ onHandleSubmit }>
                         <label>
                             Nombre de usuario:<br/>
-                            <input type="text" className="primary-input" value ={newUser.username} onChange={ e =>setNewUser({ ...newUser, username: e.target.value })}/>
+                            <input type="text" alt="prueba" className="primary-input" value ={newUser.username} onChange={ e =>setNewUser({ ...newUser, username: e.target.value })}/>
                         </label>
                         <label>
                             Contraseña:<br/>
                             <input type="password" className="primary-input" value = {newUser.password} onChange={ e => setNewUser({ ...newUser, password: e.target.value })}  />
+                        </label>
+                        <label>
+                            Confirma contraseña:<br/>
+                            <input type="password" className="primary-input" value = {newUser.confirmPassword} onChange={ e => setNewUser({ ...newUser, confirmPassword: e.target.value })}  />
                         </label>
                         <label>
                             Correo electrónico:<br/>
