@@ -66,14 +66,20 @@ const Register = () => {
             <div className="registerLogin-Container">
                 <div className="register-Container">
                 <header><h1>Registro de nuevo usuario</h1></header>
-                    {error &&
-                        <div className="alert-container">
-                            <p>username: Caracteres alfanumericos si "ñ" ni espacios en blanco</p>
-                            <p>contraseña: Caracteres alfanumericos si "ñ" ni espacios en blanco</p>
-                            <p>email: Debe de llevar @ y dominio</p>
-                        </div> 
-                    }
                     <form onSubmit={ onHandleSubmit }>
+                        {error &&
+                            <>
+                                <div className="error">
+                                    {error}
+                                </div>
+                                <div className="alert-container">
+                                    <p>username: Caracteres alfanumericos si "ñ" ni espacios en blanco</p>
+                                    <p>contraseña: Caracteres alfanumericos si "ñ" ni espacios en blanco</p>
+                                    <p>email: Debe de llevar @ y dominio</p>
+                                </div> 
+                            </>
+                        
+                        }
                         <label>
                             Nombre de usuario:<br/>
                             <input type="text" alt="prueba" className="primary-input" value ={newUser.username} onChange={ e =>setNewUser({ ...newUser, username: e.target.value })}/>
@@ -107,14 +113,7 @@ const Register = () => {
                             
                         </label>
                         <button className="primary-button">Enviar</button>
-                        {error && 
-                            <>
-                                <div className="error">
-                                    {error}
-                                </div>
-                                
-                            </>
-                        }
+                        
                     </form>
                 </div>
                 
