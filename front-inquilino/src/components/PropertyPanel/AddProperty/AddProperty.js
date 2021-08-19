@@ -11,19 +11,27 @@ const AddProperty = () =>{
     const [user] = useUser()
     const [property, setProperty] = useState({})
     const [adress, setAdress] = useState([])
+    const [coordinates, setCoordinates] = useState()
     const userVerification =useVerifiateUser(user.user,["CASERO","INQUILINO/CASERO"])
+    const setAdressParams = (adress, coordinates) =>{
+        setAdress(adress)
+        setCoordinates(coordinates)
+    }
     useEffect(()=>{
         
         if(adress.length>0){
-            console.log("adresss", adress)
-            // setProperty(parse_googleAdress(adress))
+            if (adress.length>0 && coordinates){
+                setProperty(parse_googleAdress(adress,coordinates))
+            }
         }
     },[adress])
+
     if(userVerification===false || !user){
         alert ("Solo los usuarios registrados como caseros pueden dar de alta inmuebles")
         return <Redirect to="/"/>
     }
-
+    console.log("propertyyyyyyyyyyy")
+    console.log(property)
 
     return (
         <div className="addPropertyContainer">
@@ -32,7 +40,7 @@ const AddProperty = () =>{
             
             <form className="addProperty-form">
                 <div id="addPropertyAutocomplete">
-                    <AutoCompleteG setAdress={setAdress}/>
+                    <AutoCompleteG setAdressParams={setAdressParams} />
                 </div>
                 <div className="addPropertyData-container">
                     <input type="text" className="primary-input" placeholder="calle" value={property.calle}  onChange={e=> setProperty({...property,calle:e.target.value})  }/>

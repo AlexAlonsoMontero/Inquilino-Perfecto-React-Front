@@ -43,11 +43,11 @@ function App() {
                   <Register/>
                 </Route>
                 <Route path={routes.r_advSearcher} >
-                  <AdvSearcher />
+                    <AdvSearcher />
                 </Route>
                 
                 <Route path={routes.home} exact >
-                  <p>Página de inicio</p>
+                  <AdvSearcher />
                 </Route>
                 <Route path={routes.r_activationUser} exact>
                   <ActivateUser />

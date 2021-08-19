@@ -18,7 +18,6 @@ const NavPrincipal = ({setShowModal}) => {
             
             <ul>
                 <li><NavLink to={ routes.home }>Inicio</NavLink></li>
-                <li><NavLink to={ routes.r_advSearcher }>Viviendas</NavLink></li>
                 <li><NavLink to="/">Quienes Somos</NavLink></li> 
                 {!user &&       
                     <>
