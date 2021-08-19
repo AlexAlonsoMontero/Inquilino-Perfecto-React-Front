@@ -1,7 +1,7 @@
 import { useParams } from 'react-router'
 import { useAdvSearcher } from '../../hooks/inmowebApi'
 import { AutoComplete, DatePicker, Space } from 'antd';
-import Map from '../Map/Map'
+import MyMap from '../MyMap/MyMap'
 
 import './Advertisement.css'
 import { useState } from 'react';
@@ -50,7 +50,7 @@ const Advertisement = () => {
                     <p><span>Terraza</span> {handleBooleanString(adv.terraza)} <span>Jardin</span> {handleBooleanString(adv.jardin)} </p>
                     <p><span>Piscina</span> {handleBooleanString(adv.piscina)} </p>
                 </div>
-                <Map mapAdress={[mapAdress]}/>
+                <MyMap mapAdress={[mapAdress]}/>
 
 
             </div>

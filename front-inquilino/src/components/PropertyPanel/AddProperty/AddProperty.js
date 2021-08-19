@@ -4,7 +4,7 @@ import useVerifiateUser from '../../../hooks/useVerificateUser'
 import { useState, useEffect } from 'react'
 import  AutoCompleteG  from '../../AutocompleteG/AutocompleteG'
 import { parse_googleAdress } from '../../../utils'
-import Map from '../../Map/Map'
+import MyMap from '../../MyMap/MyMap'
 import { Redirect } from 'react-router-dom'
 import { Checkbox } from 'antd'
 const AddProperty = () =>{
@@ -30,8 +30,7 @@ const AddProperty = () =>{
         alert ("Solo los usuarios registrados como caseros pueden dar de alta inmuebles")
         return <Redirect to="/"/>
     }
-    console.log("propertyyyyyyyyyyy")
-    console.log(property)
+    
 
     return (
         <div className="addPropertyContainer">
@@ -65,13 +64,14 @@ const AddProperty = () =>{
                     <Checkbox> Ascensor </Checkbox>
                     <Checkbox> Piscina </Checkbox>
                 </div>
-
+                {property && 
+                    <MyMap mapData={[property]} />
+                }
+                
                             
                 <button className="primary-button addProperty-button">Guardar</button>        
             
-            {/* <Map mapAdress={[property]}/> */}
             </form>
-
 
         </div>
     )
