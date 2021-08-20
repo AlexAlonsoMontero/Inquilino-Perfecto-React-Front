@@ -22,15 +22,19 @@ const AddProperty = () =>{
         if(adress.length>0){
             if (adress.length>0 && coordinates){
                 setProperty(parse_googleAdress(adress,coordinates))
+                displayMapPosition(adress)
             }
         }
     },[adress])
-
+    console.log("la propiedad", property)
     if(userVerification===false || !user){
         alert ("Solo los usuarios registrados como caseros pueden dar de alta inmuebles")
         return <Redirect to="/"/>
     }
     
+    const displayMapPosition = ( property ) =>{
+        
+    }
 
     return (
         <div className="addPropertyContainer">
@@ -52,8 +56,8 @@ const AddProperty = () =>{
                     <input type="number" className="primary-input"  min="0"  placeholder="Metros" />
                     <input type="number" className="primary-input"  min="0"  placeholder="Numero baños"  />
                     <input type="number" className="primary-input"  min="0"  placeholder="Numero Habitaciones"  />
-                    <input type="number" className="primary-input"  min="0"  placeholder="Coordenadas x"  />
-                    <input type="number" className="primary-input"  min="0"  placeholder="Coordenadas y"  />
+                    <input type="number" className="primary-input"  min="0"  placeholder="Coordenadas x" value={property.lat} />
+                    <input type="number" className="primary-input"  min="0"  placeholder="Coordenadas y" value={property.lng} />
                 </div>
                 <div className="addpropOptions-container">
                     <Checkbox> Amueblado </Checkbox>
