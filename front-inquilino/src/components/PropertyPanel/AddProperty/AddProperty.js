@@ -1,13 +1,16 @@
 import './AddProperty.css'
 import {useUser} from '../../../context/UserContext'
 import useVerifiateUser from '../../../hooks/useVerificateUser'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import  AutoCompleteG  from '../../AutocompleteG/AutocompleteG'
 import { parse_googleAdress } from '../../../utils'
-import MyMap from '../../MyMap/MyMap'
 import { Redirect } from 'react-router-dom'
 import { Checkbox } from 'antd'
+import { MapContainer, TileLayer, Marker} from 'react-leaflet'
+import MapMarker from '../../MapMaker/MapMaker'
 const AddProperty = () =>{
+    const [map,setMap] =useState(null)
+    const [marker, setMarker] = useState(null)
     const [user] = useUser()
     const [property, setProperty] = useState({})
     const [adress, setAdress] = useState([])
@@ -16,25 +19,33 @@ const AddProperty = () =>{
     const setAdressParams = (adress, coordinates) =>{
         setAdress(adress)
         setCoordinates(coordinates)
+        map.flyTo(coordinates, 13)
+        
     }
     useEffect(()=>{
-        
+        if(marker){
+            marker.setLatLng([property.lat, property.lng])
+            
+        }
         if(adress.length>0){
             if (adress.length>0 && coordinates){
                 setProperty(parse_googleAdress(adress,coordinates))
-                displayMapPosition(adress)
+                
+                
+                
             }
+            
         }
     },[adress])
-    console.log("la propiedad", property)
     if(userVerification===false || !user){
         alert ("Solo los usuarios registrados como caseros pueden dar de alta inmuebles")
         return <Redirect to="/"/>
     }
+    console.log("coordenadas")
+    console.log([coordinates])
     
-    const displayMapPosition = ( property ) =>{
-        
-    }
+    
+    
 
     return (
         <div className="addPropertyContainer">
@@ -68,10 +79,25 @@ const AddProperty = () =>{
                     <Checkbox> Ascensor </Checkbox>
                     <Checkbox> Piscina </Checkbox>
                 </div>
-                {property && 
-                    <MyMap mapData={[property]} />
-                }
-                
+                <MapContainer 
+                center={[40.420, -3.704]}
+                zoom={13}
+                scrollWheelZoom={false}
+                whenCreated={setMap}>
+                    <TileLayer
+                    attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                    />
+                    { property.lat &&
+                        <Marker position={[property.lat, property.lng]} whenCreated={setMarker}/>
+                    }
+                    
+
+                    
+
+
+                </MapContainer>
+                            
                             
                 <button className="primary-button addProperty-button">Guardar</button>        
             

@@ -1,13 +1,14 @@
 import { useParams } from 'react-router'
 import { useAdvSearcher } from '../../hooks/inmowebApi'
 import { AutoComplete, DatePicker, Space } from 'antd';
-import MyMap from '../MyMap/MyMap'
+import { MapContainer, TileLayer } from 'react-leaflet';
 
 import './Advertisement.css'
 import { useState } from 'react';
 
 
 const Advertisement = () => {
+    const [map, setMap] =useState()
     const queryString = require('query-string');
     const  anuncio_uuid   = `?${queryString.stringify(useParams())}`
     let mapAdress
@@ -50,7 +51,16 @@ const Advertisement = () => {
                     <p><span>Terraza</span> {handleBooleanString(adv.terraza)} <span>Jardin</span> {handleBooleanString(adv.jardin)} </p>
                     <p><span>Piscina</span> {handleBooleanString(adv.piscina)} </p>
                 </div>
-                <MyMap mapAdress={[mapAdress]}/>
+                <MapContainer 
+                center={[40.420, -3.704]}
+                zoom={13}
+                scrollWheelZoom={false}
+                whenCreated={setMap}>
+                    <TileLayer
+                    attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                    />
+                </MapContainer>
 
 
             </div>

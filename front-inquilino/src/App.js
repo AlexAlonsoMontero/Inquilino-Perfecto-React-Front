@@ -13,7 +13,6 @@ import ActivateUser from './components/ActivateUser/ActivateUser';
 import AdvSearcher from './components/AdvSearcher/AdvSearcher';
 import Advertisement from './components/Advertisement/Advertisement';
 import AddProperty from './components/PropertyPanel/AddProperty/AddProperty';
-import MyMapV2 from './components/MyMapV2/MyMapV2';
 function App() { 
   const [user] = useUser()
   const [showModal, setShowModal] = useState(false)
