@@ -34,8 +34,6 @@ function Login({setShowModal}) {
         setLoading(false)
         
         if (res.ok) {
-            alert("entra")
-            console.log(data)
             setUser(data)
         } else {
             setError(data.error)
@@ -48,7 +46,6 @@ function Login({setShowModal}) {
     console.log("el usuario es ")
     console.log(user)
     if(user){
-        alert("entra")
         return <Redirect to={routes.r_register} />
     }
 

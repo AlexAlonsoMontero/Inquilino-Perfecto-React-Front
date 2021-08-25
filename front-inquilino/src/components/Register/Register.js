@@ -20,25 +20,14 @@ const Register = () => {
     
     const onHandleSubmit = async (e) =>{
         e.preventDefault()
+        alert("entra")
         const avatar = e.target.avatar.files[0]
-        console.log("avatar")        
-        console.log(avatar)
         const fd = new FormData()
         for (let cont =0; cont < Object.keys(newUser).length; cont ++){
-            console.log(Object.keys(newUser)[cont])
-            console.log(Object.values(newUser)[cont])
             fd.append(Object.keys(newUser)[cont],Object.values(newUser)[cont])
         }
         fd.append('avatar', avatar)
-        // if(Object.keys(newUser).length===5){
-        //     fd.append('avatar', avatar)
-        //     fd.append('username',newUser.username)
-        //     fd.append('password',newUser.password)
-        //     fd.append('confirmPassword', newUser.confirmPassword)
-        //     fd.append('tipo',newUser.tipo)
-        //     fd.append('email',newUser.email)
-        // }
-        
+       
         
         const addUser = await fetch(backRoutes.r_register,{
             body: fd,
