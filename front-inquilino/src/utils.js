@@ -23,8 +23,8 @@ export const parse_googleAdress = (autoAdress, coordinates)=>{
             }
             if(coordinates){
                 if (coordinates.lat){
-                    adress.lat = coordinates.lat.toFixed(3)
-                    adress.lng = coordinates.lng.toFixed(3)
+                    adress.lat = parseFloat(coordinates.lat.toFixed(3))
+                    adress.lng = parseFloat(coordinates.lng.toFixed(3))
                 
                 }
             }
