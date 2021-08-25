@@ -7,9 +7,11 @@ import { DatePicker, Space } from 'antd';
 import MiniAdvertisement from '../MiniAdvertisement/MiniAdvertisement'
 import './AdvSearcher.css'
 import { Checkbox } from 'antd' 
-
+import LocationSearch from '../LocationSearch/LocationSearch'
+import { MapContainer, TileLayer, Marker} from 'react-leaflet'
 
 const AdvSearcher =()=>{
+        /**************************** */
         const [provincia, setProvincia] = useState()
         const [precioMin, setPrecioMin] = useState(0)
         const [precioMax, setPrecioMax] = useState(100000000000)
@@ -31,7 +33,11 @@ const AdvSearcher =()=>{
         const [from__fecha_inicio, setFrom__fecha_inicio] = useState()
         const [from__fecha_disponibilidad, setFrom__fecha_dispinibilidad] = useState()
         const [until__fecha_fin, setUntil__fecha_fin] = useState()
+        
+        /**************************** */
+        
         const history = useHistory()
+
         const qpar = [
             {from__precio:precioMin},
             {until__precio:precioMax},
@@ -59,12 +65,11 @@ const AdvSearcher =()=>{
         prov.sort((a, b)=>a.nm.localeCompare(b.nm))
         
         const [advertisements, setAdvertisements] = useState()
-        console.log(advertisements)
-
         const handleFilter = async(e) =>{
             e.preventDefault()
-            console.log(query)
             const result = await fetch(backRoutes.r_advSearcher + query)
+            console.log("ruta ok")
+            console.log(backRoutes.r_advSearcher + query)
             const {data } = await (result.json())
             history.push(`/search/adv/${query}`)
             setAdvertisements(data)
@@ -120,7 +125,7 @@ const AdvSearcher =()=>{
                 </div>   
                 {advertisements &&
                 <>
-                    <h1 id="bodyHeader">Anuncios encontrados según su criterio de búsqueda</h1>
+                    <h1 class="bodyHeader">Anuncios encontrados según su criterio de búsqueda</h1>
                     <div className="resultSearchCotainer">
                             {advertisements.map(adver=>
                                 <MiniAdvertisement advertisements={adver}/>
@@ -129,6 +134,8 @@ const AdvSearcher =()=>{
                     </div>
                 </>
                 }
+                {/* <LocationSearch /> */}
+
             </div>
         )
 }

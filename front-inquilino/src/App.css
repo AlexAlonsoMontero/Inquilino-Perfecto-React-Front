@@ -29,7 +29,7 @@ body main{
   height: 100%;
   border: 10px solid blue;
 }
-#bodyHeader{
+.bodyHeader{
   text-align: center;
   font-weight: bold;
   padding-top: 5px;
