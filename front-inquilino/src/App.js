@@ -33,6 +33,7 @@ function App() {
               </Modal>
           }
             <Switch>
+                
                 <Route path={`${routes.r_PropertyNewProp}`} >
                   <AddProperty />
                 </Route>
@@ -45,13 +46,13 @@ function App() {
                 <Route path={routes.r_advSearcher} >
                     <AdvSearcher />
                 </Route>
-                
+                <Route path={routes.r_activationUser} >
+                  <ActivateUser />
+                </Route>
                 <Route path={routes.home} exact >
                   <AdvSearcher />
                 </Route>
-                <Route path={routes.r_activationUser} exact>
-                  <ActivateUser />
-                </Route>
+               
           </Switch>
       </main>
       <footer>

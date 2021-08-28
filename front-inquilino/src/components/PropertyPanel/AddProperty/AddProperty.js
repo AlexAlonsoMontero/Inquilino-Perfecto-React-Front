@@ -8,6 +8,7 @@ import { Redirect } from 'react-router-dom'
 import { Checkbox } from 'antd'
 import { MapContainer, TileLayer, Marker} from 'react-leaflet'
 import { backRoutes } from '../../../routes'
+import axios from 'axios'
 const AddProperty = () =>{
     const [map,setMap] =useState(null)
     const [user] = useUser()
@@ -16,7 +17,7 @@ const AddProperty = () =>{
     const [coordinates, setCoordinates] = useState()
     const userVerification =useVerifiateUser(user.user,["CASERO","INQUILINO/CASERO"])
     const [imageStyle,setImageStyle]=useState([])
-
+    const [files, setFiles] =useState([])
 
 
     const setAdressParams = (adress, coordinates) =>{
@@ -39,19 +40,16 @@ const AddProperty = () =>{
         alert ("Solo los usuarios registrados como caseros pueden dar de alta inmuebles")
         return <Redirect to="/"/>
     }
-    let files = []
+    
     const handleImagesProperty = (e) => {
             if(e.target.files.length<2){
-                console.log(e.propertyFile.files[0])
-                setImageStyle([ ...imageStyle, ({backgroundImage: 'url(' + URL.createObjectURL(e.propertyFile.files[0]) + ')' })])
-                files.push(e.propertyFile.files[0])
-                console.log(files.length)
-            }
+                console.log(e.target.files[0])
+                setImageStyle([...imageStyle, ({backgroundImage: 'url(' + URL.createObjectURL(e.target.files[0]) + ')' })])
+                    setFiles( [...files,e.target.files[0]])
+                    
+                }
     }
-    console.log("files*********************")
-    console.log(files)
-    console.log("files*********************")
-
+    
     const handleSubmit = async(e) => {
         e.preventDefault()
         const fdProp = new FormData()
@@ -61,6 +59,7 @@ const AddProperty = () =>{
         for (let cont = 0; cont<files.length; cont++){
             fdProp.append('file'+cont, files[cont])
         }
+        // ********************************* FETCH
         const addProperty = await fetch(backRoutes.r_Newproperties,{
             body:fdProp,
             method: 'POST',
@@ -69,6 +68,18 @@ const AddProperty = () =>{
             }
         })
         const res = await addProperty.json()
+
+        /***********************************AXIOS */
+        // const addProperty = axios({
+        //     method: 'post',
+        //     data: fdProp,
+        //     headers:{
+        //         'Content-Type': 'multipart/form-data',
+        //         'Authorization': 'Bearer ' + user.token
+        //     }.then(function(response){
+        //         console.log(response)
+        //     })
+        // })
     }
     return (
         <div className="addPropertyContainer">

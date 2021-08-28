@@ -134,7 +134,7 @@ const AdvSearcher =()=>{
                     </div>
                 </>
                 }
-                {/* <LocationSearch /> */}
+                <LocationSearch />
 
             </div>
         )
