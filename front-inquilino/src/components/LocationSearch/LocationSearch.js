@@ -2,8 +2,8 @@ import useQueryGenerate from '../../hooks/useQueryGenerate'
 import { backRoutes } from '../../routes'
 import { useEffect, useState } from 'react';
 import MiniAdvertisement from '../MiniAdvertisement/MiniAdvertisement'
-
 const LocationSearch = () =>{
+    const [advertisements,setAdvertisements] = useState([])
     const isGeoloc = ("geolocation" in navigator ? true:false)
     useEffect(()=>{
         if(isGeoloc){
@@ -20,21 +20,42 @@ const LocationSearch = () =>{
                                     `from__lng=${queryObj.from_lng}&until__lng=${queryObj.until_lng}&`
                     
                     const result = await fetch(backRoutes.r_advSearcher + query)
-                    console.log(result)
                     const {data} = await (result.json())
-                    console.log(data)
+                    setAdvertisements(data)
+                    
                 }
            
             coordSearchAdv()
             })    
-            
+        
         }else{
             console.log("no hay geolocalización")
         }
     },[])
-    
-    return (
-       <p>prueba</p>
-    )
+    console.log(advertisements.length)
+    if(advertisements.length>0){
+        return(
+            <div>
+
+            <h1 className={"bodyHeader"}>Anuncios entorno a su ubicación geográfica actual</h1>
+
+                <div className={"resultSearchCotainer"}>
+                    { 
+                        advertisements.map(adv=>{
+                            return <MiniAdvertisement key={adv.anuncio_uuid} advertisements={adv}/>
+                        })
+                        
+                    }
+                </div>
+            </div>
+        )
+    }else{
+        return  (
+            <div>
+                <h1 className={"bodyHeader"}>Ralizando busqueda inmuebles en su ubicación actual</h1>
+                <h2 className={"bodyHeader"}>Puede realizar una búsqueda por ciudad o provincia</h2>
+            </div>
+        )
+    }
 }
 export default LocationSearch
