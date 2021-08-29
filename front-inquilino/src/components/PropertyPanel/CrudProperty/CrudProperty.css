@@ -1,0 +1,18 @@
+.propertyCrudContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.propertyCrudAddButton{
+    padding: 10px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.linkButton{
+    padding: 5px;
+    margin-bottom: 10px;
+}
+

@@ -8,18 +8,25 @@ export const routes = {
     r_ativactionUser:`/activation`,
     r_advSearcher: '/',
     r_advertisement: '/advertisement',
-    r_PropertyNewProp:'/api/property/add'
+    r_PropertyNewProp:'/api/property/add',
+    r_CrudProperty:'/api/property',
+    r_updatePropertiesUser:'/api/property/update'
+
 }
 
 export const backRoutes ={
     r_host_port:`${host}:${port}`,
+    //USER
     r_register: `${host}:${port}/api/users`,
     r_login:`${host}:${port}/login`,
     r_activationUser: `${host}:${port}/activation`,
+    //ADVERTISEMENT
     r_getAdvertisement: `${host}:${port}/api/adv/`,
     r_advSearcher: `${host}:${port}/api/adv/`, // se completa con :table1/:table2/ y queryparams
+    //PROPERTIES
     r_AvgPropertyCalification: `${host}:${port}/api/avg-reviews/resenas/puntuacion/`,
-    r_Newproperties: `${host}:${port}/api/properties`
+    r_Newproperties: `${host}:${port}/api/properties`,
+    r_getPropertiesUser:`${host}:${port}/api/self/properties/`
 }
 
 

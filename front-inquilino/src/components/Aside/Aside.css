@@ -38,3 +38,8 @@
     margin: 5px;
     
 }
+
+.ant-menu-item a{
+    color: var(--secondary-color);
+    
+}
