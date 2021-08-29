@@ -1,4 +1,3 @@
-import useQueryGenerate from '../../hooks/useQueryGenerate'
 import { backRoutes } from '../../routes'
 import { useEffect, useState } from 'react';
 import MiniAdvertisement from '../MiniAdvertisement/MiniAdvertisement'
@@ -18,13 +17,11 @@ const LocationSearch = () =>{
                 const pr = backRoutes.r_advSearcher
                     const query = `?from__lat=${queryObj.from_lat}&until__lat=${queryObj.until_lat}&`+
                                     `from__lng=${queryObj.from_lng}&until__lng=${queryObj.until_lng}&`
-                    
                     const result = await fetch(backRoutes.r_advSearcher + query)
                     const {data} = await (result.json())
                     setAdvertisements(data)
                     
                 }
-           
             coordSearchAdv()
             })    
         
@@ -36,9 +33,7 @@ const LocationSearch = () =>{
     if(advertisements.length>0){
         return(
             <div>
-
             <h1 className={"bodyHeader"}>Anuncios entorno a su ubicación geográfica actual</h1>
-
                 <div className={"resultSearchCotainer"}>
                     { 
                         advertisements.map(adv=>{
