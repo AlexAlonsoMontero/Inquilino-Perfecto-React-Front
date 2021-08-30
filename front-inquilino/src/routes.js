@@ -26,7 +26,8 @@ export const backRoutes ={
     //PROPERTIES
     r_AvgPropertyCalification: `${host}:${port}/api/avg-reviews/resenas/puntuacion/`,
     r_Newproperties: `${host}:${port}/api/properties`,
-    r_getPropertiesUser:`${host}:${port}/api/self/properties/`
+    r_getPropertiesUser:`${host}:${port}/api/self/properties/`,
+    r_getPropertiesUuid:`${host}:${port}/api/properties/`
 }
 
 

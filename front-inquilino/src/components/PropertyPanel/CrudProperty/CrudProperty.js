@@ -58,7 +58,7 @@ const CrudProperty = () =>{
                                 <td>{prop.numero}</td>
                                 <td>{prop.piso}</td>
                                 <td>{prop.cp}</td>
-                                <td className="icons-crud"> <Link to={routes.r_updatePropertiesUser+prop.inmueble_uuid}>  <FormOutlined /> </Link><DeleteOutlined /> </td>
+                                <td className="icons-crud"> <Link to={routes.r_updatePropertiesUser + '/' +prop.inmueble_uuid}>  <FormOutlined /> </Link><DeleteOutlined /> </td>
 
                             </tr>
                             )

@@ -14,7 +14,7 @@ import AdvSearcher from './components/AdvSearcher/AdvSearcher';
 import Advertisement from './components/Advertisement/Advertisement';
 import AddProperty from './components/PropertyPanel/AddProperty/AddProperty';
 import CrudProperty from './components/PropertyPanel/CrudProperty/CrudProperty';
-import UpdateProperty from './components/PropertyPanel/UpdateProperty';
+import UpdateProperty from './components/PropertyPanel/UpdateProperty/UpdateProperty';
 function App() { 
   const [user] = useUser()
   const [showModal, setShowModal] = useState(false)
@@ -45,20 +45,21 @@ function App() {
                 <Route path={`${routes.r_updatePropertiesUser}/:inmueble_uuid`}  >
                   <UpdateProperty />
                 </Route>
-                <Route path= {`${routes.r_advertisement}/:anuncio_uuid`} exaxt>
+                <Route path= {`${routes.r_advertisement}/:anuncio_uuid`} exact>
                   <Advertisement />
                 </Route>
                 <Route path={routes.r_register} exact>
                   <Register/>
                 </Route>
-                <Route path={routes.r_advSearcher} exact>
+                <Route path={routes.r_advSearcher} >
                     <AdvSearcher />
+                </Route>
+                
+                <Route path={routes.home} exact >
+                  <AdvSearcher />
                 </Route>
                 <Route path={routes.r_activationUser} exact>
                   <ActivateUser />
-                </Route>
-                <Route path={routes.home} exact >
-                  <AdvSearcher />
                 </Route>
                
           </Switch>
