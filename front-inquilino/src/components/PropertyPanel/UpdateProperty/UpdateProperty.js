@@ -17,7 +17,7 @@ const UpdateProperty = () =>{
         }else{
             const getProperty = async() =>{
                 console.log("entra")
-                const data = await fetch(backRoutes.r_getPropertiesUuid + `${inmueble_uuid}`,{
+                const data = await fetch(backRoutes.r_Properties + `${inmueble_uuid}`,{
                     method: 'GET',
                     headers:{
                         'Authorization': 'Bearer ' + user.token
@@ -32,8 +32,24 @@ const UpdateProperty = () =>{
 
     },[])
     console.log(property)
-    const handleSubmit = ()=> {
-
+    const handleSubmit = async(e)=> {
+        e.preventDefault()
+        console.log("PROPIEDAD")
+        console.log(property)
+        const fdProp= new FormData()
+        for (let cont =0; cont <Object.keys(property).length; cont++){
+            fdProp.append(Object.keys(property)[cont],Object.values(property)[cont])
+        }
+        const data = await fetch(backRoutes.r_Properties + property.inmueble_uuid,{
+            body:fdProp,
+            method: 'PUT',
+            headers:{
+                'Authorization': 'Bearer ' + user.token
+            },
+            
+        })
+        const results = await data.json()
+        alert(results.info)
     }        
     if(!property){
         return <h1>Cargando datos del inmueble...</h1>
@@ -45,40 +61,40 @@ const UpdateProperty = () =>{
             <form className="updateProperty-form" onSubmit={ handleSubmit }>
                 <div className={"updateProperty-container"}>
                     <div className="updatePropertyData-container">
-                        <label>Calle
+                        <label><p>Calle</p>
                             <input type="text" className="primary-input" placeholder="calle" value={property.calle}  onChange={e=> setProperty({...property,calle:e.target.value})  } required />
                         </label>
-                        <label>Ciudad
+                        <label><p>Ciudad</p>
                             <input type="text" className="primary-input" placeholder="Ayuntamiento" value={property.ciudad} onChange={e=> setProperty({...property,ciudad:e.target.value})  } required/>
                         </label>
-                        <label>Piso
+                        <label><p>Piso</p>
                             <input type="text" className="primary-input" placeholder="Piso" value={property.piso} onChange={e=> setProperty({...property,piso:e.target.value})  } required/>
                         </label>
-                        <label>Provincia
+                        <label><p>Provincia</p>
                             <input type="text" className="primary-input" placeholder="Provincia" value={property.provincia} onChange={e=> setProperty({...property,provincia:e.target.value})  } required/>
                         </label>
-                        <label> Comunidad
+                        <label> <p>Comunidad</p>
                             <input type="text" className="primary-input" placeholder="Comunidad" value={property.comunidad} onChange={e=> setProperty({...property,comunidad:e.target.value})  } required/>
                         </label>
-                        <label>C.P.
+                        <label><p>C.P.</p>
                             <input type="text" className="primary-input" placeholder="C:P:" value={property.cp} onChange={e=> setProperty({...property,cp:e.target.value})  } required/>
                         </label>
-                        <label>Número
+                        <label><p>Número</p>
                             <input type="text" className="primary-input" placeholder="N´umero" value={property.numero} onChange={e=> setProperty({...property,numero:e.target.value})  } required/>
                         </label>
-                        <label>Metros
+                        <label><p>Metros</p>
                             <input type="number" className="primary-input"  min="0"  placeholder="Metros" value={property.metros_2} onChange={e=> setProperty({...property,metros_2:e.target.value})  } required/>
                         </label>
-                        <label>Número Baños
+                        <label><p>Número Baños</p>
                             <input type="number" className="primary-input"  min="0"  placeholder="Numero baños" value={property.banos}  onChange={e=> setProperty({...property,banos:e.target.value})  } required/>
                         </label>
-                        <label>Número Habitaciones
+                        <label><p>Número Habitaciones</p>
                             <input type="number" className="primary-input"  min="0"  placeholder="Numero Habitaciones"  value={property.habitaciones}  onChange={e=> setProperty({...property,habitaciones:e.target.value})  } required/>
                         </label>
-                        <label>Latitud
+                        <label><p>Latitud</p>
                             <input  className="primary-input"  min="0"  placeholder="Latitud" value={property.lat}  />
                         </label>
-                        <label>Longitud
+                        <label><p>Longitud</p>
                             <input  className="primary-input"  min="0"  placeholder="Longitud" value={property.lng} />
                         </label>
                     </div>

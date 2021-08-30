@@ -17,7 +17,7 @@ const CrudProperty = () =>{
         }else{
             const getProp = async() =>{
                 console.log("entra")
-                const result= await fetch(backRoutes.r_getPropertiesUser + username,{
+                const result= await fetch(backRoutes.r_PropertiesSelfUser + username,{
                     method: 'GET',
                     headers:{
                         'Authorization': 'Bearer ' + user.token
@@ -32,7 +32,28 @@ const CrudProperty = () =>{
     },[] );
     
     console.log(properties)
+    
 
+    const handleDelete = (e, prop) =>{
+        e.preventDefault()
+        prop.disponibilidad=false
+        const noShowProp = async() =>{
+            const fdProp =new FormData()
+            for (let cont =0; cont <Object.keys(prop).length; cont++){
+                fdProp.append(Object.keys(prop)[cont],Object.values(prop)[cont])
+            }
+            const data = await fetch(backRoutes.r_Properties + prop.inmueble_uuid,{
+                body:fdProp,
+                method: 'PUT',
+                headers:{
+                'Authorization': 'Bearer ' + user.token
+                },
+            })
+            const result = await data.json()
+            console.log(result)
+        }
+        noShowProp()
+    }
     
     if(properties.length >0){
         return (
@@ -58,7 +79,7 @@ const CrudProperty = () =>{
                                 <td>{prop.numero}</td>
                                 <td>{prop.piso}</td>
                                 <td>{prop.cp}</td>
-                                <td className="icons-crud"> <Link to={routes.r_updatePropertiesUser + '/' +prop.inmueble_uuid}>  <FormOutlined /> </Link><DeleteOutlined /> </td>
+                                <td className="icons-crud"> <Link to={routes.r_updatePropertiesUser + '/' +prop.inmueble_uuid}>  <FormOutlined /> </Link><DeleteOutlined onClick={e=>handleDelete(e, prop)} /> </td>
 
                             </tr>
                             )
