@@ -15,6 +15,7 @@ import Advertisement from './components/Advertisement/Advertisement';
 import AddProperty from './components/PropertyPanel/AddProperty/AddProperty';
 import CrudProperty from './components/PropertyPanel/CrudProperty/CrudProperty';
 import UpdateProperty from './components/PropertyPanel/UpdateProperty/UpdateProperty';
+import DataUser from './components/UserPanel/DataUser';
 function App() { 
   const [user] = useUser()
   const [showModal, setShowModal] = useState(false)
@@ -50,6 +51,9 @@ function App() {
                 </Route>
                 <Route path={routes.r_register} exact>
                   <Register/>
+                </Route>
+                <Route path={`${routes.r_DataUser}:username`} exact>
+                  <DataUser />
                 </Route>
                 <Route path={routes.r_advSearcher} >
                     <AdvSearcher />

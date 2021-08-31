@@ -46,7 +46,7 @@ const Aside = () => {
                 mode="inline"
             >
                 <SubMenu key="sub1" icon={<UserOutlined />} title="Perfil de usuario">
-                    <Menu.Item key="1">Datos personales</Menu.Item>
+                    <Menu.Item key="1"><Link to={`${routes.r_DataUser}${user.user.username}`} >Datos usuario</Link></Menu.Item>
                     <Menu.Item key="2">Contraseña</Menu.Item>
                 </SubMenu>
                 {(user.user.tipo==="CASERO" || user.user.tipo==="INQUILINO/CASERO") && 

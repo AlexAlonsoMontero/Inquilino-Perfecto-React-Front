@@ -3,11 +3,15 @@ const port ='3001'
 
 export const routes = {
     home: '/',
+    //USER
     r_register: `/api/users`,
     r_login:`/login`,
     r_ativactionUser:`/activation`,
+    r_DataUser: '/api/users/',
+    //ADVERTISEMENT
     r_advSearcher: '/',
     r_advertisement: '/advertisement',
+    //PROPERTY
     r_PropertyNewProp:'/api/property/add',
     r_CrudProperty:'/api/property',
     r_updatePropertiesUser:'/api/property/update'
@@ -20,6 +24,8 @@ export const backRoutes ={
     r_register: `${host}:${port}/api/users`,
     r_login:`${host}:${port}/login`,
     r_activationUser: `${host}:${port}/activation`,
+    r_Datauser: `${host}:${port}/api/users/`,
+
     //ADVERTISEMENT
     r_getAdvertisement: `${host}:${port}/api/adv/`,
     r_advSearcher: `${host}:${port}/api/adv/`, // se completa con :table1/:table2/ y queryparams
