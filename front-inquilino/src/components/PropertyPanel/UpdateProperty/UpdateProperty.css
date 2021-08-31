@@ -1,0 +1,40 @@
+.updatePropConteiner{
+    max-width: 70vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: auto;
+}
+.updatePropConteiner {
+    text-align: center;
+}
+
+.updateProperty-form{
+    
+    margin: auto;
+}
+.updateProperty-container *{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    
+}
+
+.UpdatePropOptions-container *{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.updatePropertyData-container * {
+    margin: 5px;
+    display: flex;
+    align-items: center;    
+}
+
+.updatePropButton{
+    margin: 15px;
+    padding: 5px;
+    font-weight: bold;
+    
+}
