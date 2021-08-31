@@ -6,38 +6,65 @@ import { useState } from "react"
 import { FormOutlined, DeleteOutlined } from "@ant-design/icons"
 import { Link } from "react-router-dom"
 import './CrudProperty.css'
+import { confirmAlert } from 'react-confirm-alert'; 
+import 'react-confirm-alert/src/react-confirm-alert.css'; 
+
 const CrudProperty = () =>{
     const [user] = useUser()
     const  {username}   = useParams()
     const [properties, setProperties] = useState([])
+    const [confirmDelete, setConfirmDelete]=useState()
+
     useEffect(() => {
+        setConfirmDelete(false)
         if(!user || user.tipo==="INQUILINO"){
             {alert("Usuario sin acceso , regístrese como casero. Gracias")}
             return   <Redirect to={routes.home} />
         }else{
             const getProp = async() =>{
-                console.log("entra")
-                const result= await fetch(backRoutes.r_PropertiesSelfUser + username,{
+                const result= await fetch(backRoutes.r_PropertiesSelfUser + username,{                    
                     method: 'GET',
                     headers:{
+                        'Content-Type': 'application/json',
                         'Authorization': 'Bearer ' + user.token
-                    }
+                    },
                 })
                 const {data} = await result.json()
+                
                 setProperties(data)
             }
             getProp() 
         }  
         
-    },[] );
+    },[confirmDelete] );
     
-    console.log(properties)
     
 
     const handleDelete = (e, prop) =>{
-        e.preventDefault()
-        prop.disponibilidad=false
+        
+        confirmAlert({
+            title: 'Confirmar',
+            message: 'Desea eliminar este  inmueble.',
+            buttons: [
+                {
+                    label: 'Si',
+                    onClick: () => noShowProp()
+                },
+                {
+                    label: 'No',
+                    onClick: () => alert("Borrado cancelado. Gracias")
+
+                }
+                
+            ]
+          });
+        
+        
+
+
+
         const noShowProp = async() =>{
+            prop.disponibilidad=false
             const fdProp =new FormData()
             for (let cont =0; cont <Object.keys(prop).length; cont++){
                 fdProp.append(Object.keys(prop)[cont],Object.values(prop)[cont])
@@ -49,10 +76,10 @@ const CrudProperty = () =>{
                 'Authorization': 'Bearer ' + user.token
                 },
             })
-            const result = await data.json()
-            console.log(result)
+            setConfirmDelete(true)
+            
         }
-        noShowProp()
+        
     }
     
     if(properties.length >0){
@@ -90,7 +117,7 @@ const CrudProperty = () =>{
             </div>
             )
     }else{
-        return ("Cargand imuebles")
+        return (<h1 className={"bodyHeader"} > {username} no dispone de inmuebles dados de alta</h1>)
     }
     
 }
