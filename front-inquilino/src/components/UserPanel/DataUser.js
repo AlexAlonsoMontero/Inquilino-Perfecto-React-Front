@@ -50,14 +50,6 @@ const DataUser = () => {
                         <input type="text" className="primary-input" value = {dbUser.username} onChanget ={ e=>setDbUser({...dbUser, unsername:e.target.value}) } />
                     </label>
                     <label>
-                        <p>Contraseña</p>
-                        <input type="password" className="primary-input" value = {dbUser.password} onChange={ e => setDbUser({ ...dbUser, password: e.target.value })}  />
-                    </label>
-                    <label>
-                        <p>Confirma contraseña:</p>
-                        <input type="password" className="primary-input" value = {dbUser.confirmPassword} onChange={ e => setDbUser({ ...dbUser, confirmPassword: e.target.value })}  />
-                    </label>
-                    <label>
                         <p>Email</p>
                         <input type="mail" className="primary-input" value = {dbUser.email} onChanget ={ e=>setDbUser({...dbUser, email:e.target.email}) } />
                     </label>

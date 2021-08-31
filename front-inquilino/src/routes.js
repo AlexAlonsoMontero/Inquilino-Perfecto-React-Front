@@ -33,7 +33,9 @@ export const backRoutes ={
     r_AvgPropertyCalification: `${host}:${port}/api/avg-reviews/resenas/puntuacion/`,
     r_Newproperties: `${host}:${port}/api/properties`,
     r_PropertiesSelfUser:`${host}:${port}/api/self/properties/`,
-    r_Properties:`${host}:${port}/api/properties/`
+    r_Properties:`${host}:${port}/api/properties/`,
+    //images
+    r_getImages:`${host}:${port}/img/`
 }
 
 

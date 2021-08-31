@@ -57,7 +57,7 @@ const AddProperty = () =>{
             fdProp.append(Object.keys(property)[cont], Object.values(property)[cont])
         }
         for (let cont = 0; cont<files.length; cont++){
-            fdProp.append('file'+cont, files[cont])
+            fdProp.append('file', files[cont])
         }
         // ********************************* FETCH
         const addProperty = await fetch(backRoutes.r_Newproperties,{

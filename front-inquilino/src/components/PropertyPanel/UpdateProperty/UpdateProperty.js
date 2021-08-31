@@ -10,13 +10,14 @@ const UpdateProperty = () =>{
     const [property,setProperty] = useState()
     const queryString = require('query-string')
     const {inmueble_uuid} =  useParams()
+    const [imageStyle,setImageStyle] = useState([])
+    const [files,setFiles] =  useState([])
     useEffect (()=>{
         if(!user || user.tipo==="INQUILINO"){
             {alert("Usuario sin acceso , regístrese como casero. Gracias")}
             return   <Redirect to={routes.home} />
         }else{
             const getProperty = async() =>{
-                console.log("entra")
                 const data = await fetch(backRoutes.r_Properties + `${inmueble_uuid}`,{
                     method: 'GET',
                     headers:{
@@ -27,18 +28,32 @@ const UpdateProperty = () =>{
                 setProperty(result.data[0])
             }
             getProperty()
+
+            const getImages = async() =>{
+                const data =await fetch(backRoutes.r_getImages + `img_inmuebles/?inmueble_uuid=${inmueble_uuid}`,{method:'GET'})
+                const result=await data.json()
+                console.log(result)
+                let img
+                for (let cont = 0; cont<result.data.length; cont ++){
+                    alert("entra")
+                    img= backRoutes.r_host_port + (result.data[cont].img_inmueble.slice(1))
+                    console.log(img)
+                    setImageStyle([...imageStyle, ({backgroundImage: 'url(' + img + ')' })])
+                }
+            }
+            getImages()
         }
 
-
     },[])
-    console.log(property)
+
     const handleSubmit = async(e)=> {
         e.preventDefault()
-        console.log("PROPIEDAD")
-        console.log(property)
         const fdProp= new FormData()
         for (let cont =0; cont <Object.keys(property).length; cont++){
             fdProp.append(Object.keys(property)[cont],Object.values(property)[cont])
+        }
+        for (let cont =0; cont<files.length; cont++){
+            fdProp.append('file',files[0])
         }
         const data = await fetch(backRoutes.r_Properties + property.inmueble_uuid,{
             body:fdProp,
@@ -51,10 +66,23 @@ const UpdateProperty = () =>{
         const results = await data.json()
         alert(results.info)
     }        
+    
+    const handleImagesProperty = (e) =>{
+        if(e.target.files.length<2){
+            console.log(e.target.files[0])
+            setImageStyle([...imageStyle, ({backgroundImage: 'url(' + URL.createObjectURL(e.target.files[0]) + ')' })])
+                setFiles( [...files,e.target.files[0]])
+                
+        }
+    }    
+    
     if(!property){
         return <h1>Cargando datos del inmueble...</h1>
     }
     
+
+
+
     return (
         <div className="updatePropConteiner">
             <h1>Modificar inmueble</h1>
@@ -107,6 +135,19 @@ const UpdateProperty = () =>{
                         <Checkbox checked={property.ascensor}  onChange={e=> setProperty({...property,ascensor:e.target.checked})  }> Ascensor </Checkbox>
                         <Checkbox checked={property.piscina}  onChange={e=> setProperty({...property,piscina:e.target.checked})  }> Piscina </Checkbox>
                     </div>
+                </div>
+                <div className="propertyImages-container">
+                    <label name="propertyImage-label" className="propertyImage-label" onChange={e=>handleImagesProperty(e)}>
+                        <div class="property-preview " style={imageStyle[0]}></div>
+                        <div class="property-preview"  style={imageStyle[1]}></div>
+                        <div class="property-preview"  style={imageStyle[2]}></div>
+                        <div class="property-preview"  style={imageStyle[3]}></div>
+                        <div class="property-preview"  style={imageStyle[4]}></div>
+                        <div class="property-preview"  style={imageStyle[5]}></div>
+                    <input className="primary-file-select-property" name="propertyFile" type="file" accept="image/*" />
+                            
+                            
+                </label>
                 </div>
                 <button className={"primary-button updatePropButton"}>Guardar Cambios</button>
             </form>
