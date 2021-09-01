@@ -19,7 +19,7 @@ const Advertisement = () => {
     if(advData){
         console.log(advData)
         adv = advData.data[0]
-        mapAdress=[{calle:adv.calle, numero:adv.numero, cp:adv.cp,fecha_disponibilidad:adv.fecha_disponibilidad , anuncio_uuid:adv.anuncio_uuid}]
+        // mapAdress=[{calle:adv.calle, numero:adv.numero, cp:adv.cp,fecha_disponibilidad:adv.fecha_disponibilidad , anuncio_uuid:adv.anuncio_uuid}]
     }else{
         return <h2>Cargando datos solicitados ...</h2>
     }
@@ -51,7 +51,7 @@ const Advertisement = () => {
                     <p><span>Terraza</span> {handleBooleanString(adv.terraza)} <span>Jardin</span> {handleBooleanString(adv.jardin)} </p>
                     <p><span>Piscina</span> {handleBooleanString(adv.piscina)} </p>
                 </div>
-                <MapContainer 
+                {/* <MapContainer 
                 center={[40.420, -3.704]}
                 zoom={13}
                 scrollWheelZoom={false}
@@ -60,7 +60,7 @@ const Advertisement = () => {
                     attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                     />
-                </MapContainer>
+                </MapContainer> */}
 
 
             </div>

@@ -127,7 +127,7 @@ const AdvSearcher =()=>{
 
                 {advertisements &&
                 <>
-                    <h1 class="bodyHeader">Anuncios encontrados según su criterio de búsqueda</h1>
+                    <h1 className="bodyHeader">Anuncios encontrados según su criterio de búsqueda</h1>
                     <div className="resultSearchCotainer">
                             {advertisements.map(adver=>
                                 <MiniAdvertisement advertisements={adver}/>

@@ -8,7 +8,8 @@ import { Redirect } from 'react-router-dom'
 import { Checkbox } from 'antd'
 import { MapContainer, TileLayer, Marker} from 'react-leaflet'
 import { backRoutes } from '../../../routes'
-import axios from 'axios'
+
+
 const AddProperty = () =>{
     const [map,setMap] =useState(null)
     const [user] = useUser()
@@ -149,7 +150,6 @@ const AddProperty = () =>{
                 <button className="primary-button addProperty-button">Guardar</button>        
             
             </form>
-            
         </div>
     )
 }

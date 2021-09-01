@@ -11,10 +11,12 @@ export const routes = {
     //ADVERTISEMENT
     r_advSearcher: '/',
     r_advertisement: '/advertisement',
+    r_addAdvertisement: '/advertisement/add',
     //PROPERTY
     r_PropertyNewProp:'/api/property/add',
-    r_CrudProperty:'/api/property',
+    r_ControlPanelCasero:'/api/property',
     r_updatePropertiesUser:'/api/property/update'
+    
 
 }
 

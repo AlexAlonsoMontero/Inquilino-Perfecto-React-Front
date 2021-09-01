@@ -51,17 +51,9 @@ const Aside = () => {
                 </SubMenu>
                 {(user.user.tipo==="CASERO" || user.user.tipo==="INQUILINO/CASERO") && 
                     <SubMenu key="sub2" icon={<HomeOutlined />} title="Casero">
-                    <SubMenu key="sub18" title="Gestion inmuebles">
-                            <Menu.Item key="19"><Link to={`${routes.r_PropertyNewProp}`} >Añadir </Link>  </Menu.Item>
-                            <Menu.Item key="20"><Link to={`${routes.r_CrudProperty}/${user.user.username}`} >Modificar/Eliminar </Link>  </Menu.Item>
+                        <Menu.Item key="20"><Link to={`${routes.r_ControlPanelCasero}/${user.user.username}`} >Panel de administraci </Link>  </Menu.Item>
+                        <Menu.Item key="19"><Link to={`${routes.r_PropertyNewProp}`} >Añadir Inmuebles</Link>  </Menu.Item>
 
-                     </SubMenu>
-                        <Menu.Item key="3">Gestión anuncios</Menu.Item>
-                        <Menu.Item key="4">Gestión reservas</Menu.Item>
-                        <SubMenu key="sub3" title="Alquileres y reservas">
-                            <Menu.Item key="5">Gestión reservas</Menu.Item>
-                            <Menu.Item key="6">Historico alquileres</Menu.Item>
-                        </SubMenu>
                     </SubMenu>
                 }
                 {(user.user.tipo==="INQUILINO" || user.user.tipo==="INQUILINO/CASERO") &&

@@ -43,8 +43,7 @@ function Login({setShowModal}) {
     if (loading) {
         return <h1>Cargando...</h1>
     }
-    console.log("el usuario es ")
-    console.log(user)
+    
     if(user){
         return <Redirect to={routes.r_register} />
     }
