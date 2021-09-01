@@ -20,6 +20,7 @@ const DataUser = () => {
                 }
             })
             const result = await data.json()
+            setAvatarStyle({backgroundImage: 'url(' + `${backRoutes.r_host_port}${result.user.avatar}` + ')'})
             setDbUser(result.user)
             
         }
@@ -27,18 +28,37 @@ const DataUser = () => {
         
     }, []);
 
-    console.log(dbUser)
 
-    const onHandleSubmit = () =>{
-
+    const onHandleSubmit = async(e) =>{
+        e.preventDefault()
+        const fdProp= new FormData()
+        for (let cont =0; cont <Object.keys(dbUser).length; cont++){
+            if(Object.values(dbUser)[cont]){
+                fdProp.append(Object.keys(dbUser)[cont],Object.values(dbUser)[cont])
+            }
+            
+        }
+        
+        const data = await fetch(`${backRoutes.r_Datauser}${dbUser.username}`,{
+            body:fdProp,
+            method: 'PUT',
+            headers:{
+                'Authorization': 'Bearer ' + user.token
+            },
+            
+        })
+        const result = await data.json()
+        console.log(result)
     }
-    const handleImageAvatar = () =>{
-
+    const handleImageAvatar = (e) =>{
+        e.preventDefault()
+        if( e.target.files[0] ){
+            setAvatarStyle ({backgroundImage: 'url(' + URL.createObjectURL(e.target.files[0]) + ')'})
+        }
     }
     if(!dbUser){
         return <p>Cargando datos</p>
     }
-    
     return dbUser &&(
         <div className={"dataUserContainer"}>
             <div className={"formDataUserContainer"}>
@@ -47,11 +67,11 @@ const DataUser = () => {
                 <form onSubmit={onHandleSubmit}>
                     <label>
                         <p>Nombre de usuario</p>
-                        <input type="text" className="primary-input" value = {dbUser.username} onChanget ={ e=>setDbUser({...dbUser, unsername:e.target.value}) } />
+                        <input  className="primary-input"  value = {dbUser.username} onChange ={ e=>setDbUser({...dbUser,username:e.target.value })} />
                     </label>
                     <label>
                         <p>Email</p>
-                        <input type="mail" className="primary-input" value = {dbUser.email} onChanget ={ e=>setDbUser({...dbUser, email:e.target.email}) } />
+                        <input type="mail" className="primary-input" value = {dbUser.email} onChange ={ e=>setDbUser({...dbUser, email:e.target.value}) } />
                     </label>
                     <label>
                         <p>Tipo de usuario:</p>
