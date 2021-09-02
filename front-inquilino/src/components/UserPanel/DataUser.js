@@ -31,14 +31,19 @@ const DataUser = () => {
 
     const onHandleSubmit = async(e) =>{
         e.preventDefault()
+        delete dbUser.id_usuario
         const fdProp= new FormData()
-        for (let cont =0; cont <Object.keys(dbUser).length; cont++){
-            if(Object.values(dbUser)[cont]){
-                fdProp.append(Object.keys(dbUser)[cont],Object.values(dbUser)[cont])
-            }
-            
-        }
-        
+        fdProp.append('user_uuid',dbUser.user_uuid)
+        fdProp.append('username', dbUser.username)
+        fdProp.append( 'email' ,dbUser.email)
+        fdProp.append('tipo' ,dbUser.tipo)
+        // for (const key of Object.keys(dbUser)) {
+        //     if (dbUser[key]) {
+        //         console.log(key, dbUser)
+        //         fdProp.append(key, dbUser[key])
+        //     }
+        // }
+        fdProp.append('avatar',e.target.avatar.files[0])
         const data = await fetch(`${backRoutes.r_Datauser}${dbUser.username}`,{
             body:fdProp,
             method: 'PUT',
@@ -48,7 +53,9 @@ const DataUser = () => {
             
         })
         const result = await data.json()
-        console.log(result)
+        if(result.newData){
+            alert("El usuario ha sido cmabiado con exito.En el proximo inicio de sesión verá el nuevo avatar")
+        }
     }
     const handleImageAvatar = (e) =>{
         e.preventDefault()

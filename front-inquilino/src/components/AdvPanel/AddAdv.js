@@ -15,12 +15,15 @@ const AddAdv = ({uuids}) =>{
     }
     const handleAddAdv = async(e) => {
         e.preventDefault()
+
+        console.log(adv)
         
         const data= await fetch(backRoutes.r_getAdvertisement,{
             method:'POST',
             body: JSON.stringify(adv),
             headers: {
-                'Authorization': 'Bearer ' + user.token
+                'Authorization': 'Bearer ' + user.token,
+                'Content-type': 'application/json'
             }
         })
         const results = data.json()
