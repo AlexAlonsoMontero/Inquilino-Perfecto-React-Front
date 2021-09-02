@@ -5,7 +5,6 @@ const useVerifiateUser=(user,type) =>{
             validate = true
         }
     });
-    console.log("validacion:" + validate)
     return validate;
 
 }

@@ -52,7 +52,6 @@ const UpdateProperty = () =>{
         }
         for (let cont =0; cont<files.length; cont++){
             alert("entra")
-            console.log(files[cont])
             fdProp.append('file',files[cont])
         }
         const data = await fetch(backRoutes.r_Properties + property.inmueble_uuid,{

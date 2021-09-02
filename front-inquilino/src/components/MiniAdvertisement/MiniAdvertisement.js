@@ -3,7 +3,6 @@ import { Rate } from 'antd';
 import { useHistory } from 'react-router-dom'
 import { routes } from '../../routes'
 const MiniAdvertisement = ({advertisements}) =>{
-    console.log(advertisements)
     const history = useHistory()
     
     const handleAdvertisement = () =>{

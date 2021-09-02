@@ -17,7 +17,6 @@ const Advertisement = () => {
     const handleBooleanString = bool=> (bool ? "Si": "No")
     
     if(advData){
-        console.log(advData)
         adv = advData.data[0]
         // mapAdress=[{calle:adv.calle, numero:adv.numero, cp:adv.cp,fecha_disponibilidad:adv.fecha_disponibilidad , anuncio_uuid:adv.anuncio_uuid}]
     }else{

@@ -9,8 +9,6 @@ const MiniUserMenu = () =>{
     const [user, setUser] = useUser()
     
     const avatarUrl = ( user && user.user.avatar ? backRoutes.r_host_port + user.user.avatar: backRoutes.r_host_port + "/uploadAvatars/default-avatar.png")
-    console.log("++++++++++++++++++++++++++++")
-    console.log(backRoutes.r_host_port + user.user.avatar)
     const avatarSytle = {backgroundImage: 'url(' + avatarUrl +')'}
     const handleLogout = () => {
         setUser(user.token="")
