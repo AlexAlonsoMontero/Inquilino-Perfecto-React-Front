@@ -50,8 +50,7 @@ const AddAdv = ({uuids}) =>{
             const results = await data.json()
             if(results.data){
                 alert("Anucio publicado con éxito")
-                console.log(`${routes.r_ControlPanelCasero}/user.username`)
-                history.push(`${routes.r_ControlPanelCasero}/user.username`)
+                history.push(`${routes.r_ControlPanelCasero}/${user.username}`)
             }
         }else{
             alert("Debe introducir un precio para poder publiar el anuncio")
@@ -74,7 +73,7 @@ const AddAdv = ({uuids}) =>{
         const results = await data.json()
         if(results.newData){
             alert("Anuncio modificado con éxito")
-            history.push(`${routes.r_ControlPanelCasero}/user.username`)
+            history.push(`${routes.r_ControlPanelCasero}/${user.username}`)
 
         }
     }

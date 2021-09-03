@@ -6,6 +6,7 @@ import { Redirect } from 'react-router'
 import { Checkbox } from 'antd'
 import './UpdateProperty.css'
 import AddAdv from '../../AdvPanel/AddAdv'
+import { useHistory } from 'react-router-dom'
 const UpdateProperty = () =>{
     const [user]= useUser()
     const [property,setProperty] = useState()
@@ -13,6 +14,7 @@ const UpdateProperty = () =>{
     const [imageStyle,setImageStyle] = useState([])
     const [files,setFiles] =  useState([])
     const [changeImages,setChangeImages] = useState(false)
+    const history = useHistory
     useEffect (()=>{
         if(!user || user.tipo==="INQUILINO"){
             {alert("Usuario sin acceso , regístrese como casero. Gracias")}
@@ -34,12 +36,17 @@ const UpdateProperty = () =>{
                 const data =await fetch(backRoutes.r_getImages + `img_inmuebles/?inmueble_uuid=${inmueble_uuid}`,{method:'GET'})
                 const result=await data.json()
                 let img
+                const auxArray = []
                 for (let cont = 0; cont<result.data.length; cont ++){
-                    img= backRoutes.r_host_port + (result.data[cont].img_inmueble.slice(1))
-                    setImageStyle([...imageStyle, ({backgroundImage: 'url(' + img + ')' })])
+                    img= backRoutes.r_host_port + result.data[cont].img_inmueble.slice(1)
+                    auxArray.push({backgroundImage: 'url(' + img + ')' })
+                    
                 }
+                setImageStyle(auxArray)
             }
             getImages()
+           
+
         }
 
     },[])
@@ -51,7 +58,6 @@ const UpdateProperty = () =>{
             fdProp.append(Object.keys(property)[cont],Object.values(property)[cont])
         }
         for (let cont =0; cont<files.length; cont++){
-            alert("entra")
             fdProp.append('file',files[cont])
         }
         const data = await fetch(backRoutes.r_Properties + property.inmueble_uuid,{
@@ -64,6 +70,10 @@ const UpdateProperty = () =>{
         })
         const results = await data.json()
         alert(results.info)
+
+        
+        
+
     }        
     
     const handleImagesProperty = (e) =>{

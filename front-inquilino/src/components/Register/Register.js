@@ -20,7 +20,6 @@ const Register = () => {
     
     const onHandleSubmit = async (e) =>{
         e.preventDefault()
-        alert("entra")
         const avatar = e.target.avatar.files[0]
         const fd = new FormData()
         for (let cont =0; cont < Object.keys(newUser).length; cont ++){

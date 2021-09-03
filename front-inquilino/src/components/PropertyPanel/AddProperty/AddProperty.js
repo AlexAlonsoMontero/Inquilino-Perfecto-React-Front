@@ -69,6 +69,7 @@ const AddProperty = () =>{
             }
         })
         const res = await addProperty.json()
+        console.log(res)
 
         /***********************************AXIOS */
         // const addProperty = axios({
