@@ -14,7 +14,7 @@ const UpdateProperty = () =>{
     const [imageStyle,setImageStyle] = useState([])
     const [files,setFiles] =  useState([])
     const [changeImages,setChangeImages] = useState(false)
-    const history = useHistory
+    const history = useHistory()
     useEffect (()=>{
         if(!user || user.tipo==="INQUILINO"){
             {alert("Usuario sin acceso , regístrese como casero. Gracias")}
