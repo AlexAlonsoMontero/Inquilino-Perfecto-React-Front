@@ -38,7 +38,7 @@ export const backRoutes ={
     r_PropertiesSelfUser:`${host}:${port}/api/self/properties/`,
     r_Properties:`${host}:${port}/api/properties/`,
     //images
-    r_getImages:`${host}:${port}/img/`
+    r_getImagesInmueblesInmuebleUUID:`${host}:${port}/img/img_inmuebles/?inmueble_uuid=`
 }
 
 

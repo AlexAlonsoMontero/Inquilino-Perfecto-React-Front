@@ -1,31 +1,61 @@
 import { useParams } from 'react-router'
-import { useAdvSearcher } from '../../hooks/inmowebApi'
-import { AutoComplete, DatePicker, Space } from 'antd';
-import { MapContainer, TileLayer } from 'react-leaflet';
-
 import './Advertisement.css'
 import { useState } from 'react';
-
-
+import { backRoutes } from '../../routes';
+import { useEffect } from 'react';
+import { Space, DatePicker, Carousel } from 'antd';
 const Advertisement = () => {
-    const [map, setMap] =useState()
     const queryString = require('query-string');
     const  anuncio_uuid   = `?${queryString.stringify(useParams())}`
-    let mapAdress
-    let adv;
-    const advData = useAdvSearcher(anuncio_uuid)
+    const [adv, setAdv] = useState()
+    const [images, setImages] = useState()
     const handleBooleanString = bool=> (bool ? "Si": "No")
     
-    if(advData){
-        adv = advData.data[0]
-        // mapAdress=[{calle:adv.calle, numero:adv.numero, cp:adv.cp,fecha_disponibilidad:adv.fecha_disponibilidad , anuncio_uuid:adv.anuncio_uuid}]
-    }else{
-        return <h2>Cargando datos solicitados ...</h2>
+    // const images =useGetImages(`img_inmuebles/?inmueble_uuid=${advData.data[0].inmueble_uuid}`,{method:'GET'})
+    // console.log(images)
+    
+    // if(advData){
+    //     adv = advData.data[0]
+    // }else{
+    //     return <h2>Cargando datos solicitados ...</h2>
+    // }
+    
+    useEffect(() => {
+        const getAdvAndImges = async() =>{
+            const data = await fetch(backRoutes.r_advSearcher + anuncio_uuid)
+            const results = await data.json()
+            setAdv(results.data[0])
+            const data2 = await fetch(`${backRoutes.r_getImagesInmueblesInmuebleUUID}${results.data[0].inmueble_uuid}`)
+            const results2 = await data2.json()
+            setImages(results2.data)
+        }
+        getAdvAndImges()
+        
+        
+    }, []);
+
+    
+    if(!adv){
+        return <p>Cargando datos...</p>
     }
-    return  adv &&(
+
+    return (
         <div>
             <div>
-                <div className="AdvImageContainer"> </div>
+                <div className="AdvImageContainer">
+                    {images &&
+                        <Carousel autoplay>
+                            {images.map(img=>{
+                                    return(
+                                        <div key={img.img_inmueble_uuid} className={"advCarouselImgContainer"}>
+                                            <img src={backRoutes.r_host_port + img.img_inmueble.slice(1)} />
+                                        </div>
+                                    )
+                                })
+                            }
+                        </Carousel>
+                    }
+                </div>
                 <h1>Inmueble en alquiler:</h1>
                 <h2>Datos de reserva</h2>
                 <p><span>Precio</span> { adv.precio }€/mes <span>Fecha disponibilidad {adv.fecha_disponibilidad} </span> </p>
@@ -50,16 +80,7 @@ const Advertisement = () => {
                     <p><span>Terraza</span> {handleBooleanString(adv.terraza)} <span>Jardin</span> {handleBooleanString(adv.jardin)} </p>
                     <p><span>Piscina</span> {handleBooleanString(adv.piscina)} </p>
                 </div>
-                {/* <MapContainer 
-                center={[40.420, -3.704]}
-                zoom={13}
-                scrollWheelZoom={false}
-                whenCreated={setMap}>
-                    <TileLayer
-                    attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                    />
-                </MapContainer> */}
+                
 
 
             </div>

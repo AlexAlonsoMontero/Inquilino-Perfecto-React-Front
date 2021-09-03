@@ -9,17 +9,12 @@ import { useState } from 'react';
 
 const MiniAdvertisement = ({advertisements}) =>{
     const history = useHistory()
-    const [imagesStyle,setImageStyle] = useState()    
     const handleAdvertisement = () =>{
         const uuid= advertisements.anuncio_uuid
         history.push(`${routes.r_advertisement}/${uuid}`)
     }
     
-    const images =useGetImages(`img_inmuebles/?inmueble_uuid=${advertisements.inmueble_uuid}`,{method:'GET'})
-    console.log("imagenes")
-    console.log(images.data)
-    
-    const contentStyle ="background-color:red"
+    const images =useGetImages(`${advertisements.inmueble_uuid}`,{method:'GET'})
     return  (
         <div className="miniAdvertisementCotainer">
             <div className="imageContainer">
@@ -30,7 +25,7 @@ const MiniAdvertisement = ({advertisements}) =>{
                         images.data.map(item=>{
                             return(
                                 
-                                <div key={item.img_inmueble_uuid}  style={imagesStyle}>
+                                <div key={item.img_inmueble_uuid} >
                                         <img src = {backRoutes.r_host_port + item.img_inmueble.slice(1)} className={"miAdvCarrouselImage"}  alt="imagen de inmueble en alquiler"/>
                                 </div>
                             )

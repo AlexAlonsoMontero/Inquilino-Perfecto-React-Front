@@ -33,7 +33,7 @@ const UpdateProperty = () =>{
             getProperty()
 
             const getImages = async() =>{
-                const data =await fetch(backRoutes.r_getImages + `img_inmuebles/?inmueble_uuid=${inmueble_uuid}`,{method:'GET'})
+                const data =await fetch(`${backRoutes.r_getImagesInmueblesInmuebleUUID}${inmueble_uuid}`,{method:'GET'})
                 const result=await data.json()
                 let img
                 const auxArray = []
