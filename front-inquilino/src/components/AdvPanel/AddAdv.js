@@ -4,13 +4,14 @@ import './AddAdv.css'
 import { useEffect } from "react"
 import { backRoutes, routes } from "../../routes"
 import { useUser } from "../../context/UserContext"
-import { Redirect } from "react-router-dom"
+import { Redirect, useHistory } from "react-router-dom"
 
 const AddAdv = ({uuids}) =>{
     var moment = require('moment')
     const [existAdv, setExistAdv] = useState(false)
     const [user] = useUser()
     const [adv,setAdv]= useState(uuids)
+    const history = useHistory()
     
     function onChangeDate(date, dateString) {
         if(date){
@@ -50,7 +51,7 @@ const AddAdv = ({uuids}) =>{
             if(results.data){
                 alert("Anucio publicado con éxito")
                 console.log(`${routes.r_ControlPanelCasero}/user.username`)
-                return <Redirect to={`${routes.r_ControlPanelCasero}/user.username`} />
+                history.push(`${routes.r_ControlPanelCasero}/user.username`)
             }
         }else{
             alert("Debe introducir un precio para poder publiar el anuncio")
@@ -73,7 +74,8 @@ const AddAdv = ({uuids}) =>{
         const results = await data.json()
         if(results.newData){
             alert("Anuncio modificado con éxito")
-            return <Redirect to={`${routes.r_ControlPanelCasero}/user.username`} />
+            history.push(`${routes.r_ControlPanelCasero}/user.username`)
+
         }
     }
 

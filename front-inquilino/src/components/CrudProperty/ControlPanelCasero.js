@@ -109,7 +109,7 @@ const ControlPanelCasero = () =>{
                                 <td>{prop.piso}</td>
                                 <td>{prop.cp}</td>
                                 <td > <Link to={routes.r_updatePropertiesUser + '/' +prop.inmueble_uuid}>  <FormOutlined /> </Link><DeleteOutlined onClick={e=>handleDelete(e, prop)} /> </td>
-                                <td > <Link to={routes.r_updatePropertiesUser + '/' +prop.inmueble_uuid}><PlusSquareTwoTone />  </Link> </td>
+                                <td > <Link to={routes.r_updatePropertiesUser + '/' +prop.inmueble_uuid}><PlusSquareTwoTone />  </Link> <Link to={routes.r_updatePropertiesUser + '/' +prop.inmueble_uuid}>  <FormOutlined /> </Link></td>
 
                             </tr>
                             )
