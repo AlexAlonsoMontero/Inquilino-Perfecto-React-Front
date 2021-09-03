@@ -83,8 +83,7 @@ const UpdateProperty = () =>{
         return <h1>Cargando datos del inmueble...</h1>
     }
     
-
-
+   
     return (
         <div>
 

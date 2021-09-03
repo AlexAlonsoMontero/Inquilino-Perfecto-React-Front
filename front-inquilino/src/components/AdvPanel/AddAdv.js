@@ -2,15 +2,15 @@ import { useState } from "react"
 import { Space, DatePicker } from "antd"
 import './AddAdv.css'
 import { useEffect } from "react"
-import { backRoutes } from "../../routes"
+import { backRoutes, routes } from "../../routes"
 import { useUser } from "../../context/UserContext"
+import { Redirect } from "react-router-dom"
 
 const AddAdv = ({uuids}) =>{
     var moment = require('moment')
     const [existAdv, setExistAdv] = useState(false)
     const [user] = useUser()
     const [adv,setAdv]= useState(uuids)
-    const [defaultStartDate, setDefaulStartDate] = useState(moment(Date.now())  )
     
     function onChangeDate(date, dateString) {
         if(date){
@@ -26,11 +26,9 @@ const AddAdv = ({uuids}) =>{
                 },
             })
             const results = await data.json()
-            console.log("LOS RESULTADOSSSSSSSSSSSSSSSSSSSSSSSSSSS")
-            console.log(results.data.fecha_disponibilidad)
             if(results.data){
                 setExistAdv(true)
-                setAdv({...adv, precio: results.data.precio, fecha_disponibilidad: moment(new Date(results.data.fecha_disponibilidad))})
+                setAdv({...adv,anuncio_uuid:results.data.anuncio_uuid ,precio: results.data.precio, fecha_disponibilidad: new Date(results.data.fecha_disponibilidad)})
             }
         }
         getAdv()
@@ -38,36 +36,67 @@ const AddAdv = ({uuids}) =>{
     }, []);
     const handleAddAdv = async(e) => {
         e.preventDefault()
-        const data= await fetch(backRoutes.r_getAdvertisement,{
-            method:'POST',
+        adv.fecha_disponibilidad = moment(adv.fecha_disponibilidad).format('YYYY-MM-DD')
+        if(adv.precio){
+            const data= await fetch(backRoutes.r_getAdvertisement,{
+                method:'POST',
+                body: JSON.stringify(adv),
+                headers: {
+                    'Authorization': 'Bearer ' + user.token,
+                    'Content-type': 'application/json'
+                }
+            })
+            const results = await data.json()
+            if(results.data){
+                alert("Anucio publicado con éxito")
+                console.log(`${routes.r_ControlPanelCasero}/user.username`)
+                return <Redirect to={`${routes.r_ControlPanelCasero}/user.username`} />
+            }
+        }else{
+            alert("Debe introducir un precio para poder publiar el anuncio")
+        }
+}
+    const onHandleModifyAdv = async(e)=>{
+        e.preventDefault()
+        if(moment(adv.fecha_disponibilidad)){
+            adv.fecha_disponibilidad=moment(adv.fecha_disponibilidad).format("yyyy/MM/DD").toString()
+
+        }
+        const data = await  fetch(`${backRoutes.r_getAdvertisement}${adv.anuncio_uuid}`,{
+            method: 'PUT',
             body: JSON.stringify(adv),
-            headers: {
-                'Authorization': 'Bearer ' + user.token,
+            headers:{
+                Authorization: 'Bearer ' + user.token,
                 'Content-type': 'application/json'
             }
         })
-        const results = data.json()
+        const results = await data.json()
+        if(results.newData){
+            alert("Anuncio modificado con éxito")
+            return <Redirect to={`${routes.r_ControlPanelCasero}/user.username`} />
+        }
     }
 
     return(
         <div className={"controlAdvContainer"}>
             <h2>Publicar Anuncio</h2>
-            <form className ="formAnuncio" onSubmit={handleAddAdv}>
+            <form className ="formAnuncio" >
                 <label>Fecha disponibilidad
                     <Space direction="vertical">
-                        <DatePicker onChange={onChangeDate} value={adv.fecha_disponibilidad}  format='DD-MM-YYYY' placeholder="Fecha disponibilidad." showToday='true' className="primary-input date-picker" />
+                        <DatePicker onChange={onChangeDate}  value={moment(adv.fecha_disponibilidad)}  format='DD-MM-YYYY' placeholder="Fecha disponibilidad." showToday='true' className="primary-input date-picker" />
                     </Space>
                 </label>
                 <label>Precio €/mes
                 <input type="number" className="primary-input"  min="0" step="50" placeholder="Precio" value={adv.precio} onChange={ e=>setAdv({...adv,precio:e.target.value})} className="primary-input date-picker"/>
                 </label>
                 {!existAdv &&
-                <button className="primary-button">Publicar anuncio</button>
+                <button className="primary-button" onClick={handleAddAdv} >Publicar anuncio</button>
                 }
                 {existAdv &&
-                <button className="primary-button">Modificar anuncio</button>
+                    <button className="primary-button" onClick={onHandleModifyAdv}>Modificar anuncio</button>
                 }
             </form>
+                
         </div>
     )
 }
