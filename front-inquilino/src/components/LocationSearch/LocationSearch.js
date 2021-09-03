@@ -29,7 +29,6 @@ const LocationSearch = () =>{
             console.log("no hay geolocalización")
         }
     },[])
-    console.log(advertisements.length)
     if(advertisements.length>0){
         return(
             <div>

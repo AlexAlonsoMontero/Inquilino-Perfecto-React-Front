@@ -71,7 +71,7 @@ const Register = () => {
                         }
                         <label>
                             Nombre de usuario:<br/>
-                            <input type="text" alt="prueba" className="primary-input" value ={newUser.username} onChange={ e =>setNewUser({ ...newUser, username: e.target.value })}/>
+                            <input type="text" className="primary-input" value ={newUser.username} onChange={ e =>setNewUser({ ...newUser, username: e.target.value })}/>
                         </label>
                         <label>
                             Contraseña:<br/>

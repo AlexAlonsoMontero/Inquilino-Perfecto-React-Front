@@ -5,8 +5,6 @@ const MapMarker =  ({property},map) => {
     if(Object.keys(property[0]).length ===0){
         return null
     }
-    console.log("propiead en el marker")
-    console.log(property)
     return(
             property.map(item =>{
                 

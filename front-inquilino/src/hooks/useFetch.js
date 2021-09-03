@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react'
 
 function useFetch(url) {
     const [results, setResults] = useState(false)
-    console.log(url + " --- URL DEL FETCH")
     useEffect(() => {
       const f = async () => {
           const res = await fetch(url)

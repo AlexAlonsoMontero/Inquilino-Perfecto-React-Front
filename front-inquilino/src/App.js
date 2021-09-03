@@ -13,12 +13,14 @@ import ActivateUser from './components/ActivateUser/ActivateUser';
 import AdvSearcher from './components/AdvSearcher/AdvSearcher';
 import Advertisement from './components/Advertisement/Advertisement';
 import AddProperty from './components/PropertyPanel/AddProperty/AddProperty';
-import CrudProperty from './components/PropertyPanel/CrudProperty/CrudProperty';
+import ControlPanelCasero from './components/CrudProperty/ControlPanelCasero';
 import UpdateProperty from './components/PropertyPanel/UpdateProperty/UpdateProperty';
+import DataUser from './components/UserPanel/DataUser';
+import AddAdv from './components/AdvPanel/AddAdv';
 function App() { 
   const [user] = useUser()
   const [showModal, setShowModal] = useState(false)
-
+  const [selectProperty,setSelectProperty] = useState()
   return (
     <div className="App">
       <header>
@@ -39,17 +41,21 @@ function App() {
                 <Route path={`${routes.r_PropertyNewProp}`} exact >
                   <AddProperty />
                 </Route>
-                <Route path={`${routes.r_CrudProperty}/:username`}  exact>
-                  <CrudProperty />
+                <Route path={`${routes.r_ControlPanelCasero}/:username`}  exact>
+                  <ControlPanelCasero />
                 </Route>
                 <Route path={`${routes.r_updatePropertiesUser}/:inmueble_uuid`}  >
                   <UpdateProperty />
                 </Route>
+                
                 <Route path= {`${routes.r_advertisement}/:anuncio_uuid`} exact>
                   <Advertisement />
                 </Route>
                 <Route path={routes.r_register} exact>
                   <Register/>
+                </Route>
+                <Route path={`${routes.r_DataUser}:username`} exact>
+                  <DataUser />
                 </Route>
                 <Route path={routes.r_advSearcher} >
                     <AdvSearcher />

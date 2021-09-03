@@ -1,15 +1,16 @@
-import { Redirect, useParams } from "react-router"
-import { useUser } from "../../../context/UserContext"
-import { routes, backRoutes} from "../../../routes"
+import { Redirect, useHistory, useParams } from "react-router"
+import { useUser } from "../../context/UserContext"
+import { routes, backRoutes } from "../../routes"
 import { useEffect } from "react"
 import { useState } from "react"
-import { FormOutlined, DeleteOutlined } from "@ant-design/icons"
+import { FormOutlined, DeleteOutlined, PlusSquareTwoTone  } from "@ant-design/icons"
 import { Link } from "react-router-dom"
-import './CrudProperty.css'
+import './ControlPanelCasero.css'
 import { confirmAlert } from 'react-confirm-alert'; 
 import 'react-confirm-alert/src/react-confirm-alert.css'; 
 
-const CrudProperty = () =>{
+const ControlPanelCasero = () =>{
+    const history = useHistory()
     const [user] = useUser()
     const  {username}   = useParams()
     const [properties, setProperties] = useState([])
@@ -95,7 +96,8 @@ const CrudProperty = () =>{
                         <th>Número</th>
                         <th>Piso</th>
                         <th>C.P.</th>
-                        <th>Modifar/Eliminar</th>
+                        <th>Inmuebles</th>   
+                        <th>Anuncios</th>
                     </tr>
                     {properties.map((prop=>{
                         return(
@@ -106,7 +108,8 @@ const CrudProperty = () =>{
                                 <td>{prop.numero}</td>
                                 <td>{prop.piso}</td>
                                 <td>{prop.cp}</td>
-                                <td className="icons-crud"> <Link to={routes.r_updatePropertiesUser + '/' +prop.inmueble_uuid}>  <FormOutlined /> </Link><DeleteOutlined onClick={e=>handleDelete(e, prop)} /> </td>
+                                <td > <Link to={routes.r_updatePropertiesUser + '/' +prop.inmueble_uuid}>  <FormOutlined /> </Link><DeleteOutlined onClick={e=>handleDelete(e, prop)} /> </td>
+                                <td > <Link to={routes.r_updatePropertiesUser + '/' +prop.inmueble_uuid}><PlusSquareTwoTone />  </Link> </td>
 
                             </tr>
                             )
@@ -121,4 +124,4 @@ const CrudProperty = () =>{
     }
     
 }
-export default CrudProperty
+export default ControlPanelCasero

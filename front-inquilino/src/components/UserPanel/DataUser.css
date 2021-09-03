@@ -1,0 +1,39 @@
+.formDataUserContainer{
+    border: 1px solid var(--secondary-color);
+    width: 25vw;
+    border-radius: 25px;
+    padding: 5px;
+    margin: 10px auto;
+    box-shadow: var(--primary-shadow);
+    min-width: fit-content;
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.formDataUserContainer h1{
+    text-align: center;
+}
+
+.formDataUserContainer form{
+    display: flex;
+    justify-content: center;
+    align-items: center;    
+    flex-direction: column;
+    text-align: center;
+}
+
+.formDataUserContainer input {
+    width: 250px;
+}
+.formDataUserContainer select {
+    width: 250px;
+    margin-bottom: 10px;
+}
+.data-user-button{
+    padding: 15px;
+    margin: 0px;
+}
+.formDataUserContainer p {
+    margin: 10px;
+}

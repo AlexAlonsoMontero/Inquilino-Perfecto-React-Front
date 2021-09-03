@@ -8,7 +8,8 @@ import { Redirect } from 'react-router-dom'
 import { Checkbox } from 'antd'
 import { MapContainer, TileLayer, Marker} from 'react-leaflet'
 import { backRoutes } from '../../../routes'
-import axios from 'axios'
+
+
 const AddProperty = () =>{
     const [map,setMap] =useState(null)
     const [user] = useUser()
@@ -57,7 +58,7 @@ const AddProperty = () =>{
             fdProp.append(Object.keys(property)[cont], Object.values(property)[cont])
         }
         for (let cont = 0; cont<files.length; cont++){
-            fdProp.append('file'+cont, files[cont])
+            fdProp.append('file', files[cont])
         }
         // ********************************* FETCH
         const addProperty = await fetch(backRoutes.r_Newproperties,{
@@ -149,7 +150,6 @@ const AddProperty = () =>{
                 <button className="primary-button addProperty-button">Guardar</button>        
             
             </form>
-            
         </div>
     )
 }
