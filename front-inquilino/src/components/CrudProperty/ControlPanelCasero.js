@@ -22,7 +22,6 @@ const ControlPanelCasero = () =>{
         PENDIENTE:0,
         ACEPTADA:0,
         RECHAZADO:0,
-        FINALIZADA: 0
         
     })
     const [reservs,setReservs] = useState()
@@ -63,11 +62,9 @@ const ControlPanelCasero = () =>{
                 const rechazado = resultsData.Data.filter(item=>{
                     return item.estado_reserva==='RECHAZADO'
                 })
-                const finalizado = resultsData.Data.filter(item=>{
-                    return item.estado_reserva==='FINALIZADA'
-                })
+                
 
-                setTotalReservs({TOTAL:resultsData.Data.length, PENDIENTE:pendientes.length, ACEPTADA:aceptada.length, RECHAZADO:rechazado.length, FINALIZADA:finalizado.length})
+                setTotalReservs({TOTAL:resultsData.Data.length, PENDIENTE:pendientes.length, ACEPTADA:aceptada.length, RECHAZADO:rechazado.length})
                 setReservs(resultsData.Data)
             }
 
@@ -118,15 +115,6 @@ const ControlPanelCasero = () =>{
             
         }
         
-        const calculateReservsByInmueble = (inmueble_uuid)=>{
-                const total = reservs.filter(item=>item.inmueble_uuid === inmueble_uuid)
-                const pendiente = reservs.filter(item=>item.inmueble_uuid === inmueble_uuid && reservs.estado_reserva==="PENDIENTE").length
-                const aceptada = reservs.filter(item=>item.inmueble_uuid === inmueble_uuid && reservs.estado_reserva==="ACEPTADA").length
-                const rechazada = reservs.filter(item=>item.inmueble_uuid === inmueble_uuid && reservs.estado_reserva==="RECHAZADA").length
-                const finalizada = reservs.filter(item=>item.inmueble_uuid === inmueble_uuid && reservs.estado_reserva==="FINALIZADA").length
-            
-                return [total,pendiente,aceptada,finalizada]
-            }
 
     }
     
@@ -140,7 +128,6 @@ const ControlPanelCasero = () =>{
                     Pendientes <span className={"spanPendientesReserv"}> {totalReservs.PENDIENTE}  </span> 
                     Aceptadas <span className={"spanAceptadaReserv"}> {totalReservs.ACEPTADA} </span> 
                     Rechazadas<span className={"spanRechazadaReserv"}> {totalReservs.RECHAZADO} </span> 
-                    Finalizadas<span className={"spanFinalizadaReserv"}> {totalReservs.FINALIZADA} </span> 
                
                 </p>}
                 <table className={"crudTable"}>
@@ -166,13 +153,16 @@ const ControlPanelCasero = () =>{
                                 <td>{prop.cp}</td>
                                 <td > <Link to={routes.r_updatePropertiesUser + '/' +prop.inmueble_uuid}>  <FormOutlined /> </Link><DeleteOutlined onClick={e=>handleDelete(e, prop)} /> </td>
                                 <td > <Link to={routes.r_updatePropertiesUser + '/' +prop.inmueble_uuid}><PlusSquareTwoTone />  </Link> <Link to={routes.r_updatePropertiesUser + '/' +prop.inmueble_uuid}>  <FormOutlined /> </Link></td>
-                                <td > 
-                                    <span className={"spanPendientesReserv"}>    { reservs && reservs.filter(item=>{ if(item.inmueble_uuid===prop.inmueble_uuid && item.estado_reserva==="PENDIENTE"){return item}}).length }</span>
-                                    <span className={"spanAceptadaReserv"}>    { reservs && reservs.filter(item=>{ if(item.inmueble_uuid===prop.inmueble_uuid && item.estado_reserva==="ACEPTADA"){return item}}).length }</span>
-                                    <span className={"spanRechazadaReserv"}>    { reservs && reservs.filter(item=>{ if(item.inmueble_uuid===prop.inmueble_uuid && item.estado_reserva==="RECHAZADO"){return item}}).length }</span>
-                                    <span className={"spanFinalizadaReserv"}>    { reservs && reservs.filter(item=>{ if(item.inmueble_uuid===prop.inmueble_uuid && item.estado_reserva==="FINALIZADA"){return item}}).length } </span>
-                                    <span className={"spanTotalReserv"}>    { reservs && reservs.filter(item=>{ if(item.inmueble_uuid===prop.inmueble_uuid ){return item}}).length } </span>
-                                </td>
+                               
+                                    <td > 
+                                        <Link to ={routes.r_ReservPanelByProperty + '/' + prop.inmueble_uuid} > 
+                                            <span className={"spanPendientesReserv"}>    { reservs && reservs.filter(item=>{ if(item.inmueble_uuid===prop.inmueble_uuid && item.estado_reserva==="PENDIENTE"){return item}}).length }</span>
+                                            <span className={"spanAceptadaReserv"}>    { reservs && reservs.filter(item=>{ if(item.inmueble_uuid===prop.inmueble_uuid && item.estado_reserva==="ACEPTADA"){return item}}).length }</span>
+                                            <span className={"spanRechazadaReserv"}>    { reservs && reservs.filter(item=>{ if(item.inmueble_uuid===prop.inmueble_uuid && item.estado_reserva==="RECHAZADO"){return item}}).length }</span>
+                                            <span className={"spanTotalReserv"}>    { reservs && reservs.filter(item=>{ if(item.inmueble_uuid===prop.inmueble_uuid ){return item}}).length } </span>
+                                        </Link>
+                                    </td>
+                                
                             </tr>
                             )
                     }))
