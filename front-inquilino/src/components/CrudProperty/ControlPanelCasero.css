@@ -16,3 +16,28 @@
     margin-bottom: 10px;
 }
 
+
+.spanTotalReserv, .spanPendientesReserv, .spanAceptadaReserv, .spanRechazadaReserv, .spanFinalizadaReserv {
+    padding: 3px;
+    border-radius: 5px;
+    font-weight: bold;
+    margin: 3px;
+    text-align: center;
+    color:white;
+}
+
+.spanTotalReserv{
+    background-color: black;
+}
+.spanPendientesReserv{
+    background-color: orange;
+}
+.spanAceptadaReserv{
+    background-color: green;;
+}
+.spanRechazadaReserv{
+    background-color: red;
+}
+.spanFinalizadaReserv{
+    background-color: gray;
+}

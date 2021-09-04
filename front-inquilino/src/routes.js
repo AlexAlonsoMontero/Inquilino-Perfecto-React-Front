@@ -41,7 +41,11 @@ export const backRoutes ={
     //IMAGES
     r_getImagesInmueblesInmuebleUUID:`${host}:${port}/img/img_inmuebles/?inmueble_uuid=`,
     //RESERVS
-    r_reservs: `${host}:${port}/api/reservations`
+    r_reservs: `${host}:${port}/api/reservations`,
+    r_reservsByInmueble: `${host}:${port}/api/reservations/property/`, //:inmueble_uuid
+    r_reservsByUser:    `${host}:${port}/api/self/reservations/`,//:username
+    r_reservsByUserUuid: `${host}:${port}/api/reservations/user/` //:user_uuid
+    
 }
 
 

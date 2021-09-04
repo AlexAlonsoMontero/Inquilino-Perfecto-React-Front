@@ -26,7 +26,6 @@ const Advertisement = () => {
         setReserv ({...reserv,
             usr_casero_uuid:results.data[0].usr_casero_uuid,
             usr_inquilino_uuid: user.user.user_uuid,
-            // inmuebles_uuid: results.data[0].inmueble_uuid,
             anuncio_uuid: results.data[0].anuncio_uuid,
             fecha_reserva: f_reserva,
             precio_reserva: results.data[0].precio,
