@@ -34,11 +34,14 @@ export const backRoutes ={
     r_advSearcherByProp: `${host}:${port}/api/adv/prop/`,
     r_advSearcherByUser: `${host}:${port}/api/adv/user/`,//PROPERTIES
     r_AvgPropertyCalification: `${host}:${port}/api/avg-reviews/resenas/puntuacion/`,
+    //PROPERTIES
     r_Newproperties: `${host}:${port}/api/properties`,
     r_PropertiesSelfUser:`${host}:${port}/api/self/properties/`,
     r_Properties:`${host}:${port}/api/properties/`,
-    //images
-    r_getImagesInmueblesInmuebleUUID:`${host}:${port}/img/img_inmuebles/?inmueble_uuid=`
+    //IMAGES
+    r_getImagesInmueblesInmuebleUUID:`${host}:${port}/img/img_inmuebles/?inmueble_uuid=`,
+    //RESERVS
+    r_reservs: `${host}:${port}/api/reservations`
 }
 
 

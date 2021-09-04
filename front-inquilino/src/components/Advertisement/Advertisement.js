@@ -22,8 +22,22 @@ const Advertisement = () => {
             const data2 = await fetch(`${backRoutes.r_getImagesInmueblesInmuebleUUID}${results.data[0].inmueble_uuid}`)
             const results2 = await data2.json()
             setImages(results2.data)
+            const f_reserva = moment(Date.now()).format('YYYY-MM-DD')
+        setReserv ({...reserv,
+            usr_casero_uuid:results.data[0].usr_casero_uuid,
+            usr_inquilino_uuid: user.user.user_uuid,
+            // inmuebles_uuid: results.data[0].inmueble_uuid,
+            anuncio_uuid: results.data[0].anuncio_uuid,
+            fecha_reserva: f_reserva,
+            precio_reserva: results.data[0].precio,
+            estado_reserva: "PENDIENTE",
+            
+
+        })
         }
         getAdvAndImges()
+        
+        
     }, []);
     
 
@@ -38,27 +52,31 @@ const Advertisement = () => {
     }
     function onChangeFinishDate(date) {
         if(date){
-            alert("entra")
             setReserv({...reserv, fecha_fin:(`${date._d.getFullYear()}-${date._d.getMonth()+1}-${date._d.getDate()}`)})
         }
     }
 
-    const ondHandleReserv = () => {
+    const ondHandleReserv = async() => {
+        if(!reserv.fecha_inicio || !reserv.fecha_fin){
+            alert("Debe seleccionar fecha entrada y fecha de salida antes de solicitar reserva")
+        }else{
+            const data = await fetch(backRoutes.r_reservs,{
+                method:'POST',
+                body: JSON.stringify(reserv),
+                headers:{
+                    'Authorization': 'Bearer ' + user.token,
+                    'Content-type': 'application/json'
+                    
+                }
+            })
+            const results = await data.json()
+            if(results.error){
+                alert("No se ha realizado la reserva, verifique que la fecha de inicio es menor que la de fin, y mayor que la de disponibilidad")
+            }else{
+                alert("Reserva realizada correctamente")
+            }
+        }
         
-
-        const f_reserva = moment(Date.now()).format('YYYY-MM-DD')
-        setReserv ({...reserv,
-            usr_casero_uuid:adv.usr_casero_uuid,
-            usr_inquilino_uuid: user.user.user_uuid,
-            inmuebles_uuid: adv.inmueble_uuid,
-            anuncio_uuid: adv.anuncio_uuid,
-            fecha_reserva: f_reserva,
-            precio_reserva: adv.precio,
-            estado_reserva: "PENDIENTE",
-            
-
-        })
-        console.log(reserv)
     }
     return (
         <div>
