@@ -42,9 +42,9 @@ const PropertyRservPanel =  () => {
         setFilter(e)
     }
 
-    const onHandleAceptRes =async(e,res)=>{
+    const onHandleAceptRes =async(e,res,estado)=>{
         e.preventDefault()
-        res.estado_reserva = "ACEPTADA"
+        res.estado_reserva =estado
         res.fecha_reserva = moment(res.fecha_disponibilidad).format('YYYY-MM-DD')
         res.fecha_inicio = moment(res.fecha_inicio).format('YYYY-MM-DD')
         res.fecha_fin = moment(res.fecha_fin).format('YYYY-MM-DD')
@@ -57,9 +57,12 @@ const PropertyRservPanel =  () => {
             }
         })
         const results = await data.json()
-        if(results.info){
+        if(results.info && estado==="ACEPTADA"){
             alert("Reserva aceptada")
             history.push(routes.r_ControlPanelCasero + '/' + user.user.username)
+        }else if(results.info && estado==="RECHAZADO"){
+            alert("Reserva rechazada")
+            window.location.reload()
         }
     }
 
@@ -96,8 +99,8 @@ const PropertyRservPanel =  () => {
                                         <td>{res.estado_reserva}</td>
                                         {res.estado_reserva ==="PENDIENTE" &&
                                             <>
-                                            <button  className={"primary-button"} onClick={e=>onHandleAceptRes(e,res)}>Aceptar</button>
-                                            <button  className={"primary-button"}>Rechazar</button>
+                                            <button  className={"primary-button"} onClick={e=>onHandleAceptRes(e,res,"ACEPTADA")}>Aceptar</button>
+                                            <button  className={"primary-button"} onClick={e=>onHandleAceptRes(e,res,"RECHAZADO")}>Rechazar</button>
                                             </>
                                         }
                                     </tr>
@@ -112,8 +115,8 @@ const PropertyRservPanel =  () => {
                                         <td>{res.estado_reserva}</td>
                                         {res.estado_reserva ==="PENDIENTE" &&
                                             <>
-                                            <button  className={"primary-button"} onClick={e=>onHandleAceptRes(e,res)}>Aceptar</button>
-                                            <button  className={"primary-button"}>Rechazar</button>
+                                            <button  className={"primary-button"} onClick={e=>onHandleAceptRes(e,res,"ACEPTADA")}>Aceptar</button>
+                                            <button  className={"primary-button"} onClick={e=>onHandleAceptRes(e,res,"RECHAZADO")}>Rechazar</button>
                                             </>
                                         }
                                     </tr>
