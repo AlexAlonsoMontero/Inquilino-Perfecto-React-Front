@@ -94,9 +94,6 @@ const ControlPanelCasero = () =>{
             ]
           });
         
-        
-
-
 
         const noShowProp = async() =>{
             prop.disponibilidad=false

@@ -38,7 +38,7 @@ function App() {
               </Modal>
           }
             <Switch>
-                <Route path={`${routes.r_ReservInquilinoByUUID}/:user_inquilino_uuid`}>
+                <Route path={`${routes.r_ReservInquilinoByUUID}/:rol/:user_inquilino_uuid`}>
                   <InquilinoReservsPanel />
                 </Route>
                 <Route path={`${routes.r_ReservPanelByProperty}/:inmueble_uuid`} exact >

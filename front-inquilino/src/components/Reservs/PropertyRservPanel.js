@@ -85,6 +85,7 @@ const PropertyRservPanel =  () => {
                     <th>Fecha salida</th>
                     <th>Prcio €/mes</th>
                     <th>Estado Reserva</th>
+                    <th>Resseñas</th>
                     <th></th>
                 </tr>
                 
@@ -113,12 +114,15 @@ const PropertyRservPanel =  () => {
                                         <td>{DateToSTring(res.fecha_fin)}</td>
                                         <td>{res.precio_reserva}</td>
                                         <td>{res.estado_reserva}</td>
+                                        <td>
                                         {res.estado_reserva ==="PENDIENTE" &&
                                             <>
                                             <button  className={"primary-button"} onClick={e=>onHandleAceptRes(e,res,"ACEPTADA")}>Aceptar</button>
                                             <button  className={"primary-button"} onClick={e=>onHandleAceptRes(e,res,"RECHAZADO")}>Rechazar</button>
                                             </>
                                         }
+                                        </td>
+                                        
                                     </tr>
                                 )
                             }
