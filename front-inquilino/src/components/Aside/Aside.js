@@ -58,8 +58,8 @@ const Aside = () => {
                 }
                 {(user.user.tipo==="INQUILINO" || user.user.tipo==="INQUILINO/CASERO") &&
                     <SubMenu key="sub4" icon={<TeamOutlined />} title="Inquilino">
-                        <Menu.Item key="7">Buscar inmuebles</Menu.Item>
-                        <Menu.Item key="8">Gestión reservas</Menu.Item>
+                        <Menu.Item key="7"><Link to={routes.home}>Buscar inmuebles</Link>  </Menu.Item>
+                        <Menu.Item key="8"><Link to={`${routes.r_ReservInquilinoByUUID}/${user.user.user_uuid}`}>  Gestión reservas </Link></Menu.Item>
                         <Menu.Item key="9">Gestión reseñas</Menu.Item>
                     </SubMenu>
                 }

@@ -18,6 +18,7 @@ export const routes = {
     r_updatePropertiesUser:'/api/property/update',
     //RESERV
     r_ReservPanelByProperty: '/api/reserv/property',
+    r_ReservInquilinoByUUID: '/api/reserv/property/inquilino' //:user_inquilino_uuid
 }
 
 export const backRoutes ={
@@ -44,9 +45,8 @@ export const backRoutes ={
     r_reservs: `${host}:${port}/api/reservations`,
     r_reservsByInmueble: `${host}:${port}/api/reservations/property/`, //:inmueble_uuid
     r_reservsByUser:    `${host}:${port}/api/self/reservations/`,//:username
-    r_reservsByUserUuid: `${host}:${port}/api/reservations/user/` //:user_uuid
-
-    
+    r_reservsByUserUuid: `${host}:${port}/api/reservations/user/`, //:user_uuid
+    r_reservsInquilinoByInquiliUUID: `${host}:${port}/api/reservations/inquilino/` //:usr_inquilino_uuid
     
 }
 

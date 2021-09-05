@@ -30,7 +30,7 @@ const PropertyRservPanel =  () => {
     }, []);
     
 
-    if(!user){
+    if(!user || user.tipo==="INQUILINO"){
         <Redirect to={routes.home} />
     }
     if(!reservs){
