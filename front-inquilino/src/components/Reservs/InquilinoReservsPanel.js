@@ -40,7 +40,7 @@ const InquilinoReservsPanel = () =>{
             setProps(resutls2.foundProps)
         }
         getReservs()
-    }, []);
+    }, [reservs]);
 
     
     if(!user || user.tipo==="CASERO"){

@@ -42,7 +42,8 @@ const ControlPanelCasero = () =>{
                     },
                 })
                 const {data} = await result.json()
-                
+                console.log("data")
+                console.log(data)
                 setProperties(data)
                 console.log(backRoutes.r_reservsByUserUuid + user.user.user_uuid)
                 const reservResults = await fetch(backRoutes.r_reservsByUserUuid + user.user.user_uuid ,{
