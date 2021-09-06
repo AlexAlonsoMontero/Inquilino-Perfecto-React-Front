@@ -16,13 +16,13 @@ const NavPrincipal = ({setShowModal}) => {
                 <img src={logo} alt="logo"/>
             </div>
             
-            <ul>
-                <li><NavLink to={ routes.home }>Inicio</NavLink></li>
-                <li><NavLink to="/">Quienes Somos</NavLink></li> 
+            <ul className={"TextNav"}>
+                <li><NavLink to={ routes.home }>INICIO</NavLink></li>
+                
                 {!user &&       
                     <>
-                    <li onClick={()=>setShowModal(true)}><span>Inicia sesión</span></li>
-                    <li><Link to={routes.r_register}>Registrate</Link></li>
+                    <li onClick={()=>setShowModal(true)}><span>INICIA SESIÓN</span></li>
+                    <li><Link to={routes.r_register}>REGÍSTRATE</Link></li>
                     </>
                 }
                 
