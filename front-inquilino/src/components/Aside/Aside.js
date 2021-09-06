@@ -47,20 +47,19 @@ const Aside = () => {
             >
                 <SubMenu key="sub1" icon={<UserOutlined />} title="Perfil de usuario">
                     <Menu.Item key="1"><Link to={`${routes.r_DataUser}${user.user.username}`} >Datos usuario</Link></Menu.Item>
-                    <Menu.Item key="2">Contraseña</Menu.Item>
                 </SubMenu>
                 {(user.user.tipo==="CASERO" || user.user.tipo==="INQUILINO/CASERO") && 
                     <SubMenu key="sub2" icon={<HomeOutlined />} title="Casero">
                         <Menu.Item key="20"><Link to={`${routes.r_ControlPanelCasero}/${user.user.username}`} >Panel de administraci </Link>  </Menu.Item>
                         <Menu.Item key="19"><Link to={`${routes.r_PropertyNewProp}`} >Añadir Inmuebles</Link>  </Menu.Item>
+                        <Menu.Item key="31"> <Link to={`${routes.r_ReservInquilinoByUUID}/casero/${user.user.user_uuid}`}>Historico Reservas</Link> </Menu.Item>
 
                     </SubMenu>
                 }
                 {(user.user.tipo==="INQUILINO" || user.user.tipo==="INQUILINO/CASERO") &&
                     <SubMenu key="sub4" icon={<TeamOutlined />} title="Inquilino">
-                        <Menu.Item key="7">Buscar inmuebles</Menu.Item>
-                        <Menu.Item key="8">Gestión reservas</Menu.Item>
-                        <Menu.Item key="9">Gestión reseñas</Menu.Item>
+                        <Menu.Item key="7"><Link to={routes.home}>Buscar inmuebles</Link>  </Menu.Item>
+                        <Menu.Item key="8"><Link to={`${routes.r_ReservInquilinoByUUID}/inquilino/${user.user.user_uuid}`}>Historico Reservas</Link></Menu.Item>
                     </SubMenu>
                 }
                 {user.user.tipo=== "ADMIN" &&

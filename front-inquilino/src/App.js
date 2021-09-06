@@ -16,7 +16,8 @@ import AddProperty from './components/PropertyPanel/AddProperty/AddProperty';
 import ControlPanelCasero from './components/CrudProperty/ControlPanelCasero';
 import UpdateProperty from './components/PropertyPanel/UpdateProperty/UpdateProperty';
 import DataUser from './components/UserPanel/DataUser';
-import AddAdv from './components/AdvPanel/AddAdv';
+import PropertyRservPanel from './components/Reservs/PropertyRservPanel'
+import InquilinoReservsPanel from './components/Reservs/InquilinoReservsPanel';
 function App() { 
   const [user] = useUser()
   const [showModal, setShowModal] = useState(false)
@@ -37,10 +38,17 @@ function App() {
               </Modal>
           }
             <Switch>
-                
+                <Route path={`${routes.r_ReservInquilinoByUUID}/:rol/:user_inquilino_uuid`}>
+                  <InquilinoReservsPanel />
+                </Route>
+                <Route path={`${routes.r_ReservPanelByProperty}/:inmueble_uuid`} exact >
+                  <PropertyRservPanel />
+                </Route>
                 <Route path={`${routes.r_PropertyNewProp}`} exact >
                   <AddProperty />
                 </Route>
+                
+                
                 <Route path={`${routes.r_ControlPanelCasero}/:username`}  exact>
                   <ControlPanelCasero />
                 </Route>

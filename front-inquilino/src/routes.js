@@ -15,9 +15,11 @@ export const routes = {
     //PROPERTY
     r_PropertyNewProp:'/api/property/add',
     r_ControlPanelCasero:'/api/property',
-    r_updatePropertiesUser:'/api/property/update'
+    r_updatePropertiesUser:'/api/property/update',
+    //RESERV
+    r_ReservPanelByProperty: '/api/reserv/property',
+    r_ReservInquilinoByUUID: '/api/reserv/property' //:rol (inquilino o usuario) :user_inquilino_uuid
     
-
 }
 
 export const backRoutes ={
@@ -34,11 +36,22 @@ export const backRoutes ={
     r_advSearcherByProp: `${host}:${port}/api/adv/prop/`,
     r_advSearcherByUser: `${host}:${port}/api/adv/user/`,//PROPERTIES
     r_AvgPropertyCalification: `${host}:${port}/api/avg-reviews/resenas/puntuacion/`,
+    //PROPERTIES
     r_Newproperties: `${host}:${port}/api/properties`,
     r_PropertiesSelfUser:`${host}:${port}/api/self/properties/`,
     r_Properties:`${host}:${port}/api/properties/`,
-    //images
-    r_getImages:`${host}:${port}/img/`
+    //IMAGES
+    r_getImagesInmueblesInmuebleUUID:`${host}:${port}/img/img_inmuebles/?inmueble_uuid=`,
+    //RESERVS
+    r_reservs: `${host}:${port}/api/reservations`,
+    r_reservsByInmueble: `${host}:${port}/api/reservations/property/`, //:inmueble_uuid
+    r_reservsByUser:    `${host}:${port}/api/self/reservations/`,//:username
+    r_reservsByUserUuid: `${host}:${port}/api/reservations/user/`, //:user_casero_uuid
+    r_reservsInquilinoByInquiliUUID: `${host}:${port}/api/reservations/`, //:usr_inquilino_uuid
+    //REVIEWS
+    r_review: `${host}:${port}/api/reviews/`, 
+    r_reviewByUser: `${host}:${port}/api/reviews-uuid/?`// uuid ?user_uuid=......
+    
 }
 
 

@@ -20,7 +20,7 @@ const Footer = () => {
                 </div>
                 
                 <div className="footer-Contact">
-                    <h4>Datos de contacto_</h4>
+                    <h4>Datos de contacto</h4>
                     <p>Inmoweb SL</p>
                     <p><a href="tel:+34986656565"> Tlf: 986 656565</a> </p>
                     <p><a href="mailto:info@inmoweb.com">Mail:info@ingmoweb.com</a></p>
