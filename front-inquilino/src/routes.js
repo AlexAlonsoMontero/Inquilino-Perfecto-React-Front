@@ -14,7 +14,7 @@ export const routes = {
     r_addAdvertisement: '/advertisement/add',
     //PROPERTY
     r_PropertyNewProp:'/api/property/add',
-    r_ControlPanelCasero:'/api/property',
+    r_ControlPanelCasero:'/api/property/panel',
     r_updatePropertiesUser:'/api/property/update',
     //RESERV
     r_ReservPanelByProperty: '/api/reserv/property',

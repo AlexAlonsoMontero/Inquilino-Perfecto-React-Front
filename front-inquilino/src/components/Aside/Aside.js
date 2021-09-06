@@ -50,7 +50,7 @@ const Aside = () => {
                 </SubMenu>
                 {(user.user.tipo==="CASERO" || user.user.tipo==="INQUILINO/CASERO") && 
                     <SubMenu key="sub2" icon={<HomeOutlined />} title="Casero">
-                        <Menu.Item key="20"><Link to={`${routes.r_ControlPanelCasero}/${user.user.username}`} >Panel de administraci </Link>  </Menu.Item>
+                        <Menu.Item key="20"><Link to={`${routes.r_ControlPanelCasero}/${user.user.username}`} >Panel de administración </Link>  </Menu.Item>
                         <Menu.Item key="19"><Link to={`${routes.r_PropertyNewProp}`} >Añadir Inmuebles</Link>  </Menu.Item>
                         <Menu.Item key="31"> <Link to={`${routes.r_ReservInquilinoByUUID}/casero/${user.user.user_uuid}`}>Historico Reservas</Link> </Menu.Item>
 
