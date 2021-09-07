@@ -1,18 +1,33 @@
 
+.adv-Container{
+   display: flex;
+   justify-content: space-around;
+   padding-top: 25px;
+   
+}
+.adv-Container h2{
+    font-weight: bold;
+}
 .AdvImageContainer{
-    background-color: aqua;
-    width: 600px;
-    height: 500px;
+    text-align: center;
+    width: 30vw;
+}
+
+
+.advImgSlider{
+    object-fit: cover;
+    width:40vw;
+    height: 35vh;
+    border-radius: 15px;
+    border: 2px solid var(--secondary-color);
+}
+
+.solReservaButton{
+    padding: 3px;
+    margin: 5px;
+    font-weight: bold;
     
-    float: left;
-}
-
-.leaflet-container{
-    width: 100%;
-    height: 200px;
 }
 
 
-.advCarouselImgContainer img{
-    width: 100%;
-}
+

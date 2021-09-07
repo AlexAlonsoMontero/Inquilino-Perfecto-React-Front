@@ -6,6 +6,7 @@ import { useGetImages } from '../../hooks/inmowebApi';
 import { Carousel } from 'antd'
 import { map } from 'leaflet';
 import { useState } from 'react';
+import { isTSMethodSignature } from '@babel/types';
 
 const MiniAdvertisement = ({advertisements}) =>{
     const history = useHistory()
@@ -13,7 +14,8 @@ const MiniAdvertisement = ({advertisements}) =>{
         const uuid= advertisements.anuncio_uuid
         history.push(`${routes.r_advertisement}/${uuid}`)
     }
-    
+    console.log("miniiiiiiii")
+    console.log(advertisements)
     const images =useGetImages(`${advertisements.inmueble_uuid}`,{method:'GET'})
     return  (
         <div className="miniAdvertisementCotainer">
@@ -36,9 +38,10 @@ const MiniAdvertisement = ({advertisements}) =>{
             <div className="miniAdvData">
                 <p><span>Precio:</span> {advertisements.precio} €/mes <span>F. disponibilidad:</span>  {advertisements.fecha_disponibilidad}</p>
                 <p><span>Metros cuadrados: </span> {advertisements.metros_2} <span>Habitaciones:</span> {advertisements.habitaciones} </p>
-                <p><span>Puntuación reseñas:</span> <Rate disabled defaultValue={advertisements.puntuacion_media} /> </p>
+                <p><span>Ciudad:</span>{advertisements.ciudad}  <span>Calle:</span> {advertisements.calle} </p>
+                <p><span>Fecha disponibilidad:</span>{advertisements.fecha_disponibilidad} </p>
                 <div className="miniAdvButtonContainer">
-                    <button className="primary-button" onClick={handleAdvertisement} >Reservas</button> <button className="primary-button">Ver detalles</button>
+                    <button className="primary-button" onClick={handleAdvertisement} >Detalles de anuncio y reserva</button> 
                 </div>
             </div>
         </div>

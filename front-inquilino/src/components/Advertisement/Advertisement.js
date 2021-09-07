@@ -1,4 +1,4 @@
-import { useParams } from 'react-router'
+import { useHistory, useParams } from 'react-router'
 import './Advertisement.css'
 import { useState } from 'react';
 import { backRoutes } from '../../routes';
@@ -16,12 +16,12 @@ const Advertisement = () => {
     const [reserv, setReserv] = useState({})
     const [reviews, setReviews] = useState()
     const handleBooleanString = bool => (bool ? "Si" : "No")
+    const history = useHistory()
     useEffect(() => {
         const getAdvAndImges = async () => {
             const data = await fetch(backRoutes.r_advSearcher + anuncio_uuid)
             const results = await data.json()
             setAdv(results.data[0])
-            console.log(results.data[0])
             const data2 = await fetch(`${backRoutes.r_getImagesInmueblesInmuebleUUID}${results.data[0].inmueble_uuid}`)
             const results2 = await data2.json()
             setImages(results2.data)
@@ -43,12 +43,12 @@ const Advertisement = () => {
             const data3 = await fetch(`${backRoutes.r_reviewByUser}usr_casero_uuid=${results.data[0].usr_casero_uuid}`)
             const results3 = await data3.json()
             setReviews(results3.data)
-            
+
         }
         getAdvAndImges()
         const getReviews = async () => {
-            
-           
+
+
 
         }
 
@@ -62,14 +62,15 @@ const Advertisement = () => {
         return <p>Cargando datos...</p>
     }
 
-    function onChangeStartDate(date) {
+    function onChangeStartDate(date,dateString) {
         if (date) {
             setReserv({ ...reserv, fecha_inicio: (`${date._d.getFullYear()}-${date._d.getMonth() + 1}-${date._d.getDate()}`) })
         }
     }
-    function onChangeFinishDate(date) {
+    function onChangeFinishDate(date, dateString) {
         if (date) {
             setReserv({ ...reserv, fecha_fin: (`${date._d.getFullYear()}-${date._d.getMonth() + 1}-${date._d.getDate()}`) })
+
         }
     }
 
@@ -91,28 +92,34 @@ const Advertisement = () => {
                 alert("No se ha realizado la reserva, verifique que la fecha de inicio es menor que la de fin, y mayor que la de disponibilidad")
             } else {
                 alert("Reserva realizada correctamente")
+                history.goBack()
             }
         }
 
     }
     return (
-        <div>
-            <div>
-                <div className="AdvImageContainer">
-                    {images &&
-                        <Carousel autoplay>
-                            {images.map(img => {
-                                return (
-                                    <div key={img.img_inmueble_uuid} className={"advCarouselImgContainer"}>
-                                        <img src={backRoutes.r_host_port + img.img_inmueble.slice(1)} />
-                                    </div>
-                                )
-                            })
-                            }
-                        </Carousel>
-                    }
-                </div>
-                <h1>Inmueble en alquiler:</h1>
+        <>
+        <h1>Inmueble en alquiler:</h1>
+
+        <div className={"adv-Container"}>
+            <div className="AdvImageContainer">
+                <h2>Imágenes inmueble:</h2>
+
+                {images &&
+                    <Carousel autoplay centerPadding={true}>
+                        {images.map(img => {
+                            const imgStyle = { "backgroundImage": 'url(' + backRoutes.r_host_port + img.img_inmueble.slice(1) + ')' }
+                            return (
+                                <img src={backRoutes.r_host_port + img.img_inmueble.slice(1)} key={img.img_inmueble_uuid} className={"advImgSlider"} />
+                            )
+                        })
+                        }
+                    </Carousel>
+                }
+            </div>
+            <div >
+                
+                
                 <h2>Datos de reserva</h2>
                 <p><span>Precio</span> {adv.precio}€/mes <span>Fecha disponibilidad {adv.fecha_disponibilidad} </span> </p>
                 <div className="advertisementDataContainer">
@@ -123,13 +130,14 @@ const Advertisement = () => {
                         <DatePicker onChange={onChangeFinishDate} format='DD-MM-YYYY' placeholder="Fecha salida" showToday='true' className="primary-input date-picker" />
                     </Space>
                 </div>
-                {(!user || user.tipo === 'CASERO') && <p>Para solicitar reserva debe estar registrado y logado como inquilino o casero/inquilino</p>}
+                {(!user || user.tipo === 'CASERO') && <p className={"error"}>Para solicitar reserva debe estar registrado y logado como inquilino.</p>}
                 {user &&
-                    <button className="primary-button" onClick={ondHandleReserv} >Solicitar reserva</button>
+                    <button className="primary-button solReservaButton" onClick={ondHandleReserv} >Solicitar reserva</button>
                 }
                 <div>
                     <h2>Direccion:</h2>
                     <p><span>Comunidad</span> {adv.comunidad} <span>Provincia</span> {adv.provincia} </p>
+                    <p><span>Calle</span> {adv.calle}</p>
                     <p><span>Numero</span> {adv.numero} <span>Piso</span> {adv.piso} <span>C.P.</span> {adv.cp} </p>
                 </div>
                 <div>
@@ -143,15 +151,21 @@ const Advertisement = () => {
 
 
             </div>
-            {reviews && <div>
-                <h2>Reseñas</h2>
-                {reviews && reviews.map(item=>{
-                    return(
-                        <p key={item.id_resena}><Rate value={item.puntuacion} /> Observaciones: {item.contenido} </p>
-                    )
-                })}
-            </div>}
+            {reviews && 
+                <div>
+                    <h2>Reseñas casero</h2>
+                    {reviews && reviews.map(item => {
+                        return (
+                            <>
+                                <p key={item.id_resena}><Rate value={item.puntuacion} /></p>
+                                <p> Observaciones: {item.contenido} </p>
+                            </>
+                        )
+                    })}
+                </div>
+                }
         </div>
+        </>
     )
 }
 
