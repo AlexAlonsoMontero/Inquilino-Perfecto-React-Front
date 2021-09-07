@@ -38,7 +38,11 @@ function App() {
               </Modal>
           }
             <Switch>
-                <Route path={routes.home}  exact>
+                <Route path= {`${routes.r_advertisement}/:anuncio_uuid`} exact>
+                  <Advertisement />
+                </Route>
+                
+                <Route path={routes.home}  >
                   <AdvSearcher />
                 </Route>
                 

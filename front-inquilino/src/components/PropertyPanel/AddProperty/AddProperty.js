@@ -69,7 +69,10 @@ const AddProperty = () =>{
             }
         })
         const res = await addProperty.json()
-        console.log(res)
+        if(res.info){
+            alert("imueble guardado correctamente")
+            window.location.reload()
+        }
 
         /***********************************AXIOS */
         // const addProperty = axios({
@@ -103,7 +106,7 @@ const AddProperty = () =>{
                     <input type="number" className="primary-input"  min="0"  placeholder="Metros" value={property.metros_2} onChange={e=> setProperty({...property,metros_2:e.target.value})  } required/>
                     <input type="number" className="primary-input"  min="0"  placeholder="Numero baños" value={property.banos}  onChange={e=> setProperty({...property,banos:e.target.value})  } required/>
                     <input type="number" className="primary-input"  min="0"  placeholder="Numero Habitaciones"  value={property.habitaciones}  onChange={e=> setProperty({...property,habitaciones:e.target.value})  } required/>
-                    <input  className="primary-input"  min="0"  placeholder="Coordenadas x" value={property.lat}  />
+                    <input  className="primary-input"  min="0"  placeholder="Coordenadas x" value={property.lat} />
                     <input  className="primary-input"  min="0"  placeholder="Coordenadas y" value={property.lng} />
                 </div>
                 <div className="addpropOptions-container" onSubmit={handleSubmit}>

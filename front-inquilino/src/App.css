@@ -85,8 +85,12 @@ body main{
 h1, h2, h3, h4, h5{
   color: var(--secondary-color);
   padding: 5px;
+  font-weight: bold;
 }
 
+h1{
+  text-align: center;
+}
 
 .primary-checkbox{
   color: var(--secondary-color)
@@ -133,6 +137,8 @@ h1, h2, h3, h4, h5{
 
 .ant-picker{
   position: unset;
+  color: var(--secondary-color);
+  margin: 5px;
 }
 .ant-checkbox{
   position: relative;

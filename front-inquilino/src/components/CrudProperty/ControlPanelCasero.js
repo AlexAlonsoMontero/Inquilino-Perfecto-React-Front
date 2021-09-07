@@ -53,20 +53,23 @@ const ControlPanelCasero = () =>{
                     },
                 })
                 const resultsData = await reservResults.json()
-                const pendientes = resultsData.Data.filter(item=>{
+                if(resultsData.Data){
+                    const pendientes = resultsData.Data.filter(item=>{
                     return item.estado_reserva==='PENDIENTE'
-                })
-                const aceptada =resultsData.Data.filter(item=>{
-                    return item.estado_reserva==='ACEPTADA'
-                })
+                    })
+                    const aceptada =resultsData.Data.filter(item=>{
+                        return item.estado_reserva==='ACEPTADA'
+                    })
 
-                const rechazado = resultsData.Data.filter(item=>{
-                    return item.estado_reserva==='RECHAZADO'
-                })
+                    const rechazado = resultsData.Data.filter(item=>{
+                        return item.estado_reserva==='RECHAZADO'
+                    })
+                    
+
+                    setTotalReservs({TOTAL:resultsData.Data.length, PENDIENTE:pendientes.length, ACEPTADA:aceptada.length, RECHAZADO:rechazado.length})
+                    setReservs(resultsData.Data)
+                }
                 
-
-                setTotalReservs({TOTAL:resultsData.Data.length, PENDIENTE:pendientes.length, ACEPTADA:aceptada.length, RECHAZADO:rechazado.length})
-                setReservs(resultsData.Data)
             }
 
 
