@@ -1,4 +1,4 @@
-import { useParams } from 'react-router'
+import { useHistory, useParams } from 'react-router'
 import './Advertisement.css'
 import { useState } from 'react';
 import { backRoutes } from '../../routes';
@@ -16,6 +16,7 @@ const Advertisement = () => {
     const [reserv, setReserv] = useState({})
     const [reviews, setReviews] = useState()
     const handleBooleanString = bool => (bool ? "Si" : "No")
+    const history = useHistory()
     useEffect(() => {
         const getAdvAndImges = async () => {
             const data = await fetch(backRoutes.r_advSearcher + anuncio_uuid)
@@ -63,16 +64,12 @@ const Advertisement = () => {
 
     function onChangeStartDate(date,dateString) {
         if (date) {
-            // setReserv({ ...reserv, fecha_inicio: dateString})
-            // setReserv({ ...reserv, fecha_inicio: (`${date._d.getFullYear()}-${date._d.getMonth() + 1}-${date._d.getDate()}`) })
-            setReserv({...reserv, fecha_inicio:date })
+            setReserv({ ...reserv, fecha_inicio: (`${date._d.getFullYear()}-${date._d.getMonth() + 1}-${date._d.getDate()}`) })
         }
     }
     function onChangeFinishDate(date, dateString) {
         if (date) {
-            // setReserv({ ...reserv, fecha_fin: (`${date._d.getFullYear()}-${date._d.getMonth() + 1}-${date._d.getDate()}`) })
-            // setReserv({ ...reserv, fecha_fin: dateString })
-            setReserv({...reserv, fecha_fin:date })
+            setReserv({ ...reserv, fecha_fin: (`${date._d.getFullYear()}-${date._d.getMonth() + 1}-${date._d.getDate()}`) })
 
         }
     }
@@ -95,6 +92,7 @@ const Advertisement = () => {
                 alert("No se ha realizado la reserva, verifique que la fecha de inicio es menor que la de fin, y mayor que la de disponibilidad")
             } else {
                 alert("Reserva realizada correctamente")
+                history.goBack()
             }
         }
 
