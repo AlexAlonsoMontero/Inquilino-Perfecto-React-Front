@@ -42,9 +42,7 @@ function App() {
                   <Advertisement />
                 </Route>
                 
-                <Route path={routes.home}  >
-                  <AdvSearcher />
-                </Route>
+               
                 
                
                 <Route path={`${routes.r_ReservInquilinoByUUID}/:rol/:user_inquilino_uuid`} exact>
@@ -76,18 +74,19 @@ function App() {
                 
                 
                
-                <Route path={routes.r_activationUser} exact>
-                  <ActivateUser />
-                </Route>
+
                
                 <Route path={routes.r_advSearcher} >
                     <AdvSearcher />
-                </Route>
+                </Route> 
                
-                <Route path={routes.home}  >
+                
+                <Route path={routes.home}  exact >
                   <AdvSearcher />
                 </Route>
-                
+                <Route path={routes.r_activationUser} exact>
+                  <ActivateUser />
+                </Route>
           </Switch>
       </main>
       <footer>
