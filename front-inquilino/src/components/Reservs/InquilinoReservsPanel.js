@@ -5,7 +5,7 @@ import { routes, backRoutes} from "../../routes"
 import { DateToSTring } from "../../utils"
 import { Rate } from 'antd'
 import { useParams } from "react-router"
-
+import './PropertyRservPanel.css'
 const InquilinoReservsPanel = () =>{
     const [user] = useUser()
     const [reservs,setReservs] = useState()
@@ -93,7 +93,7 @@ const InquilinoReservsPanel = () =>{
         setStars(value)
     }
     return reservs && (
-        <>
+        <div className={"reservsContainer"}>
             <h1>Reservas de usuario {rol}  {user.user.username} </h1>
             <select className="primary-input" name="resEstado" defaultValue="TODAS" onChange={e =>onHandleEstado(e.target.value)}>
                 <option>TODAS</option>
@@ -170,7 +170,7 @@ const InquilinoReservsPanel = () =>{
                     }
                     
                 </table>
-        </>
+        </div>
             
             
         

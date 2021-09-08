@@ -84,7 +84,7 @@ const AddAdv = ({uuids}) =>{
             <form className ="formAnuncio" >
                 <label>Fecha disponibilidad
                     <Space direction="vertical">
-                        <DatePicker onChange={onChangeDate}  value={moment(adv.fecha_disponibilidad)}  format='DD-MM-YYYY' placeholder="Fecha disponibilidad." showToday='true' className="primary-input date-picker" />
+                        <DatePicker onChange={onChangeDate} Name="primary-input date-picker" value={moment(adv.fecha_disponibilidad)}  format='DD-MM-YYYY' placeholder="Fecha disponibilidad." showToday='true' className="primary-input date-picker" />
                     </Space>
                 </label>
                 <label>Precio €/mes

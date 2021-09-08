@@ -1,0 +1,14 @@
+.reservsContainer{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.reservsContainer input {
+    margin: 10px;
+    
+}
+.reservsContainer table{
+    margin: 15px;
+}

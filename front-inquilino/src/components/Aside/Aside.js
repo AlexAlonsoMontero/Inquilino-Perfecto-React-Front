@@ -5,11 +5,11 @@ import { HomeOutlined, UserOutlined, TeamOutlined,LaptopOutlined } from '@ant-de
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { routes } from '../../routes';
-
+import {LeftCircleTwoTone, RightCircleTwoTone} from '@ant-design/icons'
 const Aside = () => {
     const [user] = useUser()
     const [asideContainerClass, setAsideContainerClass] = useState("mostrarAside aside-container")
-    const [btnIcon,setBtnIcon] =useState("⇇")
+    const [btnShowMenu,setBtnShowMenu] =useState(false)
     //ANTD
     const handleClick = e => {
         console.log('click ', e);
@@ -21,10 +21,10 @@ const Aside = () => {
         e.preventDefault()
         if(asideContainerClass==="mostrarAside aside-container"){
             setAsideContainerClass("ocultarAside  aside-container")
-            setBtnIcon("⇉")
+            setBtnShowMenu(true)
         }else{
             setAsideContainerClass("mostrarAside aside-container")
-            setBtnIcon("⇇")
+            setBtnShowMenu(false)
         }
     }
 
@@ -32,9 +32,9 @@ const Aside = () => {
     return user && (
         <>
         <div className="asideShowButton">
-                <button onClick={(e)=>handleTranslate(e)} className="buttonAside">
-                    {btnIcon}
-                </button>
+                
+                {!btnShowMenu && <LeftCircleTwoTone onClick={(e)=>handleTranslate(e)}  /> }
+                {btnShowMenu && <RightCircleTwoTone onClick={(e)=>handleTranslate(e)} />}
         </div>  
 
         <div className={asideContainerClass} >

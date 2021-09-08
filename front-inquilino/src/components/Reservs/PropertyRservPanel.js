@@ -6,6 +6,7 @@ import { useHistory, useParams } from "react-router"
 import { DateToSTring } from "../../utils"
 import UserReview from "../UserReview/UserReview"
 import Modal from '../Modal/Modal'
+import './PropertyRservPanel.css'
 
 
 
@@ -78,7 +79,7 @@ const PropertyRservPanel = () => {
     }
 
     return reservs && (
-        <>
+        <div className="reservsContainer">
             <h1>Reservas</h1>
             {showReview && <Modal setShowModal={setShowReview}><UserReview id={rolAndId} setShowReview={setShowReview} /></Modal>}
             <select className="primary-input" name="resEstado" defaultValue="TODAS" onChange={e => onHandleEstado(e.target.value)}>
@@ -118,7 +119,7 @@ const PropertyRservPanel = () => {
                                         </>
                                     }
                                 </td>
-                                <td><button className={"primary-button"} onClick={e => onHandleShowReview(res.usr_inquilino_uuid)}>Mostrar</button></td>
+                                <td>{res.estado_reserva==="ACEPTADA" && <button className={"primary-button"} onClick={e => onHandleShowReview(res.usr_inquilino_uuid)}>Mostrar</button>}</td>
                             </tr>
                         )
                     } else if (res.estado_reserva === filter) {
@@ -147,7 +148,7 @@ const PropertyRservPanel = () => {
                 }
 
             </table>
-        </>
+        </div>
     )
 }
 export default PropertyRservPanel
