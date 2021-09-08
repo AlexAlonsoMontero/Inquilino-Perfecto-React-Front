@@ -45,10 +45,8 @@
     margin: 5px;
 }
 .miAdvCarrouselImage{
-    width: 100%;
-    min-width: 325px;
-
-    
+    object-fit: cover;
+    height: 300px;
 }
 
 .ant-carousel{

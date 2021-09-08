@@ -4,7 +4,7 @@ import './AddAdv.css'
 import { useEffect } from "react"
 import { backRoutes, routes } from "../../routes"
 import { useUser } from "../../context/UserContext"
-import { Redirect, useHistory } from "react-router-dom"
+import { useHistory } from "react-router-dom"
 
 const AddAdv = ({uuids}) =>{
     var moment = require('moment')

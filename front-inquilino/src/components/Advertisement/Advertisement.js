@@ -108,7 +108,6 @@ const Advertisement = () => {
                 {images &&
                     <Carousel autoplay centerPadding={true}>
                         {images.map(img => {
-                            const imgStyle = { "backgroundImage": 'url(' + backRoutes.r_host_port + img.img_inmueble.slice(1) + ')' }
                             return (
                                 <img src={backRoutes.r_host_port + img.img_inmueble.slice(1)} key={img.img_inmueble_uuid} className={"advImgSlider"} />
                             )

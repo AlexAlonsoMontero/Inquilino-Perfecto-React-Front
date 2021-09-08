@@ -36,7 +36,6 @@ const InquilinoReservsPanel = () =>{
                 }
             })
             const resutls2 = await data2.json()
-            console.log(resutls2.foundProps)
             setProps(resutls2.foundProps)
         }
         getReservs()
@@ -57,8 +56,6 @@ const InquilinoReservsPanel = () =>{
         e.preventDefault()
         if(stars>0){
             const contenido = (revContenido ? revContenido :" ")
-            console.log(res)
-            
             const rev = {
                 reserva_uuid: res.reserva_uuid,
                 autor_uuid: user.user.user_uuid,
@@ -71,7 +68,7 @@ const InquilinoReservsPanel = () =>{
                 contenido:contenido
 
             }
-            console.log(rev)
+            
             const data = await fetch(backRoutes.r_review,{
                 method: 'POST',
                 body:JSON.stringify(rev),

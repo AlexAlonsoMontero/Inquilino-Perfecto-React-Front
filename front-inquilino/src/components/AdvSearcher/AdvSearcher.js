@@ -8,7 +8,6 @@ import MiniAdvertisement from '../MiniAdvertisement/MiniAdvertisement'
 import './AdvSearcher.css'
 import { Checkbox } from 'antd' 
 import LocationSearch from '../LocationSearch/LocationSearch'
-import { MapContainer, TileLayer, Marker} from 'react-leaflet'
 
 const AdvSearcher =()=>{
         /**************************** */

@@ -77,7 +77,6 @@ const PropertyRservPanel = () => {
 
     }
 
-
     return reservs && (
         <>
             <h1>Reservas</h1>

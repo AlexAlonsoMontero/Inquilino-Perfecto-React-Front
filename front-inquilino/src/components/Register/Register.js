@@ -1,7 +1,8 @@
 import { useState } from "react"
 import './Register.css'
 import avatar from './avatar.png'
-import { backRoutes } from "../../routes"
+import { backRoutes, routes } from "../../routes"
+import { Redirect, useHistory } from "react-router"
 
 
 const Register = () => {
@@ -9,7 +10,7 @@ const Register = () => {
     const [avatarStyle,setAvatarStyle] = useState({ backgroundImage: 'url(' + avatar + ')' })
     const [newUser,setNewUser] = useState({tipo:"INQUILINO"});
     const [registered,setRegistered]=useState(false)
-    
+    const history = useHistory()    
     const handleImageAvatar = (e)=>{
         e.preventDefault()
         if( e.target.files[0] ){
@@ -38,15 +39,18 @@ const Register = () => {
             setError(res.error)
         }else{
             setRegistered(true)
+            alert("Revisa tu mail tendrás un correo electrónico con  un enlace para activar tu cuenta")
+
         }
         //TODO VERIFICAR QUE SE USA ROUTES EN VEZ DE LAS RUTAS A MANO
     }
     if (registered) {
         return(
-            <>  
-                <h1>Revisa tu mail, y activa el usuario</h1>
+            <>
+                <Redirect to={"/"}  />
             </>
-        ) 
+        )
+        
     }
     else{
         return !registered && (

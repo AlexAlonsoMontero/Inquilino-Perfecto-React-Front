@@ -21,7 +21,6 @@ import InquilinoReservsPanel from './components/Reservs/InquilinoReservsPanel';
 function App() { 
   const [user] = useUser()
   const [showModal, setShowModal] = useState(false)
-  const [selectProperty,setSelectProperty] = useState()
   return (
     <div className="App">
       <header>
@@ -71,15 +70,9 @@ function App() {
                 <Route path= {`${routes.r_advertisement}/:anuncio_uuid`} exact>
                   <Advertisement />
                 </Route>
-                
-                
-               
-
-               
                 <Route path={routes.r_advSearcher} >
                     <AdvSearcher />
                 </Route> 
-               
                 
                 <Route path={routes.home}  exact >
                   <AdvSearcher />
