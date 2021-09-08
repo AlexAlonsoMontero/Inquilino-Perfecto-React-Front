@@ -14,22 +14,17 @@ const MiniAdvertisement = ({advertisements}) =>{
         const uuid= advertisements.anuncio_uuid
         history.push(`${routes.r_advertisement}/${uuid}`)
     }
-    console.log("miniiiiiiii")
-    console.log(advertisements)
     const images =useGetImages(`${advertisements.inmueble_uuid}`,{method:'GET'})
     return  (
         <div className="miniAdvertisementCotainer">
             <div className="imageContainer">
-                <Carousel autoplay>
+                <Carousel autoplay centerPadding={"true"} >
                 {   
                     images.data &&   
                     
                         images.data.map(item=>{
                             return(
-                                
-                                <div key={item.img_inmueble_uuid} >
-                                        <img src = {backRoutes.r_host_port + item.img_inmueble.slice(1)} className={"miAdvCarrouselImage"}  alt="imagen de inmueble en alquiler"/>
-                                </div>
+                                <img src = {backRoutes.r_host_port + item.img_inmueble.slice(1)} key={item.img_inmueble_uuid} className={"miAdvCarrouselImage"}  alt="imagen de inmueble en alquiler"/>
                             )
                         })
                 }

@@ -1,40 +1,24 @@
-.updatePropConteiner{
-    max-width: 70vw;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    margin: auto;
-}
-.updatePropConteiner {
-    text-align: center;
+.updateContainer{
+   
 }
 
 .updateProperty-form{
-    
-    margin: auto;
-}
-.updateProperty-container *{
     display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     
 }
 
-.UpdatePropOptions-container *{
+.updatePropertyData-container{
     display: flex;
+    max-width: 70vw;
     justify-content: space-between;
     flex-wrap: wrap;
 }
 
-.updatePropertyData-container * {
-    margin: 5px;
-    display: flex;
-    align-items: center;    
-}
-
-.updatePropButton{
-    margin: 15px;
-    padding: 5px;
-    font-weight: bold;
+.UpdatePropOptions-container{
+    text-align: center;
+    margin-top: 15px;
     
 }

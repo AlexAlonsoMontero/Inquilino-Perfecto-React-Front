@@ -5,7 +5,7 @@ import { routes, backRoutes} from "../../routes"
 import { DateToSTring } from "../../utils"
 import { Rate } from 'antd'
 import { useParams } from "react-router"
-
+import './PropertyRservPanel.css'
 const InquilinoReservsPanel = () =>{
     const [user] = useUser()
     const [reservs,setReservs] = useState()
@@ -36,7 +36,6 @@ const InquilinoReservsPanel = () =>{
                 }
             })
             const resutls2 = await data2.json()
-            console.log(resutls2.foundProps)
             setProps(resutls2.foundProps)
         }
         getReservs()
@@ -57,8 +56,6 @@ const InquilinoReservsPanel = () =>{
         e.preventDefault()
         if(stars>0){
             const contenido = (revContenido ? revContenido :" ")
-            console.log(res)
-            
             const rev = {
                 reserva_uuid: res.reserva_uuid,
                 autor_uuid: user.user.user_uuid,
@@ -71,7 +68,7 @@ const InquilinoReservsPanel = () =>{
                 contenido:contenido
 
             }
-            console.log(rev)
+            
             const data = await fetch(backRoutes.r_review,{
                 method: 'POST',
                 body:JSON.stringify(rev),
@@ -96,7 +93,7 @@ const InquilinoReservsPanel = () =>{
         setStars(value)
     }
     return reservs && (
-        <>
+        <div className={"reservsContainer"}>
             <h1>Reservas de usuario {rol}  {user.user.username} </h1>
             <select className="primary-input" name="resEstado" defaultValue="TODAS" onChange={e =>onHandleEstado(e.target.value)}>
                 <option>TODAS</option>
@@ -173,7 +170,7 @@ const InquilinoReservsPanel = () =>{
                     }
                     
                 </table>
-        </>
+        </div>
             
             
         

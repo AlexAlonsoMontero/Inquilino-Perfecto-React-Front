@@ -1,0 +1,7 @@
+.controlAdvContainer{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 25px;
+    
+}

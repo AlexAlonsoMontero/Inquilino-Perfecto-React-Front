@@ -143,3 +143,19 @@ h1{
 .ant-checkbox{
   position: relative;
 }
+
+.ant-picker-input input{
+  color: var(--secondary-color);
+}
+.ant-picker-content td{
+  color: var(--secondary-color)
+}
+
+.ant-picker-content th{
+  color: var(--secondary-color)
+}
+
+.ant-picker-header{
+  color: var(--secondary-color)
+
+}

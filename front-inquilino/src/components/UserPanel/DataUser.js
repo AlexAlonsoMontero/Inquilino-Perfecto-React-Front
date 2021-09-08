@@ -1,13 +1,13 @@
-import { useGetUser } from "../../hooks/inmowebApi"
 import { useUser } from "../../context/UserContext"
-import { backRoutes } from "../../routes"
+import { backRoutes, routes } from "../../routes"
 import { useEffect, useState } from "react"
 import './DataUser.css'
+import { useHistory } from "react-router"
 const DataUser = () => {
     const [user] = useUser()
     const [dbUser, setDbUser] = useState()
     const [avatarStyle, setAvatarStyle] = useState()
-    
+    const history = useHistory()
     useEffect(() => {
         const userData = async()=>{
             const userId = {user_uuid:user.user.user_uuid}
@@ -27,7 +27,10 @@ const DataUser = () => {
         userData()   
         
     }, []);
-
+    if(!user){
+        alert("Necesita estar logado para accedere a esta página")
+        history.push(routes.home)
+    }
 
     const onHandleSubmit = async(e) =>{
         e.preventDefault()
