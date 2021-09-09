@@ -9,7 +9,8 @@ import './AdvSearcher.css'
 import { Checkbox } from 'antd' 
 import LocationSearch from '../LocationSearch/LocationSearch'
 import { MapContainer, TileLayer, Marker, Popup} from 'react-leaflet'
-
+import { useLocation } from 'react-router'
+import { useEffect } from 'react'
 
 const AdvSearcher =()=>{
         /**************************** */
@@ -34,9 +35,6 @@ const AdvSearcher =()=>{
         const [from__fecha_inicio, setFrom__fecha_inicio] = useState()
         const [from__fecha_disponibilidad, setFrom__fecha_dispinibilidad] = useState()
         const [until__fecha_fin, setUntil__fecha_fin] = useState()
-        
-        /**************************** */
-        
         const history = useHistory()
 
         const qpar = [
@@ -61,22 +59,19 @@ const AdvSearcher =()=>{
             {from__fecha_inicio: from__fecha_inicio},
             {from__fecha_disponibilidad:from__fecha_disponibilidad},
             {until__fecha_fin:until__fecha_fin}
-        ]       
+        ] 
         const query = useQueryGenerate(qpar)
-        prov.sort((a, b)=>a.nm.localeCompare(b.nm))
-        
+        prov.sort((a, b)=>a.nm.localeCompare(b.nm))      
         const [advertisements, setAdvertisements] = useState()
         const handleFilter = async(e) =>{
             e.preventDefault()
             const result = await fetch(backRoutes.r_advSearcher + query)
-            console.log("ruta ok")
-            console.log(backRoutes.r_advSearcher + query)
             const {data } = await (result.json())
             history.push(`/search/adv/${query}`)
             setAdvertisements(data)
-            console.log(data)
         }
-        
+        const queryParams = (useLocation().search)
+
         function onChangeDate(date, dateString) {
             
             if(date){
@@ -84,6 +79,23 @@ const AdvSearcher =()=>{
             }
             
         }
+        useEffect(() => {
+            if(queryParams!=""){
+                console.log("entra")
+                const getUrlAdv = async() =>{
+                    const result = await fetch(backRoutes.r_advSearcher + queryParams)
+                    console.log(result)
+                    const {data} = await result.json()
+                    console.log(data)
+                    setAdvertisements(data)
+                }
+                getUrlAdv()
+            }    
+            
+        }, []);
+        
+        /**************************** */
+        
         return(
             <div>
                 <div className="advertisement-search-container">

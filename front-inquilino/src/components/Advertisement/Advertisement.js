@@ -59,7 +59,6 @@ const Advertisement = () => {
 
     }, []);
 
-    console.log(adv)
     if (!adv) {
         return <p>Cargando datos...</p>
     }
@@ -104,9 +103,9 @@ const Advertisement = () => {
         <>
             <h1>Inmueble en alquiler:</h1>
             <div className={"adv-Container"}>
-                {images && adv.lat != 0.0 && adv.lng != 0.0 &&
+            {images && images.length>0 && adv.lat != 0.0 && adv.lng != 0.0 &&
                 <div>
-                    {images.length>0 &&
+                    {images && images.length>0 &&
                         <div className="AdvImageContainer">
                             <Carousel autoplay centerPadding={true}>
                                 {images.map(img => {
