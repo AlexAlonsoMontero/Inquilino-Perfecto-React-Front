@@ -6,6 +6,8 @@ import { useEffect } from 'react';
 import { Space, DatePicker, Carousel } from 'antd';
 import { useUser } from '../../context/UserContext';
 import { Rate } from 'antd';
+import { MapContainer, TileLayer, Marker } from 'react-leaflet'
+
 const Advertisement = () => {
     const moment = require('moment')
     const [user] = useUser()
@@ -57,12 +59,12 @@ const Advertisement = () => {
 
     }, []);
 
-
+    console.log(adv)
     if (!adv) {
         return <p>Cargando datos...</p>
     }
 
-    function onChangeStartDate(date,dateString) {
+    function onChangeStartDate(date, dateString) {
         if (date) {
             setReserv({ ...reserv, fecha_inicio: (`${date._d.getFullYear()}-${date._d.getMonth() + 1}-${date._d.getDate()}`) })
         }
@@ -97,73 +99,92 @@ const Advertisement = () => {
         }
 
     }
+    console.log(images)
     return (
         <>
-        <h1>Inmueble en alquiler:</h1>
+            <h1>Inmueble en alquiler:</h1>
+            <div className={"adv-Container"}>
+                {images && adv.lat != 0.0 && adv.lng != 0.0 &&
+                <div>
+                    {images.length>0 &&
+                        <div className="AdvImageContainer">
+                            <Carousel autoplay centerPadding={true}>
+                                {images.map(img => {
+                                    return (
+                                        <img src={backRoutes.r_host_port + img.img_inmueble.slice(1)} key={img.img_inmueble_uuid} className={"advImgSlider"} />
+                                    )
+                                })
+                                }
+                            </Carousel>
 
-        <div className={"adv-Container"}>
-            <div className="AdvImageContainer">
-                <h2>Imágenes inmueble:</h2>
+                        </div>
+                    }
+                    {adv.lat != 0.0 && adv.lng != 0.0 &&
+                        <div className="advMapContainer">
+                            <MapContainer
+                                center={[adv.lat, adv.lng]}
+                                zoom={5}
+                                scrollWheelZoom={false}
+                            >
+                                <TileLayer
+                                    attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                                />
+                                <Marker position={[adv.lat, adv.lng]} />
+                            </MapContainer>
+                        </div>
+                    }
+                </div>}
 
-                {images &&
-                    <Carousel autoplay centerPadding={true}>
-                        {images.map(img => {
+
+                <div>
+
+
+                    <h2>Datos de reserva</h2>
+                    <p><span>Precio</span> {adv.precio}€/mes <span>Fecha disponibilidad {adv.fecha_disponibilidad} </span> </p>
+                    <div className="advertisementDataContainer">
+                        <Space direction="vertical">
+                            <DatePicker onChange={onChangeStartDate} format='DD-MM-YYYY' placeholder="Fecha entrada" showToday='true' className="primary-input date-picker" />
+                        </Space>
+                        <Space direction="vertical">
+                            <DatePicker onChange={onChangeFinishDate} format='DD-MM-YYYY' placeholder="Fecha salida" showToday='true' className="primary-input date-picker" />
+                        </Space>
+                    </div>
+                    {(!user || user.tipo === 'CASERO') && <p className={"error"}>Para solicitar reserva debe estar registrado y logado como inquilino.</p>}
+                    {user &&
+                        <button className="primary-button solReservaButton" onClick={ondHandleReserv} >Solicitar reserva</button>
+                    }
+                    <div>
+                        <h2>Direccion:</h2>
+                        <p><span>Comunidad</span> {adv.comunidad} <span>Provincia</span> {adv.provincia} </p>
+                        <p><span>Calle</span> {adv.calle}</p>
+                        <p><span>Numero</span> {adv.numero} <span>Piso</span> {adv.piso} <span>C.P.</span> {adv.cp} </p>
+                    </div>
+                    <div>
+                        <h2>Características</h2>
+                        <p><span>Metros cuadrados</span> {adv.m2} <span>Amueblado </span> {handleBooleanString(adv.amueblado)} </p>
+                        <p><span>Calefaccion</span> {handleBooleanString(adv.calefaccion)} <span>Aire acondicinado</span> {handleBooleanString(adv.aire_acondicionado)} </p>
+                        <p><span>Terraza</span> {handleBooleanString(adv.terraza)} <span>Jardin</span> {handleBooleanString(adv.jardin)} </p>
+                        <p><span>Piscina</span> {handleBooleanString(adv.piscina)} </p>
+                    </div>
+
+
+
+                </div>
+                {reviews &&
+                    <div>
+                        <h2>Reseñas casero</h2>
+                        {reviews && reviews.map(item => {
                             return (
-                                <img src={backRoutes.r_host_port + img.img_inmueble.slice(1)} key={img.img_inmueble_uuid} className={"advImgSlider"} />
+                                <>
+                                    <p key={item.id_resena}><Rate value={item.puntuacion} /></p>
+                                    <p> Observaciones: {item.contenido} </p>
+                                </>
                             )
-                        })
-                        }
-                    </Carousel>
+                        })}
+                    </div>
                 }
             </div>
-            <div >
-                
-                
-                <h2>Datos de reserva</h2>
-                <p><span>Precio</span> {adv.precio}€/mes <span>Fecha disponibilidad {adv.fecha_disponibilidad} </span> </p>
-                <div className="advertisementDataContainer">
-                    <Space direction="vertical">
-                        <DatePicker onChange={onChangeStartDate} format='DD-MM-YYYY' placeholder="Fecha entrada" showToday='true' className="primary-input date-picker" />
-                    </Space>
-                    <Space direction="vertical">
-                        <DatePicker onChange={onChangeFinishDate} format='DD-MM-YYYY' placeholder="Fecha salida" showToday='true' className="primary-input date-picker" />
-                    </Space>
-                </div>
-                {(!user || user.tipo === 'CASERO') && <p className={"error"}>Para solicitar reserva debe estar registrado y logado como inquilino.</p>}
-                {user &&
-                    <button className="primary-button solReservaButton" onClick={ondHandleReserv} >Solicitar reserva</button>
-                }
-                <div>
-                    <h2>Direccion:</h2>
-                    <p><span>Comunidad</span> {adv.comunidad} <span>Provincia</span> {adv.provincia} </p>
-                    <p><span>Calle</span> {adv.calle}</p>
-                    <p><span>Numero</span> {adv.numero} <span>Piso</span> {adv.piso} <span>C.P.</span> {adv.cp} </p>
-                </div>
-                <div>
-                    <h2>Características</h2>
-                    <p><span>Metros cuadrados</span> {adv.m2} <span>Amueblado </span> {handleBooleanString(adv.amueblado)} </p>
-                    <p><span>Calefaccion</span> {handleBooleanString(adv.calefaccion)} <span>Aire acondicinado</span> {handleBooleanString(adv.aire_acondicionado)} </p>
-                    <p><span>Terraza</span> {handleBooleanString(adv.terraza)} <span>Jardin</span> {handleBooleanString(adv.jardin)} </p>
-                    <p><span>Piscina</span> {handleBooleanString(adv.piscina)} </p>
-                </div>
-
-
-
-            </div>
-            {reviews && 
-                <div>
-                    <h2>Reseñas casero</h2>
-                    {reviews && reviews.map(item => {
-                        return (
-                            <>
-                                <p key={item.id_resena}><Rate value={item.puntuacion} /></p>
-                                <p> Observaciones: {item.contenido} </p>
-                            </>
-                        )
-                    })}
-                </div>
-                }
-        </div>
         </>
     )
 }

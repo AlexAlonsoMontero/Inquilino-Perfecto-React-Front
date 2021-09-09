@@ -19,7 +19,8 @@ const AddProperty = () =>{
     const userVerification =useVerifiateUser(user.user,["CASERO","INQUILINO/CASERO"])
     const [imageStyle,setImageStyle]=useState([])
     const [files, setFiles] =useState([])
-
+    const [lat, setLat] = useState()
+    const [lng, setLng] = useState()
 
     const setAdressParams = (adress, coordinates) =>{
         setAdress(adress)
@@ -35,8 +36,15 @@ const AddProperty = () =>{
                 
             }         
         }
+        if(lng && lat){
+            if(lat!="-" && lat!="" && lng!="-" && lng!=""){
+            console.log(lat,lng)
+            setProperty({...property,lat:lat,lng:lng})
+            console.log(property)
+            }
+        }
        
-    },[adress])
+    },[adress,lng,lat])
     if(userVerification===false || !user){
         alert ("Solo los usuarios registrados como caseros pueden dar de alta inmuebles")
         return <Redirect to="/"/>
@@ -86,6 +94,10 @@ const AddProperty = () =>{
         //     })
         // })
     }
+
+    
+    console.log(property)   
+
     return (
         <div className="addPropertyContainer">
             <h1>Añadir inmueble</h1>
@@ -106,11 +118,12 @@ const AddProperty = () =>{
                     <input type="number" className="primary-input"  min="0"  placeholder="Metros" value={property.metros_2} onChange={e=> setProperty({...property,metros_2:e.target.value})  } required/>
                     <input type="number" className="primary-input"  min="0"  placeholder="Numero baños" value={property.banos}  onChange={e=> setProperty({...property,banos:e.target.value})  } required/>
                     <input type="number" className="primary-input"  min="0"  placeholder="Numero Habitaciones"  value={property.habitaciones}  onChange={e=> setProperty({...property,habitaciones:e.target.value})  } required/>
-                    <input  className="primary-input"  min="0"  placeholder="Coordenadas x" value={property.lat} />
-                    <input  className="primary-input"  min="0"  placeholder="Coordenadas y" value={property.lng} />
+                    <input  className="primary-input"  min="0"  placeholder="Coordenadas x" value={property.lat} onChange={e=> setLat(e.target.value)}  />
+                    <input  className="primary-input"  min="0"  placeholder="Coordenadas y" value={property.lng} onChange={e=> setLng(e.target.value)}  />
                 </div>
                 <div className="addpropOptions-container" onSubmit={handleSubmit}>
-                    <Checkbox value={property.amueblado}  onChange={e=> setProperty({...property,amlueblado:e.target.checked})  }> Amueblado </Checkbox>
+                    <Checkbox value={property.amueblado}  onChange={e=> setProperty({...property,amueblado:e.target.checked})  }> Amueblado </Checkbox>
+                    
                     <Checkbox value={property.calefaccion}  onChange={e=> setProperty({...property,calefaccion:e.target.checked})  }> Calefacción </Checkbox>
                     <Checkbox value={property.aire_acondicionado}  onChange={e=> setProperty({...property,aire_acondicionado:e.target.checked})  }> Aire Acondicionado </Checkbox>
                     <Checkbox value={property.jardin}  onChange={e=> setProperty({...property,jardin:e.target.checked})  }> Jardin </Checkbox>
@@ -118,24 +131,20 @@ const AddProperty = () =>{
                     <Checkbox value={property.ascensor}  onChange={e=> setProperty({...property,ascensor:e.target.checked})  }> Ascensor </Checkbox>
                     <Checkbox value={property.piscina}  onChange={e=> setProperty({...property,piscina:e.target.checked})  }> Piscina </Checkbox>
                 </div>
+                { property.lat && property.lng &&
                 <MapContainer 
-                center={[40.420, -3.704]}
-                zoom={13}
+                center={[property.lat, property.lng]}
+                zoom={5}
                 scrollWheelZoom={false}
                 whenCreated={setMap}>
                     <TileLayer
                     attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                     />
-                    { property.lat &&
+                    
                         <Marker position={[property.lat, property.lng]} />
-                    }
-                    
-
-                    
-
-
                 </MapContainer>
+                }
                 <div className="propertyImages-container">
                 <label name="propertyImage-label" className="propertyImage-label" onChange={e=>handleImagesProperty(e)}>
                                 <div class="property-preview " style={imageStyle[0]}></div>

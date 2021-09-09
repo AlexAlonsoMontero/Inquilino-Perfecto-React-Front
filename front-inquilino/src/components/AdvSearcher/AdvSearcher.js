@@ -8,6 +8,8 @@ import MiniAdvertisement from '../MiniAdvertisement/MiniAdvertisement'
 import './AdvSearcher.css'
 import { Checkbox } from 'antd' 
 import LocationSearch from '../LocationSearch/LocationSearch'
+import { MapContainer, TileLayer, Marker, Popup} from 'react-leaflet'
+
 
 const AdvSearcher =()=>{
         /**************************** */
@@ -72,6 +74,7 @@ const AdvSearcher =()=>{
             const {data } = await (result.json())
             history.push(`/search/adv/${query}`)
             setAdvertisements(data)
+            console.log(data)
         }
         
         function onChangeDate(date, dateString) {
@@ -131,9 +134,33 @@ const AdvSearcher =()=>{
                             {advertisements.map(adver=>
                                 <MiniAdvertisement advertisements={adver}/>
                             )}
+                    
+                    <MapContainer 
+                    center={[40.41, 3.70]}
+                    zoom={5}
+                    scrollWheelZoom={false}
+                    >
+                        <TileLayer
+                        attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                        />
+                        {advertisements.map(adver=>{return(
+                                <Marker position={[adver.lat,adver.lng]}>
+                                    <Popup className={".custom-popup"}>
+                                    <div>
+                                        <MiniAdvertisement advertisements={adver}/>
+                                    </div>
+                                    </Popup>
+                                </Marker>
+                                )}
+                        )}
+                    </MapContainer>
                     </div>
+                    
                 </>
                 }
+                
+                
                 
 
             </div>
