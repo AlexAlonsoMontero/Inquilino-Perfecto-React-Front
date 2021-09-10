@@ -18,11 +18,22 @@ import UpdateProperty from './components/PropertyPanel/UpdateProperty/UpdateProp
 import DataUser from './components/UserPanel/DataUser';
 import PropertyRservPanel from './components/Reservs/PropertyRservPanel'
 import InquilinoReservsPanel from './components/Reservs/InquilinoReservsPanel';
+import { Helmet } from 'react-helmet';
+import { logDOM } from '@testing-library/dom';
 function App() { 
   const [user] = useUser()
   const [showModal, setShowModal] = useState(false)
   return (
+    
     <div className="App">
+      <Helmet>
+          <title>Inmoweb</title>
+          <meta name="description" content="Buscador viviendas en alquiler" />
+          <html lang="es" amp />
+          <link rel="icon" type="image/png" href="./logo.jpg" />
+          
+
+      </Helmet>
       <header>
         <NavPrincipal setShowModal={setShowModal}/>
       </header>
