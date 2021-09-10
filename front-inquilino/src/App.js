@@ -30,7 +30,7 @@ function App() {
           <title>Inmoweb</title>
           <meta name="description" content="Buscador viviendas en alquiler" />
           <html lang="es" amp />
-          <link rel="icon" type="image/png" href="./logo.jpg" />
+          <link rel="icon" type="image/png" href={ routes.home +  "logo.jpg"} />
           
 
       </Helmet>
