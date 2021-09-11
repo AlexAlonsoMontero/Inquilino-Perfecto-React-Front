@@ -148,9 +148,9 @@ const AdvSearcher =()=>{
                             )}
                     
                     <MapContainer 
-                    center={[40.41, 3.70]}
-                    zoom={5}
-                    scrollWheelZoom={false}
+                    center={[40.42166, -3.703509]}
+                    zoom={8}
+                    scrollWheelZoom={true}
                     >
                         <TileLayer
                         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
