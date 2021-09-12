@@ -8,11 +8,9 @@ import { Link } from "react-router-dom"
 import './ControlPanelCasero.css'
 import { confirmAlert } from 'react-confirm-alert'; 
 import 'react-confirm-alert/src/react-confirm-alert.css'; 
-import { template } from "@babel/core"
 
 
 const ControlPanelCasero = () =>{
-    const history = useHistory()
     const [user] = useUser()
     const  {username}   = useParams()
     const [properties, setProperties] = useState([])

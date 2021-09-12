@@ -4,9 +4,7 @@ import { useHistory } from 'react-router-dom'
 import { routes, backRoutes } from '../../routes'
 import { useGetImages } from '../../hooks/inmowebApi';
 import { Carousel } from 'antd'
-import { map } from 'leaflet';
-import { useState } from 'react';
-import { isTSMethodSignature } from '@babel/types';
+
 
 const MiniAdvertisement = ({advertisements}) =>{
     const history = useHistory()

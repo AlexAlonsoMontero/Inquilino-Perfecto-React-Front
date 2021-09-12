@@ -19,9 +19,7 @@ const AdvSearcher =()=>{
         const [precioMax, setPrecioMax] = useState(100000000000)
         const [ciudad,setCiudad] = useState()
         const [calle,setCalle] = useState()
-        const [numero,setNumero] = useState()
         const [cp, setCp] = useState()
-        const [piso,setPiso] = useState()
         const [metros_2, setMetros_2]=useState()
         const [banos, setBanos] = useState()
         const [habitaciones, setHabitaciones] = useState()
@@ -32,9 +30,7 @@ const AdvSearcher =()=>{
         const [terraza, setTerraza] = useState()
         const [ascensor, setAscensor] = useState()
         const [piscina, setPiscina] = useState()
-        const [from__fecha_inicio, setFrom__fecha_inicio] = useState()
         const [from__fecha_disponibilidad, setFrom__fecha_dispinibilidad] = useState()
-        const [until__fecha_fin, setUntil__fecha_fin] = useState()
         const history = useHistory()
 
         const qpar = [
@@ -43,9 +39,7 @@ const AdvSearcher =()=>{
             {provincia: provincia},
             {ciudad: ciudad},
             {calle: calle},
-            {numero:numero},
             {cp: cp},
-            {piso: piso},
             {metros_2: metros_2},
             {banos: banos},
             {habitaciones: habitaciones},
@@ -56,11 +50,9 @@ const AdvSearcher =()=>{
             {terraza: terraza},
             {ascensor: ascensor},
             {piscina: piscina},
-            {from__fecha_inicio: from__fecha_inicio},
             {from__fecha_disponibilidad:from__fecha_disponibilidad},
-            {until__fecha_fin:until__fecha_fin}
         ] 
-        const query = useQueryGenerate(qpar)
+        let query = useQueryGenerate(qpar)
         prov.sort((a, b)=>a.nm.localeCompare(b.nm))      
         const [advertisements, setAdvertisements] = useState()
         const handleFilter = async(e) =>{
@@ -71,7 +63,6 @@ const AdvSearcher =()=>{
             setAdvertisements(data)
         }
         const queryParams = (useLocation().search)
-
         function onChangeDate(date, dateString) {
             
             if(date){
@@ -80,7 +71,7 @@ const AdvSearcher =()=>{
             
         }
         useEffect(() => {
-            if(queryParams!=""){
+            if(queryParams!==""){
                 const getUrlAdv = async() =>{
                     const result = await fetch(backRoutes.r_advSearcher + queryParams)
                     const {data} = await result.json()
@@ -107,7 +98,7 @@ const AdvSearcher =()=>{
                             )})}
                         </select>
                         
-                        <input type="text" className="primary-input" placeholder="Municipio" onChange={e=>setCiudad(e.target.value)}/>
+                        <input type="text" className="primary-input" placeholder="Municipio" onChange={e=>(setCiudad(e.target.value))}/>
                         <input type="text" className="primary-input" placeholder="Calle" onChange={e=>setCalle(e.target.value)}/>
                         <input type="number" className="primary-input"  min="10000"  placeholder="C.P." onChange={ e => setCp(e.target.value) } />
                         <input type="number" className="primary-input"  min="0"  placeholder="Metros" onChange={ e => setMetros_2(e.target.value) } />

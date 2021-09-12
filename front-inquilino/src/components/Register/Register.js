@@ -1,8 +1,8 @@
 import { useState } from "react"
 import './Register.css'
 import avatar from './avatar.png'
-import { backRoutes, routes } from "../../routes"
-import { Redirect, useHistory } from "react-router"
+import { backRoutes } from "../../routes"
+import { Redirect } from "react-router"
 
 
 const Register = () => {
@@ -10,7 +10,6 @@ const Register = () => {
     const [avatarStyle,setAvatarStyle] = useState({ backgroundImage: 'url(' + avatar + ')' })
     const [newUser,setNewUser] = useState({tipo:"INQUILINO"});
     const [registered,setRegistered]=useState(false)
-    const history = useHistory()    
     const handleImageAvatar = (e)=>{
         e.preventDefault()
         if( e.target.files[0] ){

@@ -10,7 +10,6 @@ const InquilinoReservsPanel = () =>{
     const [user] = useUser()
     const [reservs,setReservs] = useState()
     const [filter, setFilter] = useState("TODAS")
-    const [showRevInput, setShowRevInput] = useState(false)
     const [props,setProps] = useState()
     const [stars, setStars] = useState(0)
     const [revContenido, setResContenido] = useState()

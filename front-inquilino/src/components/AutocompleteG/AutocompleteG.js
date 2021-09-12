@@ -8,7 +8,6 @@ const AutocompleteG = ({setAdressParams}) => {
     const [direccion, setDireccion] = useState()
     const [datos,setDatos] = useState([])
     const [coordinates, setCoordinates] = useState()
-    let direccionCompleta= {}
     
     useEffect(() => {
         if(direccion){

@@ -48,49 +48,60 @@ function App() {
               </Modal>
           }
             <Switch>
-                <Route path= {`${routes.r_advertisement}/:anuncio_uuid`} exact>
-                  <Advertisement />
-                </Route>
-                
-               
-                
-               
-                <Route path={`${routes.r_ReservInquilinoByUUID}/:rol/:user_inquilino_uuid`} exact>
-                  <InquilinoReservsPanel />
-                </Route>
-                <Route path={`${routes.r_ReservPanelByProperty}/:inmueble_uuid`} exact >
-                  <PropertyRservPanel />
-                </Route>
-                <Route path={`${routes.r_PropertyNewProp}`} exact >
-                  <AddProperty />
-                </Route>
-                <Route path={routes.r_register} exact>
-                  <Register/>
-                </Route>
-                <Route path={`${routes.r_DataUser}:username`} exact>
-                  <DataUser />
-                </Route>
-                
-                <Route path={`${routes.r_ControlPanelCasero}/:username`} exact >
-                  <ControlPanelCasero />
-                </Route>
-                <Route path={`${routes.r_updatePropertiesUser}/:inmueble_uuid`}  >
-                  <UpdateProperty />
-                </Route>
-                
-                <Route path= {`${routes.r_advertisement}/:anuncio_uuid`} exact>
-                  <Advertisement />
+                <Route path={routes.home}  exact >
+                  <AdvSearcher />
                 </Route>
                 <Route path={routes.r_advSearcher} >
                     <AdvSearcher />
                 </Route> 
-                
-                <Route path={routes.home}  exact >
-                  <AdvSearcher />
+                <Route path={`${routes.r_ReservInquilinoByUUID}/:rol/:user_inquilino_uuid`} exact>
+                  <InquilinoReservsPanel />
                 </Route>
+                <Route path={`${routes.r_DataUser}:username`} exact>
+                  <DataUser />
+                </Route>
+                <Route path= {`${routes.r_advertisement}/:anuncio_uuid`} exact>
+                  <Advertisement />
+                </Route>
+                <Route path={`${routes.r_ControlPanelCasero}/:username`} exact >
+                  <ControlPanelCasero />
+                </Route>
+                <Route path={`${routes.r_PropertyNewProp}`} exact >
+                  <AddProperty />
+                </Route>
+                <Route path={`${routes.r_updatePropertiesUser}/:inmueble_uuid`}  >
+                  <UpdateProperty />
+                </Route>
+                <Route path={`${routes.r_ReservPanelByProperty}/:inmueble_uuid`} exact >
+                  <PropertyRservPanel />
+                </Route>
+
+                <Route path={routes.r_register} exact>
+                  <Register/>
+                </Route>
+                
                 <Route path={routes.r_activationUser} exact>
                   <ActivateUser />
                 </Route>
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+
+                
+                
+                
+                
+                
+                
+                
           </Switch>
       </main>
       <footer>
