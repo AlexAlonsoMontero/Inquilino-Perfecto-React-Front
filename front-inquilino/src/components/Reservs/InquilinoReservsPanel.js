@@ -106,16 +106,14 @@ const InquilinoReservsPanel = () =>{
 
             <table className={"crudTable"}>
                 <tr>
-                    <th>Inmueble</th>
+                    
                     <th>Fecha solicitud</th>
                     <th>Fecha entrada</th>
                     <th>Fecha salida</th>
                     <th>Prcio €/mes</th>
                     <th>Estado Reserva</th>
-                    <th>
-                    
-
-                    </th>
+                    <th>Inmueble</th>
+                    <th>Reseñas</th>
                 </tr>
                     
                     {filter && reservs.map(res=>{

@@ -81,12 +81,9 @@ const AdvSearcher =()=>{
         }
         useEffect(() => {
             if(queryParams!=""){
-                console.log("entra")
                 const getUrlAdv = async() =>{
                     const result = await fetch(backRoutes.r_advSearcher + queryParams)
-                    console.log(result)
                     const {data} = await result.json()
-                    console.log(data)
                     setAdvertisements(data)
                 }
                 getUrlAdv()
@@ -95,7 +92,6 @@ const AdvSearcher =()=>{
         }, []);
         
         /**************************** */
-        
         return(
             <div>
                 <div className="advertisement-search-container">
@@ -147,9 +143,11 @@ const AdvSearcher =()=>{
                                 <MiniAdvertisement advertisements={adver}/>
                             )}
                     
+                    
+                    </div>
                     <MapContainer 
                     center={[40.42166, -3.703509]}
-                    zoom={8}
+                    zoom={5}
                     scrollWheelZoom={true}
                     >
                         <TileLayer
@@ -167,7 +165,6 @@ const AdvSearcher =()=>{
                                 )}
                         )}
                     </MapContainer>
-                    </div>
                     
                 </>
                 }
