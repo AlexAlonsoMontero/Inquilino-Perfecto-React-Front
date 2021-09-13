@@ -79,6 +79,8 @@ const InquilinoReservsPanel = () =>{
             const results = await data.json()
             if(results.error){
                 alert("No se ha podido almacenar la reseña, " + results.error)
+            }else{
+                alert("La reseña se ha añadido correctamente")
             }
             
 
@@ -150,6 +152,11 @@ const InquilinoReservsPanel = () =>{
                                     <td>{DateToSTring(res.fecha_fin)}</td>
                                     <td>{res.precio_reserva}</td>
                                     <td>{res.estado_reserva}</td>
+                                    <td>
+                                        {props && props.map(item=>{
+                                            if (item.inmueble_uuid === res.inmueble_uuid ){return <p>{item.calle} {item.numero} {item.ciudad} </p>}
+                                        })}
+                                    </td>
                                     <td>
                                     {res.estado_reserva==="ACEPTADA" &&
                                             <form onSubmit={e=>onHandleAddRev(e,res)}>  
