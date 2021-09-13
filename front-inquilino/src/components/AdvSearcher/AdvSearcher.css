@@ -72,3 +72,7 @@
     margin: 0px;
 }
 
+.mapPosition div {
+    position: sticky;
+    z-index: 0;
+}

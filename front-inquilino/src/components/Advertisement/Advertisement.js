@@ -100,7 +100,7 @@ const Advertisement = () => {
         <>
             <h1>Inmueble en alquiler:</h1>
             <div className={"adv-Container"}>
-            {images && images.length>0 && adv.lat != 0.0 && adv.lng != 0.0 &&
+            
                 <div>
                     {images && images.length>0 &&
                         <div className="AdvImageContainer">
@@ -130,7 +130,7 @@ const Advertisement = () => {
                             </MapContainer>
                         </div>
                     }
-                </div>}
+                </div>
 
 
                 <div>
