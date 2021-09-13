@@ -19,7 +19,7 @@ import DataUser from './components/UserPanel/DataUser';
 import PropertyRservPanel from './components/Reservs/PropertyRservPanel'
 import InquilinoReservsPanel from './components/Reservs/InquilinoReservsPanel';
 import { Helmet } from 'react-helmet';
-import { logDOM } from '@testing-library/dom';
+import NewReviewConsult from './components/NewReviewConsult/NewReviewConsult';
 function App() { 
   const [user] = useUser()
   const [showModal, setShowModal] = useState(false)
@@ -37,16 +37,18 @@ function App() {
       <header>
         <NavPrincipal setShowModal={setShowModal}/>
       </header>
-      <aside>
-      {user && <Aside /> }
-      </aside>
+      
       
       <main>
+          <aside>
+          {user && <Aside /> }
+          </aside>
           {!user && showModal &&
               <Modal setShowModal={setShowModal}>
                   <Login setShowModal={setShowModal}/>
               </Modal>
           }
+          <section class="route">
             <Switch>
                 <Route path={routes.home}  exact >
                   <AdvSearcher />
@@ -75,7 +77,9 @@ function App() {
                 <Route path={`${routes.r_ReservPanelByProperty}/:inmueble_uuid`} exact >
                   <PropertyRservPanel />
                 </Route>
-
+                <Route path={`${routes.r_NewReviewConsult}/:rol/:user_uuid`} exact >
+                  <NewReviewConsult />
+                </Route>
                 <Route path={routes.r_register} exact>
                   <Register/>
                 </Route>
@@ -103,6 +107,7 @@ function App() {
                 
                 
           </Switch>
+          </section>
       </main>
       <footer>
           <Footer />

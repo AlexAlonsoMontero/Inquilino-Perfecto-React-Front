@@ -18,7 +18,8 @@ export const routes = {
     r_updatePropertiesUser:'/api/property/update',
     //RESERV
     r_ReservPanelByProperty: '/api/reserv/property',
-    r_ReservInquilinoByUUID: '/api/reserv/property' //:rol (inquilino o usuario) :user_inquilino_uuid
+    r_ReservInquilinoByUUID: '/api/reserv/property', //:rol (inquilino o usuario) :user_inquilino_uuid
+    r_NewReviewConsult:'/api/reserv/reviews'
     
 }
 
@@ -50,7 +51,8 @@ export const backRoutes ={
     r_reservsInquilinoByInquiliUUID: `${host}:${port}/api/reservations/`, //:usr_inquilino_uuid
     //REVIEWS
     r_review: `${host}:${port}/api/reviews/`, 
-    r_reviewByUser: `${host}:${port}/api/reviews-uuid/?`// uuid ?user_uuid=......
+    r_reviewByUser: `${host}:${port}/api/reviews-uuid/?`,// uuid ?user_uuid=......
+    r_NewReviewsconsult: `${host}:${port}/api/reviews/user-uuid/`
     
 }
 

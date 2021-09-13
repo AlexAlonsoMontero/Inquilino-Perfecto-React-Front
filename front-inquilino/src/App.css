@@ -15,10 +15,12 @@ body {
   
 }
 aside{
-  float: left;
-  height: 100px;
+  display: flex;
   margin-right: 1px;
-  min-height: 90vh;
+}
+
+.aside-container {
+  height: 90vh;
 }
 
 
@@ -26,7 +28,11 @@ aside{
 body main{
   min-height: 90vh;
   width: 100%;
-  
+  display: flex;
+}
+
+section.route {
+  flex-grow: 1;
 }
 .main div:first-child{
   height: 100%;

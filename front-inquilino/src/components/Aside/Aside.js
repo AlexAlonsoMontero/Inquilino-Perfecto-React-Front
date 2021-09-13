@@ -53,7 +53,7 @@ const Aside = () => {
                         <Menu.Item key="20"><Link to={`${routes.r_ControlPanelCasero}/${user.user.username}`} >Panel de administración </Link>  </Menu.Item>
                         <Menu.Item key="19"><Link to={`${routes.r_PropertyNewProp}`} >Añadir Inmuebles</Link>  </Menu.Item>
                         <Menu.Item key="31"> <Link to={`${routes.r_ReservInquilinoByUUID}/casero/${user.user.user_uuid}`}>Reseñas y reservas aceptadas</Link> </Menu.Item>
-
+                        {/* <Menu.Item key="32"> <Link to={`${routes.r_NewReviewConsult}/casero/${user.user.user_uuid}`}>Reseñas y reservas aceptadas V2</Link> </Menu.Item> */}
                     </SubMenu>
                 }
                 {(user.user.tipo==="INQUILINO" || user.user.tipo==="INQUILINO/CASERO") &&

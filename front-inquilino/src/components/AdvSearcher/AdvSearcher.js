@@ -14,24 +14,24 @@ import { useEffect } from 'react'
 
 const AdvSearcher =()=>{
         /**************************** */
-        const [provincia, setProvincia] = useState()
+        const [provincia, setProvincia] = useState("")
         const [precioMin, setPrecioMin] = useState(0)
         const [precioMax, setPrecioMax] = useState(100000000000)
-        const [ciudad,setCiudad] = useState()
-        const [calle,setCalle] = useState()
-        const [cp, setCp] = useState()
-        const [metros_2, setMetros_2]=useState()
-        const [banos, setBanos] = useState()
-        const [habitaciones, setHabitaciones] = useState()
-        const [amueblado,setAmueblado] = useState()
-        const [calefaccion, setCalefaccion] = useState()
-        const [aire_acondicionado, setAire_acondicionado] = useState()
-        const [jardin, setJardin] = useState()
-        const [terraza, setTerraza] = useState()
-        const [ascensor, setAscensor] = useState()
-        const [piscina, setPiscina] = useState()
-        const [from__fecha_disponibilidad, setFrom__fecha_dispinibilidad] = useState()
-        const history = useHistory()
+        const [ciudad,setCiudad] = useState("")
+        const [calle,setCalle] = useState("")
+        const [cp, setCp] = useState("")
+        const [metros_2, setMetros_2]=useState("")
+        const [banos, setBanos] = useState("")
+        const [habitaciones, setHabitaciones] = useState("")
+        const [amueblado,setAmueblado] = useState("")
+        const [calefaccion, setCalefaccion] = useState("")
+        const [aire_acondicionado, setAire_acondicionado] = useState("")
+        const [jardin, setJardin] = useState("")
+        const [terraza, setTerraza] = useState("")
+        const [ascensor, setAscensor] = useState("")
+        const [piscina, setPiscina] = useState("")
+        const [from__fecha_disponibilidad, setFrom__fecha_dispinibilidad] = useState("")
+        const history = useHistory( )
 
         const qpar = [
             {from__precio:precioMin},
@@ -133,9 +133,8 @@ const AdvSearcher =()=>{
                             {advertisements.map(adver=>
                                 <MiniAdvertisement advertisements={adver}/>
                             )}
-                    
-                    
                     </div>
+ 
                     <MapContainer 
                     center={[40.42166, -3.703509]}
                     zoom={5}
