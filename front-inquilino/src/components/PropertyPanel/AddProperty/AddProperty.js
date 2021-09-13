@@ -61,6 +61,7 @@ const AddProperty = () =>{
     
     const handleSubmit = async(e) => {
         e.preventDefault()
+        
         const fdProp = new FormData()
         for (let cont = 0; cont<Object.keys(property).length; cont ++){
             fdProp.append(Object.keys(property)[cont], Object.values(property)[cont])
@@ -76,10 +77,15 @@ const AddProperty = () =>{
                 'Authorization': 'Bearer ' + user.token
             }
         })
+       
         const res = await addProperty.json()
         if(res.info){
             alert("imueble guardado correctamente")
             window.location.reload()
+        }
+       
+        if (res.error){
+            alert(res.error)
         }
 
         /***********************************AXIOS */
