@@ -49,15 +49,12 @@ const Advertisement = () => {
         }
         getAdvAndImges()
         const getReviews = async () => {
-
-
-
         }
 
         getReviews()
 
 
-    }, []);
+    }, [user]);
 
     if (!adv) {
         return <p>Cargando datos...</p>
