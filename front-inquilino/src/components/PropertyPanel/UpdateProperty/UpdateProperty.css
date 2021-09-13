@@ -1,7 +1,9 @@
 .updateContainer{
-   
+   float: right;
 }
-
+.updateProperty-container{
+    margin-top: 15px;
+}
 .updateProperty-form{
     display: flex;
     flex-direction: column;

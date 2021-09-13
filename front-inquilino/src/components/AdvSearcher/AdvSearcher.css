@@ -2,7 +2,7 @@
     background-image: url('./form-back.jpg');
     background-size: cover;
     background-position: bottom;
-    height: 40vh;
+    height: 30vh;
     max-height: 60vh;
     display: flex;
     align-items: center;
@@ -49,19 +49,26 @@
 .advertisement-search-container input::placeholder{
     color: var(--secondary-color);
     opacity: 0.50;
-  
+
 }
-
-
-
-
-
-
-
-  .resultSearchCotainer{
+.resultSearchCotainer{
     margin: auto;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-wrap:wrap;
 }
+
+
+
+.leaflet-popup-content-wrapper {
+    width: 600px;
+    padding: 1px;
+    margin:0px;
+}
+
+.leaflet-popup-tip-container {
+    width: 525px;
+    margin: 0px;
+}
+

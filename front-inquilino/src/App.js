@@ -18,11 +18,22 @@ import UpdateProperty from './components/PropertyPanel/UpdateProperty/UpdateProp
 import DataUser from './components/UserPanel/DataUser';
 import PropertyRservPanel from './components/Reservs/PropertyRservPanel'
 import InquilinoReservsPanel from './components/Reservs/InquilinoReservsPanel';
+import { Helmet } from 'react-helmet';
+import { logDOM } from '@testing-library/dom';
 function App() { 
   const [user] = useUser()
   const [showModal, setShowModal] = useState(false)
   return (
+    
     <div className="App">
+      <Helmet>
+          <title>Inmoweb</title>
+          <meta name="description" content="Buscador viviendas en alquiler" />
+          <html lang="es" amp />
+          <link rel="icon" type="image/png" href={ routes.home +  "logo.jpg"} />
+          
+
+      </Helmet>
       <header>
         <NavPrincipal setShowModal={setShowModal}/>
       </header>
@@ -37,49 +48,60 @@ function App() {
               </Modal>
           }
             <Switch>
-                <Route path= {`${routes.r_advertisement}/:anuncio_uuid`} exact>
-                  <Advertisement />
-                </Route>
-                
-               
-                
-               
-                <Route path={`${routes.r_ReservInquilinoByUUID}/:rol/:user_inquilino_uuid`} exact>
-                  <InquilinoReservsPanel />
-                </Route>
-                <Route path={`${routes.r_ReservPanelByProperty}/:inmueble_uuid`} exact >
-                  <PropertyRservPanel />
-                </Route>
-                <Route path={`${routes.r_PropertyNewProp}`} exact >
-                  <AddProperty />
-                </Route>
-                <Route path={routes.r_register} exact>
-                  <Register/>
-                </Route>
-                <Route path={`${routes.r_DataUser}:username`} exact>
-                  <DataUser />
-                </Route>
-                
-                <Route path={`${routes.r_ControlPanelCasero}/:username`} exact >
-                  <ControlPanelCasero />
-                </Route>
-                <Route path={`${routes.r_updatePropertiesUser}/:inmueble_uuid`}  >
-                  <UpdateProperty />
-                </Route>
-                
-                <Route path= {`${routes.r_advertisement}/:anuncio_uuid`} exact>
-                  <Advertisement />
+                <Route path={routes.home}  exact >
+                  <AdvSearcher />
                 </Route>
                 <Route path={routes.r_advSearcher} >
                     <AdvSearcher />
                 </Route> 
-                
-                <Route path={routes.home}  exact >
-                  <AdvSearcher />
+                <Route path={`${routes.r_ReservInquilinoByUUID}/:rol/:user_inquilino_uuid`} exact>
+                  <InquilinoReservsPanel />
                 </Route>
+                <Route path={`${routes.r_DataUser}:username`} exact>
+                  <DataUser />
+                </Route>
+                <Route path= {`${routes.r_advertisement}/:anuncio_uuid`} exact>
+                  <Advertisement />
+                </Route>
+                <Route path={`${routes.r_ControlPanelCasero}/:username`} exact >
+                  <ControlPanelCasero />
+                </Route>
+                <Route path={`${routes.r_PropertyNewProp}`} exact >
+                  <AddProperty />
+                </Route>
+                <Route path={`${routes.r_updatePropertiesUser}/:inmueble_uuid`}  >
+                  <UpdateProperty />
+                </Route>
+                <Route path={`${routes.r_ReservPanelByProperty}/:inmueble_uuid`} exact >
+                  <PropertyRservPanel />
+                </Route>
+
+                <Route path={routes.r_register} exact>
+                  <Register/>
+                </Route>
+                
                 <Route path={routes.r_activationUser} exact>
                   <ActivateUser />
                 </Route>
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+
+                
+                
+                
+                
+                
+                
+                
           </Switch>
       </main>
       <footer>

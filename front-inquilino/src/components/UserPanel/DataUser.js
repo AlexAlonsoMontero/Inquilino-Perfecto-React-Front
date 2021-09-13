@@ -57,7 +57,7 @@ const DataUser = () => {
         })
         const result = await data.json()
         if(result.newData){
-            alert("El usuario ha sido cmabiado con exito.En el proximo inicio de sesión verá el nuevo avatar")
+            alert("El usuario ha sido cambiado con exito.En el proximo inicio de sesión verá el nuevo avatar")
         }
     }
     const handleImageAvatar = (e) =>{

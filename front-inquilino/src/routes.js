@@ -6,10 +6,10 @@ export const routes = {
     //USER
     r_register: `/api/users`,
     r_login:`/login`,
-    r_ativactionUser:`/activation`,
+    r_ativactionUser:`/activation/`,
     r_DataUser: '/api/users/',
     //ADVERTISEMENT
-    r_advSearcher: '/',
+    r_advSearcher: '/search/adv/',
     r_advertisement: '/advertisement',
     r_addAdvertisement: '/advertisement/add',
     //PROPERTY

@@ -29,5 +29,13 @@
     
 }
 
+.AdvImageContainer {
+    margin-bottom: 20px;
+}
 
-
+.advMapContainer{
+    border-radius: 15px;
+    border: 2px solid var(--secondary-color);
+    overflow: hidden;
+    width: 30vw;
+}

@@ -1,4 +1,3 @@
-import { assertUserWhitespacable } from "@babel/types";
 import { useEffect, useState } from "react";
 import { backRoutes } from "../../routes";
 import { Rate } from "antd";

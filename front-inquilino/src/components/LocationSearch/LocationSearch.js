@@ -1,6 +1,8 @@
 import { backRoutes } from '../../routes'
 import { useEffect, useState } from 'react';
 import MiniAdvertisement from '../MiniAdvertisement/MiniAdvertisement'
+import { MapContainer, TileLayer, Marker, Popup} from 'react-leaflet'
+
 const LocationSearch = () =>{
     const [advertisements,setAdvertisements] = useState([])
     const isGeoloc = ("geolocation" in navigator ? true:false)
@@ -40,6 +42,32 @@ const LocationSearch = () =>{
                         })
                         
                     }
+                    <MapContainer 
+                    center={[40.41, 3.70]}
+                    zoom={5}
+                    scrollWheelZoom={false}
+                    >
+                        <TileLayer
+                        attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                        />
+                        {advertisements.map(adver=>{
+                                if(adver.lat && adver.lng){
+                                    return(
+                                        <Marker position={[adver.lat,adver.lng]}>
+                                            <Popup className={".custom-popup"}>
+                                                <div>
+                                                    <MiniAdvertisement advertisements={adver}/>
+                                                </div>
+                                            </Popup>
+                                        </Marker>
+                                    )
+                                }
+                            })
+
+                        }
+                </MapContainer>
+
                 </div>
             </div>
         )

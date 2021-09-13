@@ -7,6 +7,7 @@ import { Checkbox } from 'antd'
 import './UpdateProperty.css'
 import AddAdv from '../../AdvPanel/AddAdv'
 import { useHistory } from 'react-router-dom'
+import { MapContainer, TileLayer, Marker } from 'react-leaflet'
 const UpdateProperty = () =>{
     const [user]= useUser()
     const [property,setProperty] = useState()
@@ -95,11 +96,28 @@ const UpdateProperty = () =>{
     
    
     return (
+        
 
         <div className="updatePropContainer">
             <h1>Modificar inmueble</h1>
+            
             <form className="updateProperty-form" onSubmit={ handleSubmit }>
+            { property.lat && property.lng &&
+            <MapContainer 
+            center={[property.lat, property.lng]}
+            zoom={5}
+            scrollWheelZoom={false}
+            >
+                <TileLayer
+                attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                />
+                
+                    <Marker position={[property.lat, property.lng]} />
+            </MapContainer>
+        }
                 <div className={"updateProperty-container"}>
+                    
                     <div className="updatePropertyData-container">
                         <label><p>Calle</p>
                             <input type="text" className="primary-input" placeholder="calle" value={property.calle}  onChange={e=> setProperty({...property,calle:e.target.value})  } required />
@@ -132,7 +150,7 @@ const UpdateProperty = () =>{
                             <input type="number" className="primary-input"  min="0"  placeholder="Numero Habitaciones"  value={property.habitaciones}  onChange={e=> setProperty({...property,habitaciones:e.target.value})  } required/>
                         </label>
                         <label><p>Latitud</p>
-                            <input  className="primary-input"  min="0"  placeholder="Latitud" value={property.lat}  />
+                            <input  className="primary-input"  min="0"  placeholder="Latitud" value={property.lat} />
                         </label>
                         <label><p>Longitud</p>
                             <input  className="primary-input"  min="0"  placeholder="Longitud" value={property.lng} />
@@ -166,7 +184,7 @@ const UpdateProperty = () =>{
             <div className={"updatePropAddv-Container"}>
                 <AddAdv uuids={{inmueble_uuid:property.inmueble_uuid,usr_casero_uuid:property.usr_casero_uuid}}/>
             </div>
-        
+            
 
             
             

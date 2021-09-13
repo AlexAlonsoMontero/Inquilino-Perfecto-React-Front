@@ -10,7 +10,6 @@ const InquilinoReservsPanel = () =>{
     const [user] = useUser()
     const [reservs,setReservs] = useState()
     const [filter, setFilter] = useState("TODAS")
-    const [showRevInput, setShowRevInput] = useState(false)
     const [props,setProps] = useState()
     const [stars, setStars] = useState(0)
     const [revContenido, setResContenido] = useState()
@@ -80,6 +79,8 @@ const InquilinoReservsPanel = () =>{
             const results = await data.json()
             if(results.error){
                 alert("No se ha podido almacenar la reseña, " + results.error)
+            }else{
+                alert("La reseña se ha añadido correctamente")
             }
             
 
@@ -106,16 +107,14 @@ const InquilinoReservsPanel = () =>{
 
             <table className={"crudTable"}>
                 <tr>
-                    <th>Inmueble</th>
+                    
                     <th>Fecha solicitud</th>
                     <th>Fecha entrada</th>
                     <th>Fecha salida</th>
                     <th>Prcio €/mes</th>
                     <th>Estado Reserva</th>
-                    <th>
-                    
-
-                    </th>
+                    <th>Inmueble</th>
+                    <th>Reseñas</th>
                 </tr>
                     
                     {filter && reservs.map(res=>{
@@ -153,6 +152,11 @@ const InquilinoReservsPanel = () =>{
                                     <td>{DateToSTring(res.fecha_fin)}</td>
                                     <td>{res.precio_reserva}</td>
                                     <td>{res.estado_reserva}</td>
+                                    <td>
+                                        {props && props.map(item=>{
+                                            if (item.inmueble_uuid === res.inmueble_uuid ){return <p>{item.calle} {item.numero} {item.ciudad} </p>}
+                                        })}
+                                    </td>
                                     <td>
                                     {res.estado_reserva==="ACEPTADA" &&
                                             <form onSubmit={e=>onHandleAddRev(e,res)}>  
