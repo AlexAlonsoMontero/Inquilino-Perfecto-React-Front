@@ -25,7 +25,6 @@ const AddProperty = () =>{
     const setAdressParams = (adress, coordinates) =>{
         setAdress(adress)
         setCoordinates(coordinates)
-        map.flyTo(coordinates, 13)
         
     }
     useEffect(()=>{

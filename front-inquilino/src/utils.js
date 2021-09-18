@@ -39,5 +39,5 @@ export const parse_googleAdress = (autoAdress, coordinates)=>{
 
 export const DateToSTring = (date) =>{  
     const d = new Date(date)
-    return (`${d.getDay()}-${d.getMonth()}-${d.getFullYear()}`)
+    return (`${d.getDate()}-${d.getMonth()+1}-${d.getFullYear()}`)
 }
